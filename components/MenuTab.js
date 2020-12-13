@@ -1,0 +1,40 @@
+import * as React from 'react';
+import { Text, View, StyleSheet } from 'react-native';
+import { FontAwesome5 } from '@expo/vector-icons'; 
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import HomeHeaderBar from './HomeHeaderBar/HomeHeaderBar'
+import Home from '../screens/Home';
+import Users from '../screens/Users';
+import Video from '../screens/Video';
+import Notification from '../screens/Notification';
+import Setting from '../screens/Setting'
+
+const Tab = createMaterialTopTabNavigator();
+
+const MenuTab = (props) => {
+  const {setHeaderVisible} = props
+  return (
+    <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, size }) => {
+            const position = {'Home': 'home', 'Users': 'users', 'Video': 'film', 'Notification':'bell', 'Setting':'bars'}
+            // You can return any component that you like here!
+            return <FontAwesome5 name={position[route.name]} size={25} color={focused? '#4a90e2' : '#333333'}/>;
+          },
+        })}
+        tabBarOptions={{
+          showIcon: true,
+          showLabel: false,
+        }}
+      >
+        <Tab.Screen name='Home' component={()=><Home setHeaderVisible={setHeaderVisible}/>}> </Tab.Screen>
+        <Tab.Screen name='Users' component={Users}> </Tab.Screen>
+        <Tab.Screen name='Video' component={Video}> </Tab.Screen>
+        <Tab.Screen name='Notification' component={Notification}> </Tab.Screen>
+        <Tab.Screen name='Setting' component={Setting}> </Tab.Screen>
+      </Tab.Navigator>
+  )
+}
+
+export default MenuTab
+  
