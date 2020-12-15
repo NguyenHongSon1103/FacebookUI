@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons'; 
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import HomeHeaderBar from './HomeHeaderBar/HomeHeaderBar'
 import Home from '../screens/Home';
 import Users from '../screens/Users';
 import Video from '../screens/Video';
 import Notification from '../screens/Notification';
 import Setting from '../screens/Setting'
+import FriendList from '../screens/friend'
+import Notification from '../screens/notification';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -28,7 +28,7 @@ const MenuTab = (props) => {
         }}
       >
         <Tab.Screen name='Home' component={()=><Home setHeaderVisible={setHeaderVisible}/>}> </Tab.Screen>
-        <Tab.Screen name='Users' component={Users}> </Tab.Screen>
+        <Tab.Screen name='List_Friend' component={FriendList}> </Tab.Screen>
         <Tab.Screen name='Video' component={Video}> </Tab.Screen>
         <Tab.Screen name='Notification' component={Notification}> </Tab.Screen>
         <Tab.Screen name='Setting' component={Setting}> </Tab.Screen>
