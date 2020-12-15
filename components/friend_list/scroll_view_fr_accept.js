@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, Image, View, StyleSheet, ScrollView, Button, FlatList, StatusBar, TouchableOpacity, Modal } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import AvatarImage from '../AvatarImage/AvatarImage'
 
 class ScrollView_request extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class ScrollView_request extends Component {
         { 'name': 'Nguyễn Việt Hoài', 'id': 4, "same_friend": 1, "img_url": 'https://reactnative.dev/img/tiny_logo.png', "isdelete": false }
       ],
       confirm: false,
-      viewDelete: false
+      viewDelete: false,
     };
   }
   setDelete(items, index, visible) {
@@ -111,12 +112,13 @@ class ScrollView_request extends Component {
             <View >
 
               <View style={{ flexDirection: "row" }} key={item.id} style={styles.item} >
-                <View style={{ width: 10, flex: 0.2 }}>
+                <TouchableOpacity style={{ width: 10, flex: 0.2 }}
+                 onPress={()=>this.props.navigation.navigate('PersonalPage', {currentPosition:'None'})}>
                   <Image
                     style={styles.logo}
                     source={{ uri: item.img_url }}
                   />
-                </View>
+                </TouchableOpacity>
                 {this.viewDelete(item)}
 
               </View>

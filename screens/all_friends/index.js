@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import { StyleSheet, Image, Text, View, Modal, StatusBar, Button, ScrollView, TouchableOpacity, TouchableHighlight, TextInput } from 'react-native';
 import ScrollView_allfriend from '../../components/friend_list/scroll_view_all_fr';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { navigation } from '../../rootNavigation';
 class AllFriend extends Component {
   constructor(props) {
     super(props);
@@ -41,10 +40,10 @@ class AllFriend extends Component {
     this.setState({ modal_infor: visible, item_name: item });
   }
   onPressListFriend(){
-    navigation.navigate('List_Friend')
+    this.props.navigation.navigate('List_Friend')
   }
   onPressSearch(){
-    navigation.navigate('Search')
+    this.props.navigation.navigate('Search')
   }
   render() {
     const { modal_arrange } = this.state;

@@ -1,10 +1,9 @@
-// import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react'
 import { StyleSheet, Text, View, StatusBar, Button,ScrollView,TouchableOpacity } from 'react-native';
 import ScrollView_request from '../../components/friend_list/scroll_view_fr_accept'
 import ScrollView_hint from '../../components/friend_list/scroll_view_fr_hint';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { navigation } from '../../rootNavigation';
+// import { navigation } from '../../rootNavigation';
 class FriendList extends Component {
   constructor(props) {
     super(props);
@@ -14,11 +13,12 @@ class FriendList extends Component {
       number_request:199
     };
   }
+  
   onPressHint() {
-    navigation.navigate('Hint_Friend')
+    this.props.navigation.navigate('Hint_Friend')
   }
   onPressAllFriend(){
-    navigation.navigate('All_Friend')
+    this.props.navigation.navigate('All_Friend')
   }
   render() {
   return ( 
@@ -84,7 +84,7 @@ class FriendList extends Component {
                                     paddingBottom: 10 }}>Xem tất cả</Text>
                 </TouchableOpacity> 
                 </View>
-                <ScrollView_request/>
+                <ScrollView_request navigation={this.props.navigation}/>
                 <View>
                   <TouchableOpacity style={styles.view_all_fr_1} onPress={()=>this.onPressAllFriend()}>
                         <Text style={{ alignSelf: 'center',

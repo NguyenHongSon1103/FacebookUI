@@ -2,15 +2,16 @@ import React, { Component } from 'react'
 import { StyleSheet, Text, View, StatusBar, Button,ScrollView,TouchableOpacity } from 'react-native';
 import ScrollView_hint from '../../components/friend_list/scroll_view_fr_hint';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { navigation } from '../../rootNavigation';
+
 class HintFriend extends Component {
     constructor(props) {
         super(props);
         this.state = {
         };
     }
+    
     onPressListFriend(){
-        navigation.navigate('List_Friend')
+        this.props.navigation.navigate('List_Friend')
       }
     render(){
         return(

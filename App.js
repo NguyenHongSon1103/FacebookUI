@@ -20,9 +20,8 @@ import AllFriend from './screens/all_friends';
 const Stack = createStackNavigator();
 
 export default function App() {
-  const TransitionPreset = Platform.OS === 'ios' ? TransitionPresets.ModalSlideFromBottomIOS : {}
+  // const TransitionPreset = Platform.OS === 'ios' ? TransitionPresets.ModalSlideFromBottomIOS : {}
   const [headerVisible, setHeaderVisible] = React.useState(false)
-  
   return (
     <NavigationContainer>
       {headerVisible ? <HomeHeaderBar /> : <View style={{height: 30}}></View> }
@@ -49,8 +48,8 @@ export default function App() {
         {prop => <SettingBlockUser />}
         </Stack.Screen>
         {/***** HoaiNV Screen ******/}
-        <Stack.Screen name="All_Friend" component={AllFriend} screenOptions={{ headerShown: false }}/>
-        <Stack.Screen name="Hint_Friend" component={HintFriend} screenOptions={{ headerShown: false }}/>
+        <Stack.Screen name="All_Friend" component={AllFriend} options={{ headerShown: false }}/>
+        <Stack.Screen name="Hint_Friend" component={HintFriend} options={{ headerShown: false }}/>
       </Stack.Navigator >
     </NavigationContainer>
   )

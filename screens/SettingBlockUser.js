@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Text, View, TouchableOpacity, Dimensions, ScrollView, Image } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons'; 
 import { useNavigation } from '@react-navigation/native';
-
+ 
 const height = Dimensions.get('screen').height
 const width = Dimensions.get('screen').width
 
