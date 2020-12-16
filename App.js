@@ -1,57 +1,89 @@
-import * as React from 'react';
-import { Text, View } from 'react-native';
-
-/* Sonnh Import part */
-import { NavigationContainer} from '@react-navigation/native';
+import React from 'react';
+import {
+  SafeAreaView,
+  StyleSheet,
+  ScrollView,
+  View,
+  Text,
+  StatusBar,
+} from 'react-native';
+import 'react-native-gesture-handler';
+import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import PersonalPage from './screens/PersonalPage'
-import SettingDetail from './screens/SettingDetail'
-import SettingEditName from './screens/SettingEditName'
-import SettingChangePassword from './screens/SettingChangePassword'
-import SettingNotification from './screens/SettingNotification'
-import SettingBlockUser from './screens/SettingBlockUser'
-import HomeHeaderBar from './components/HomeHeaderBar/HomeHeaderBar';
-import MenuTab from './components/MenuTab'
-/* Hoainv Import part */
-import FriendList from './screens/friend';
-import HintFriend from './screens/hint_friend';
-import AllFriend from './screens/all_friends';
+import {
+  Header,
+  LearnMoreLinks,
+  Colors,
+  DebugInstructions,
+  ReloadInstructions,
+} from 'react-native/Libraries/NewAppScreen';
+import Home from './src/screens/Home.js';
+import Login_1 from './src/screens/Login_1.js';
+import Login_3 from './src/screens/Login_3.js';
+import Login_2 from './src/screens/Login_2.js';
+import Login_5 from './src/screens/Login_5.js';
+import Login_4 from './src/screens/Login_4.js';
+import Login_6 from './src/screens/Login_6.js';
+import Login_7 from './src/screens/Login_7.js';
+import Search from './src/screens/Search.js';
+import SearchEdit from './src/screens/SearchEdit.js';
+import Login_2_1 from './src/screens/Login_2_1.js';
 
 const Stack = createStackNavigator();
-
-export default function App() {
-  // const TransitionPreset = Platform.OS === 'ios' ? TransitionPresets.ModalSlideFromBottomIOS : {}
-  const [headerVisible, setHeaderVisible] = React.useState(false)
+const App = () => {
   return (
     <NavigationContainer>
-      {headerVisible ? <HomeHeaderBar /> : <View style={{height: 30}}></View> }
-      <Stack.Navigator >
-        <Stack.Screen name='Menutab' options={{ headerShown: false }}>
-        {prop => <MenuTab setHeaderVisible={setHeaderVisible}/>}
-        </Stack.Screen>
-        <Stack.Screen name='PersonalPage' options={{ headerShown: false }}>
-        {prop => <PersonalPage/>}
-        </Stack.Screen>
-        <Stack.Screen name='SettingDetail' options={{ headerShown: false }}>
-        {prop => <SettingDetail />}
-        </Stack.Screen>
-        <Stack.Screen name='SettingEditName' options={{ headerShown: false }}>
-        {prop => <SettingEditName />}
-        </Stack.Screen>
-        <Stack.Screen name='SettingChangePassword' options={{ headerShown: false }}>
-        {prop => <SettingChangePassword />}
-        </Stack.Screen>
-        <Stack.Screen name='SettingNotification' options={{ headerShown: false }}>
-        {prop => <SettingNotification />}
-        </Stack.Screen>
-        <Stack.Screen name='SettingBlockUser' options={{ headerShown: false }}>
-        {prop => <SettingBlockUser />}
-        </Stack.Screen>
-        {/***** HoaiNV Screen ******/}
-        <Stack.Screen name="All_Friend" component={AllFriend} options={{ headerShown: false }}/>
-        <Stack.Screen name="Hint_Friend" component={HintFriend} options={{ headerShown: false }}/>
-      </Stack.Navigator >
+      <Stack.Navigator>
+        {/* <Stack.Screen name="Home" component={Home}/> */}
+        <Stack.Screen name="Login_1" component={Login_1}/>
+        <Stack.Screen name="Login_2" component={Login_2}/>
+        <Stack.Screen name="Login_3" component={Login_3}/>
+        <Stack.Screen name="Login_4" component={Login_4}/>
+        <Stack.Screen name="Login_5" component={Login_5}/>
+        <Stack.Screen name="Login_6" component={Login_6}/>
+        <Stack.Screen name="Login_7" component={Login_7}/>
+      </Stack.Navigator>
     </NavigationContainer>
-  )
-}
+  );
+};
 
+const styles = StyleSheet.create({
+  scrollView: {
+    backgroundColor: Colors.lighter,
+  },
+  engine: {
+    position: 'absolute',
+    right: 0,
+  },
+  body: {
+    backgroundColor: Colors.white,
+  },
+  sectionContainer: {
+    marginTop: 32,
+    paddingHorizontal: 24,
+  },
+  sectionTitle: {
+    fontSize: 24,
+    fontWeight: '600',
+    color: Colors.black,
+  },
+  sectionDescription: {
+    marginTop: 8,
+    fontSize: 18,
+    fontWeight: '400',
+    color: Colors.dark,
+  },
+  highlight: {
+    fontWeight: '700',
+  },
+  footer: {
+    color: Colors.dark,
+    fontSize: 12,
+    fontWeight: '600',
+    padding: 4,
+    paddingRight: 12,
+    textAlign: 'right',
+  },
+});
+
+export default App;

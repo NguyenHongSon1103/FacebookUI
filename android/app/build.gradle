@@ -129,7 +129,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.facebook"
+        applicationId "com.fblast"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

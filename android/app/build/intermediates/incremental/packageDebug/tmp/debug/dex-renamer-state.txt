@@ -1,4 +1,4 @@
-#Sat Dec 12 16:24:18 ICT 2020
-base.0=/home/vostro3568/Documents/ptud/FaceBook/android/app/build/intermediates/dex/debug/mergeDexDebug/out/classes.dex
+#Tue Dec 15 21:51:31 ICT 2020
+base.0=C\:\\Users\\Dell M4800\\Desktop\\AppFB\\FBLast\\android\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
