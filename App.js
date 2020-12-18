@@ -16,16 +16,32 @@ import MenuTab from './components/MenuTab'
 import FriendList from './screens/friend';
 import HintFriend from './screens/hint_friend';
 import AllFriend from './screens/all_friends';
+/* Ducns Import part */
+import StartSignupScreen from './screens/StartSignupScreen'
+import SignupName from './screens/SignupName'
+import SignupBirth from './screens/SignupBirth'
+import SignupPassword from './screens/SignupPassword'
+import SignupPolicy from './screens/SignupPolicy'
+import SignupEmail from './screens/SignupEmail'
+import SaveLoginInfo from './screens/SaveLoginInfo'
+import StartScreen from './screens/StartScreen'
+import LoginPassword from './screens/LoginPassword'
+import Search from './screens/Search'
+import SearchEdit from './screens/SearchEdit'
+import Comment from './screens/Comment'
+import ReactionModal from './screens/ReactionModal'
 
 const Stack = createStackNavigator();
-
+const refNavigation = React.createRef();
+function navigate(name, params) {
+  refNavigation.current?.navigate(name, params);
+}
 export default function App() {
-  // const TransitionPreset = Platform.OS === 'ios' ? TransitionPresets.ModalSlideFromBottomIOS : {}
   const [headerVisible, setHeaderVisible] = React.useState(false)
   return (
-    <NavigationContainer>
-      {headerVisible ? <HomeHeaderBar /> : <View style={{height: 30}}></View> }
-      <Stack.Navigator >
+    <NavigationContainer ref={refNavigation}>
+     {headerVisible ? <HomeHeaderBar navigate={navigate}/> : <View style={{height: 30}}></View> }
+      <Stack.Navigator initialRouteName='Menutab'>
         <Stack.Screen name='Menutab' options={{ headerShown: false }}>
         {prop => <MenuTab setHeaderVisible={setHeaderVisible}/>}
         </Stack.Screen>
@@ -50,6 +66,20 @@ export default function App() {
         {/***** HoaiNV Screen ******/}
         <Stack.Screen name="All_Friend" component={AllFriend} options={{ headerShown: false }}/>
         <Stack.Screen name="Hint_Friend" component={HintFriend} options={{ headerShown: false }}/>
+        {/****** DucNS Screen *******/}
+        <Stack.Screen name="StartSignupScreen" component={StartSignupScreen} options={{ headerShown: false }}/>
+        <Stack.Screen name="SignupName" component={SignupName} options={{ headerShown: false }}/>
+        <Stack.Screen name="SignupBirth" component={SignupBirth} options={{ headerShown: false }}/>
+        <Stack.Screen name="SignupPassword" component={SignupPassword} options={{ headerShown: false }}/>
+        <Stack.Screen name="SignupPolicy" component={SignupPolicy} options={{ headerShown: false }}/>
+        <Stack.Screen name="SignupEmail" component={SignupEmail} options={{ headerShown: false }}/>
+        <Stack.Screen name="SaveLoginInfo" component={SaveLoginInfo} options={{ headerShown: false }}/>
+        <Stack.Screen name="StartScreen" component={StartScreen} options={{ headerShown: false }}/>
+        <Stack.Screen name="LoginPassword" component={LoginPassword} options={{ headerShown: false }}/>
+        <Stack.Screen name="Search" component={Search} options={{ headerShown: false }}/>
+        <Stack.Screen name="SearchEdit" component={SearchEdit} options={{ headerShown: false }}/>
+        <Stack.Screen name="Comment" component={Comment} options={{ headerShown: false }}/>     
+        <Stack.Screen name="ReactionModal" component={ReactionModal} options={{ headerShown: false }}/>    
       </Stack.Navigator >
     </NavigationContainer>
   )

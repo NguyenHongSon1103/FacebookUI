@@ -7,7 +7,8 @@ const HomeHeaderBar = (props) =>{
   return(
   <View style={styles.view}>
       <Text style={styles.text}>facebook</Text>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} 
+      onPress={()=>props.navigate('Search', {})}>
         <FontAwesome5 style={styles.icon} name="search" size={20}/>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button}>

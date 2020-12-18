@@ -14,7 +14,7 @@ const Post = (props) => {
       <View style={{backgroundColor: '#697689', height: 15}}></View>
       <PostHeader currentPosition={currentPosition}/> 
       <PostDetail />
-      <PostReactCount /> 
+      <PostReactCount navigation={props.navigation}/> 
     </View>
 )}
 

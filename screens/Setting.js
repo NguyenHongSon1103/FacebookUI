@@ -3,15 +3,17 @@ import { Text, View, TouchableOpacity, Dimensions, BackHandler } from 'react-nat
 import { FontAwesome5 } from '@expo/vector-icons'; 
 import AvatarImage from '../components/AvatarImage/AvatarImage'
 import SettingCollapsible from '../components/SettingCollapsible/SettingCollapsible'
+import {useNavigation} from '@react-navigation/native'
 
 const height = Dimensions.get('screen').height
 const width = Dimensions.get('screen').width
-const SettingHeader = () =>{
+const SettingHeader = (props) =>{
   return(
     <View style={{flexDirection: 'row'}}>
       <Text style={{fontSize: 30, fontWeight: 'bold'}}> Menu </Text>
       <TouchableOpacity style={{borderRadius: 90, backgroundColor:'#fff',
-        width: 35, height: 35, marginLeft: width-150, alignSelf:'center'}}>
+        width: 35, height: 35, marginLeft: width-150, alignSelf:'center'}}
+        onPress={()=>props.navigation.navigate('Search')}>
         <FontAwesome5 style={{marginTop: 5, alignSelf: 'center',}} name="search" size={25} />
       </TouchableOpacity>
     </View>
@@ -31,9 +33,10 @@ const SettingRoutePersonalPage = (props) => {
   )
 }
 
-const LogOut = () =>{
+const LogOut = (props) =>{
   return(
-    <TouchableOpacity style={{flexDirection:'row', marginTop: 20}}>
+    <TouchableOpacity style={{flexDirection:'row', marginTop: 20}}
+    onPress={()=>props.navigation.navigate('StartScreen')}>
       <FontAwesome5 name='door-open' size={25} color={'gray'}/>
       <Text style={{fontSize:20, fontWeight: 'bold'}}> Đăng xuất </Text>
     </TouchableOpacity>
@@ -48,14 +51,15 @@ const Exit = () => {
   )}
 
 const Setting = (props) => {
+  const navigation = useNavigation()
   const { userName = 'default', setHeaderVisible } = props
 
   return (
-    <View style={{backgroundColor: '#d9d9d9d9', height: '100%'}}>
-      <SettingHeader />
+    <View style={{backgroundColor: '#fff', height: '100%'}}>
+      <SettingHeader navigation={navigation}/>
       <SettingRoutePersonalPage userName={userName} />
       <SettingCollapsible />
-      <LogOut />
+      <LogOut navigation={navigation}/>
       <Exit />
     </View>
 
