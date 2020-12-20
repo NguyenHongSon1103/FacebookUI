@@ -44,7 +44,7 @@ class MessageRequest extends Component {
 				</View>
 
 				<View>
-					<View style={{height:'96	%'}}>
+					<View style={{height:'96%'}}>
 						<FlatList
 							data={this.state.data}
 							renderItem={({ item }) => (

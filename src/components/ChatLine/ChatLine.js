@@ -8,19 +8,23 @@ class ChatLine extends Component {
 		const { item } = this.props;
 		return (
 			<View style={{}}>
-				{item.own ?
+				{item.conversation.sender.id == '100' ?
 					(<View style={{paddingRight:20}}>
 						<View style={[styles.textLineContainer]}>
-							<Text style={styles.content}>{item.content}</Text>
+							<Text style={styles.content}>{item.conversation.message}</Text>
 						</View>
 					</View>)
 					:
 					(<View style={{ flexDirection: 'row', maxWidth: 250}}>
 						<View style={{ alignItems: 'flex-end' }}>
-							<Avatar avatarStyle={styles.seenIcon} containerStyle={styles.bgSeenIcon}/>
+							<Avatar 
+								avatarStyle={styles.seenIcon}
+								containerStyle={styles.bgSeenIcon}
+								src={item.conversation.sender.avatar}
+								/>
 						</View>
-						<View style={[styles.textLineContainer, { alignSelf: 'flex-start' }]}>
-							<Text style={styles.content}>{item.content}</Text>
+						<View style={[styles.textLineContainer, { alignSelf: 'flex-start',backgroundColor:'white',borderColor:'#c7c7c7',borderWidth:1 }]}>
+							<Text style={styles.content}>{item.conversation.message}</Text>
 						</View>
 					</View>
 					)

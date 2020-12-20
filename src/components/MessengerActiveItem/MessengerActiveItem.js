@@ -26,7 +26,7 @@ class MessengerActiveItem extends Component {
                         containerStyle={styles.avatarContainer}
                         active={true}
                     />
-                    <Text style={styles.name}>{item.name}</Text>
+                    <Text style={styles.name}>Trần Tất Đắc</Text>
                 </View>
         )
     }

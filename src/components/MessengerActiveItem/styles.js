@@ -6,21 +6,24 @@ import {
 
 const styles = StyleSheet.create({
     container:{
-        width:80,
-        height:120,
+        width:'100%',
+        height:90,
         margin:2,
-        flexDirection:'column',
+        flexDirection:'row',
         alignItems:'center',
         //backgroundColor:'green',
     },
     name:{
         flexShrink: 1,
         textAlign:'center',
-        fontSize:14,
+        fontSize:23,
+        fontWeight:'bold'
     },
     avatarContainer:{
-        margin:15,
-        marginBottom:5
+        marginLeft:10,
+        marginRight:25,
+        
+        //marginBottom:5
     }
 })
 export default styles

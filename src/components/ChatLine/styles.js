@@ -2,7 +2,7 @@ import {StyleSheet,Dimensions} from 'react-native'
 const width = Dimensions.get('window').width;
 const styles = StyleSheet.create({
 	textLineContainer:{
-		backgroundColor:'gray',
+		backgroundColor:'#c7c7c7',
 		//flexDirection:'row',
 		maxWidth:width*2/3,
 		justifyContent:'flex-end',
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
 		alignSelf:'flex-end',
 	},
 	content:{
-		color:'white',
+		color:'black',
 		fontSize:15,
 	},
 	bgSeenIcon:{

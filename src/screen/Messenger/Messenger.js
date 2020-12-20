@@ -41,8 +41,8 @@ class Messenger extends Component {
                 <View style={styles.TopBar}>
                     <MessengerTopBar />
                 </View>
-                <ScrollView styles={{ display: 'flex', flexDirection: 'column' }}>
-                    <View style={styles.SearchConvention}>
+                <View styles={{ display: 'flex', flexDirection: 'column' }}>
+                    {/* <View style={styles.SearchConvention}>
                         <SearchConversation />
                     </View>
                     <View style={{}}>
@@ -59,20 +59,21 @@ class Messenger extends Component {
                             )}
                             keyExtractor={(item) => { item.id }}
                         />
-                    </View>
+                    </View> */}
                     <View style={{}}>
                         <FlatList
                             data={this.state.data}
                             renderItem={({ item }) => (
                                 <TouchableOpacity
-                                    onPress={() => { this.onPress(item) }}>
+                                    onPress={() => { this.onPress(item) }}
+                                >
                                     <ConversationListItem item={item} />
                                 </TouchableOpacity>
                             )}
                             keyExtractor={(item) => { item.id }}
                         />
                     </View>
-                </ScrollView>
+                </View>
             </View>
         );
     };
