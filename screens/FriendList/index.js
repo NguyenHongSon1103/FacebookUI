@@ -35,9 +35,6 @@ class FriendList extends Component {
                   fontWeight: 'bold',
                   paddingBottom: 5 }}>Bạn bè</Text>
               </View>
-              <TouchableOpacity onPress={this.handlePress.bind(this)}>
-               <Text style={{paddingTop: 50, paddingLeft: 50, color: '#FF0000'}}> View film at 2nd </Text>
-              </TouchableOpacity>
         </View>
         <ScrollView>
           <View style={{ flexDirection: "row" }}>
