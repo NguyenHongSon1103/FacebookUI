@@ -13,11 +13,11 @@ const notificationTypes = {
     ANYONE_ANSWER_YOUR_COMMENT: "6",
     ANYONE_ACCEPT_YOUR_FRIEND_REQUEST: "7",
     ANYONE_COMMENT_POST_IN_GROUP_TOO: "8",
-    ANYONE_COMMENT_POST_OF_ANYONE_TOO: 9,
-    ANYONE_TAG_YOU_ON_POST_IN_GROUP: 10,
-    ANYONE_TAG_YOU_ON_POST_OF_ANYONE: 11,
-    ANYONE_LIVE_STREAM: 12,
-    ANYONE_ANSWER_YOUR_COMMENT_IN_GROUP: 13,
+    ANYONE_COMMENT_POST_OF_ANYONE_TOO: "9",
+    ANYONE_TAG_YOU_ON_POST_IN_GROUP: "10",
+    ANYONE_TAG_YOU_ON_POST_OF_ANYONE: "11",
+    ANYONE_LIVE_STREAM: "12",
+    ANYONE_ANSWER_YOUR_COMMENT_IN_GROUP: "13",
 }
 class Notification extends Component {
     constructor(props) {
@@ -484,10 +484,10 @@ const styles = StyleSheet.create({
         height: 20,
     },
     pureTxt: {
-        fontSize: 16,
+        fontSize: 20,
     },
     hightlightTxt: {
-        fontSize: 15,
+        fontSize: 16,
         fontWeight: 'bold',
     }
 });
