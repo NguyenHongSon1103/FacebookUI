@@ -55,7 +55,7 @@ const Setting = (props) => {
   const { userName = 'default', setHeaderVisible } = props
 
   return (
-    <View style={{backgroundColor: '#fff', height: '100%'}}>
+    <View style={{backgroundColor: '#ffffff', height: '100%'}}>
       <SettingHeader navigation={navigation}/>
       <SettingRoutePersonalPage userName={userName} />
       <SettingCollapsible />

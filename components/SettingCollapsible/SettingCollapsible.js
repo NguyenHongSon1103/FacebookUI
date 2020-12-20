@@ -19,7 +19,7 @@ const SettingCollapsible = () => {
       <FontAwesome5 name={iconName} size={25} color={'#333333'} style={{alignSelf:'center'}}/>
       <Text style={{fontSize:20, fontWeight: 'bold', alignSelf:'center'}}> {title} </Text>
     </TouchableOpacity>
-  )}0
+  )}
   function renderCollapseHeader(iconName, title){
   return(
     <TouchableOpacity style={{flexDirection:'row'}}>
