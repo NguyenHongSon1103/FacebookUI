@@ -6,43 +6,21 @@ import { Button, Icon } from "react-native-elements";
 class TopBar extends React.Component{
     render() {
         return (
-            <View style={styles.container}>
-                {/*<Button*/}
-                {/*    style={{backgroundColor: 'white'}}*/}
-                {/*    onPress={()=>{*/}
-                {/*        alert("Bảng tin")}}>*/}
-                {/*    <Icon*/}
-                {/*        name="arrow_back"*/}
-                {/*        size={20}*/}
-                {/*        color="black"*/}
-                {/*        type="entypo"*/}
-                {/*    />*/}
-                {/*</Button>*/}
-                {/*<Button*/}
-                {/*    style={{color: 'white'}}*/}
-                {/*    icon={{*/}
-                {/*        name : "arrow-left",*/}
-                {/*        size : 15,*/}
-                {/*        color : "black",*/}
-                {/*        backgroundColor: 'white'*/}
-                {/*    }}*/}
-                {/*    onPress={()=>{*/}
-                {/*        alert("Bảng tin")}}*/}
-                {/*/>*/}
+            <View style={styles.headerCard}>
                 <Icon
-                    name="arrow-left"
+                    name={this.props.icon}
                     size={35}
                     color="black"
-                    type="entypo"
+                    type="ionicon"
                     onPress={()=>{
-                        alert("Bảng tin")}}
+                        alert(this.props.massage)}}
                 />
-                <Text style={{fontSize: 20}}>{this.props.title}</Text>
-                <Button
-                    title='ĐĂNG'
-                    onPress = {()=>{
-                        alert("Đã đăng")
-                    }}/>
+                <Text style={{fontSize: 22, paddingLeft: 10}}>{this.props.title}</Text>
+                {/*<Button*/}
+                {/*    title='ĐĂNG'*/}
+                {/*    onPress = {()=>{*/}
+                {/*        alert("Đã đăng")*/}
+                {/*    }}/>*/}
             </View>
         );
     }
@@ -59,11 +37,19 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         paddingRight: 10,
         borderColor: '#D3D3D3',
-        borderWidth: 2
+        borderWidth: 1
     },
-    submit: {
-        backgroundColor: 'white'
-    }
+    headerCard: {
+        height: 60,
+        flexDirection: 'row',
+        backgroundColor: 'white',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        paddingLeft: 10,
+        paddingRight: 10,
+        borderBottomColor: '#D3D3D3',
+        borderBottomWidth: 1
+    },
 });
 
 export default TopBar;
