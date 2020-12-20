@@ -1,0 +1,13 @@
+{
+    "code":"",
+    "message":"",
+    "list_users": [
+    { "username": "Nguyễn Việt Hoài", "user_id": 1, "same_friends": "0", "avatar": "https://reactnative.dev/img/tiny_logo.png"},
+    { "username": "Nguyễn Việt Hoài", "user_id": 2, "same_friends": "1", "avatar": "https://reactnative.dev/img/tiny_logo.png"},
+    { "username": "Nguyễn Việt Hoài", "user_id": 4, "same_friends": "2", "avatar": "https://reactnative.dev/img/tiny_logo.png"},
+    { "username": "Nguyễn Việt Hoài", "user_id": 5, "same_friends": "1", "avatar": "https://reactnative.dev/img/tiny_logo.png"},
+    { "username": "Nguyễn Việt Hoài", "user_id": 6, "same_friends": "1", "avatar": "https://reactnative.dev/img/tiny_logo.png"},
+    { "username": "Nguyễn Việt Hoài", "user_id": 7, "same_friends": "1", "avatar": "https://reactnative.dev/img/tiny_logo.png"},
+    { "username": "Nguyễn Việt Hoài", "user_id": 8, "same_friends": "0", "avatar": "https://reactnative.dev/img/tiny_logo.png"}
+]
+}
