@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { StyleSheet, Text, View, StatusBar, Button,ScrollView,TouchableOpacity } from 'react-native';
 import ScrollView_hint from '../../components/friend_list/ScrollView_hint';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { navigation } from '../../rootNavigation';
 import data from '../../db/hint_friend.json';
 class HintFriend extends Component {
     constructor(props) {

@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import { StyleSheet, Image, Text, View, Modal, StatusBar, Button, ScrollView, TouchableOpacity, TouchableHighlight, TextInput } from 'react-native';
 import ScrollView_allfriend from '../../components/friend_list/ScrollView_allfriend';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { navigation } from '../../rootNavigation';
 import data from '../../db/all_friend.json';
 class AllFriend extends Component {
   constructor(props) {
