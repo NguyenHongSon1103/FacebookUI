@@ -53,9 +53,9 @@ const styles = StyleSheet.create({
 	},
 	
 	optionDialogContainer: {
-		width: 200,
-		start: 210,
-		top: -290,
+	  width: '50%',
+		start: '50%',
+		top: '-35%',
 		backgroundColor: 'white',
 		borderColor: 'black',
 		borderWidth: 1,

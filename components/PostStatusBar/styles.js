@@ -15,12 +15,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#333333',
     marginLeft: 15,
-    width: 280,
+    width: '99%', 
     height: 40,
     borderRadius: 30,
   },
   ps_images: {
-    marginLeft: 10,
+    marginLeft: 20,
     marginTop: 5,
   },
 });

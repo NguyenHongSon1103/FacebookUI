@@ -22,6 +22,9 @@ class MessageRequest extends Component {
 	deleteRequestMessage() {
 		console.log('delete')
 	}
+  onPress(data){
+    this.props.navigation.navigate('ChatScreen',{data:data}) 
+  }
 	render() {
 		return (
 			<View style={styles.container}>

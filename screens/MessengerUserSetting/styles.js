@@ -35,11 +35,11 @@ const styles = StyleSheet.create({
 	},
 	nameContainer: {
 		justifyContent: 'center',
-		alignItems: 'center'
+		alignItems: 'center',
 	},
 	name: {
-		fontSize: 27,
-		fontWeight: 'bold'
+		fontSize: 20,
+		fontWeight: 'bold' 
 	},
 	titleContainer: {
 		flex: 7,

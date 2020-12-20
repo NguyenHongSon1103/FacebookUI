@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     name:{
         flexShrink: 1,
         textAlign:'center',
-        fontSize:23,
+        fontSize:20,
         fontWeight:'bold'
     },
     avatarContainer:{

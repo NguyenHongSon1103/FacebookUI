@@ -36,9 +36,13 @@ import MessageRequest from './screens/MessageRequest/MessageRequest'
 import MessengerUserInfo from './screens/MessengerUserInfo/MessengerUserInfo'
 import MessengerUserSetting from './screens/MessengerUserSetting/MessengerUserSetting'
 import NewConversation from './screens/NewConversation/NewConversation'
-
+/* Phucnv Import part */
+import ChooseActivitiesScreen from './screens/ChooseActivitiesScreen'
+import ChooseEmotionScreen from './screens/ChooseEmotionScreen'
+import RenderGalleryScreen from './screens/RenderGalleryScreen'
+import PostViewScreen from './screens/PostViewScreen'
 const Stack = createStackNavigator();
-const refNavigation = React.createRef();
+const refNavigation = React.createRef(); 
 function navigate(name, params) {
   refNavigation.current?.navigate(name, params);
 }
@@ -47,7 +51,7 @@ export default function App() {
   return (
     <NavigationContainer ref={refNavigation}>
      {headerVisible ? <HomeHeaderBar navigate={navigate}/> : <View style={{height: 30}}></View> }
-      <Stack.Navigator initialRouteName='Menutab'>  
+      <Stack.Navigator initialRouteName='Menutab'> 
         <Stack.Screen name='Menutab' options={{ headerShown: false }}>
         {prop => <MenuTab setHeaderVisible={setHeaderVisible}/>}
         </Stack.Screen>
@@ -93,6 +97,11 @@ export default function App() {
         <Stack.Screen name="MessengerUserInfo" component={MessengerUserInfo} options={{ headerShown: false }}/> 
         <Stack.Screen name="MessengerUserSetting" component={MessengerUserSetting} options={{ headerShown: false }}/> 
         <Stack.Screen name="NewConversation" component={NewConversation} options={{ headerShown: false }}/> 
+        {/******* PhucNV Screen *******/}
+        <Stack.Screen name="ChooseActivitiesScreen" component={ChooseActivitiesScreen} options={{ headerShown: false }}/> 
+        <Stack.Screen name="ChooseEmotionScreen" component={ChooseEmotionScreen} options={{ headerShown: false }}/> 
+        <Stack.Screen name="RenderGalleryScreen" component={RenderGalleryScreen} options={{ headerShown: false }}/> 
+        <Stack.Screen name="PostViewScreen" component={PostViewScreen} options={{ headerShown: false }}/> 
       </Stack.Navigator >
     </NavigationContainer>
   )
