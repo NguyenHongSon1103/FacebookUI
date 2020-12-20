@@ -2,17 +2,17 @@
     "code":"",
     "message":"",
     "data": [
-        {"type":"1","object_id":"1",  "notification_id:": 1, "title": "Việt Hoài đẹp trai", "avatar": "https://reactnative.dev/img/tiny_logo.png", "created": "2020-12-20 12:10:39", "read": "1" ,"group": "1"},
-        {"type":"2","object_id":"1", "notification_id:": 2, "title": "Việt Hoài đẹp trai", "avatar": "https://reactnative.dev/img/tiny_logo.png", "created": "2020-12-20 11:50:39", "read": "0" ,"group": "1"},
-        {"type":"3","object_id":"1",  "notification_id:": 3, "title": "Việt Hoài đẹp trai", "avatar": "https://reactnative.dev/img/tiny_logo.png", "created": "2020-12-20 07:41:39", "read": "1" ,"group": "1"},
-        {"type":"4","object_id":"1", "notification_id:": 4, "title": "Việt Hoài đẹp trai", "avatar": "https://reactnative.dev/img/tiny_logo.png", "created": "2020-12-10 13:41:39", "read": "0" ,"group": "1"},
-        {"type":"5","object_id":"1", "notification_id:": 5, "title": "Việt Hoài đẹp trai", "avatar": "https://reactnative.dev/img/tiny_logo.png", "created": "2020-12-10 13:41:39", "read": "0" ,"group": "1"},
-        {"type":"6","object_id":"1", "notification_id:": 6, "title": "Việt Hoài đẹp trai", "avatar": "https://reactnative.dev/img/tiny_logo.png", "created": "2020-12-10 13:41:39", "read": "1" ,"group": "1"},
-        {"type":"7","object_id":"1",  "notification_id:": 7, "title": "Việt Hoài đẹp trai", "avatar": "https://reactnative.dev/img/tiny_logo.png", "created": "2020-12-10 13:41:39", "read": "1" ,"group": "1"},
-        {"type":"8","object_id":"1",  "notification_id:": 8, "title": "Việt Hoài đẹp trai", "avatar": "https://reactnative.dev/img/tiny_logo.png", "created": "2020-12-10 13:41:39", "read": "1" ,"group": "1"},
-        {"type":"9","object_id":"1",  "notification_id:": 9, "title": "Việt Hoài đẹp trai", "avatar": "https://reactnative.dev/img/tiny_logo.png", "created": "2020-10-10 13:41:39", "read": "0" ,"group": "1"},
-        {"type":"10","object_id":"1", "notification_id:": 11, "title": "Việt Hoài đẹp trai", "avatar": "https://reactnative.dev/img/tiny_logo.png", "created":  "2018-11-25 13:41:39", "read": "1" ,"group": "1"},
-        {"type":"11","object_id":"1",  "notification_id:": 12, "title": "Việt Hoài đẹp trai", "avatar": "https://reactnative.dev/img/tiny_logo.png", "created": "2018-11-25 13:41:39", "read": "0" ,"group": "1"}
+        {"type":"1","object_id":"1",  "notification_id:": 1, "title": "Việt Hoài ", "avatar": "https://reactnative.dev/img/tiny_logo.png", "created": "2020-12-20 12:10:39", "read": "1" ,"group": "1"},
+        {"type":"2","object_id":"1", "notification_id:": 2, "title": "Việt Hoài ", "avatar": "https://reactnative.dev/img/tiny_logo.png", "created": "2020-12-20 11:50:39", "read": "0" ,"group": "1"},
+        {"type":"3","object_id":"1",  "notification_id:": 3, "title": "Việt Hoài ", "avatar": "https://reactnative.dev/img/tiny_logo.png", "created": "2020-12-20 07:41:39", "read": "1" ,"group": "1"},
+        {"type":"4","object_id":"1", "notification_id:": 4, "title": "Việt Hoài ", "avatar": "https://reactnative.dev/img/tiny_logo.png", "created": "2020-12-10 13:41:39", "read": "0" ,"group": "1"},
+        {"type":"5","object_id":"1", "notification_id:": 5, "title": "Việt Hoài ", "avatar": "https://reactnative.dev/img/tiny_logo.png", "created": "2020-12-10 13:41:39", "read": "0" ,"group": "1"},
+        {"type":"6","object_id":"1", "notification_id:": 6, "title": "Việt Hoài ", "avatar": "https://reactnative.dev/img/tiny_logo.png", "created": "2020-12-10 13:41:39", "read": "1" ,"group": "1"},
+        {"type":"7","object_id":"1",  "notification_id:": 7, "title": "Việt Hoài ", "avatar": "https://reactnative.dev/img/tiny_logo.png", "created": "2020-12-10 13:41:39", "read": "1" ,"group": "1"},
+        {"type":"8","object_id":"1",  "notification_id:": 8, "title": "Việt Hoài ", "avatar": "https://reactnative.dev/img/tiny_logo.png", "created": "2020-12-10 13:41:39", "read": "1" ,"group": "1"},
+        {"type":"9","object_id":"1",  "notification_id:": 9, "title": "Việt Hoài ", "avatar": "https://reactnative.dev/img/tiny_logo.png", "created": "2020-10-10 13:41:39", "read": "0" ,"group": "1"},
+        {"type":"10","object_id":"1", "notification_id:": 11, "title": "Việt Hoài ", "avatar": "https://reactnative.dev/img/tiny_logo.png", "created":  "2018-11-25 13:41:39", "read": "1" ,"group": "1"},
+        {"type":"11","object_id":"1",  "notification_id:": 12, "title": "Việt Hoài ", "avatar": "https://reactnative.dev/img/tiny_logo.png", "created": "2018-11-25 13:41:39", "read": "0" ,"group": "1"}
     ],
     "last_update":"",
     "badge":""
