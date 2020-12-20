@@ -6,7 +6,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import styles from './styles';
 
 const PostReactCount = (props) => {
-  const { numsLike = 1000, numsComment = 50, liked=false, navigation } = props;
+  const { numsLike = 1000, numsComment = 50, liked=false, setModalVisible } = props;
   const like_color = liked ? 'blue' : 'black';
   function like_func(){ 
     alert(liked);
@@ -38,7 +38,7 @@ const PostReactCount = (props) => {
             <Text style={{fontSize:20, paddingLeft:5, alignSelf:'center', color:like_color}}>Like</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.likeBtn}
-          onPress={()=>navigation.navigate('Comment')}>
+          onPress={()=>props.setModalVisible(true)}>
             <FontAwesome5 name='comment-alt' size={20} style={{alignSelf: 'center'}}/>
             <Text style={{fontSize:20, paddingLeft:5,
              alignSelf:'center'}}>Bình luận</Text>

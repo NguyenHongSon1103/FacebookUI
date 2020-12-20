@@ -38,7 +38,7 @@ class MessengerUserInfo extends Component {
 							<AntDesignIcon name={'arrowleft'} size={30} />
 						</TouchableOpacity>
 					</View>
-					<View style={{ flex: 1, alignItems: 'flex-end' }}>
+					<View style={{ flex: 1, alignItems: 'flex-end' }}> 
 						<TouchableOpacity
 							style={styles.topBarIcon}
 

@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
 		borderRadius: 3,
 		justifyContent: 'center',
 		alignItems: 'center',
-
+ 
 	},
 	option: {
 		paddingVertical: 15,

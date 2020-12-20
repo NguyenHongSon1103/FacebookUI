@@ -29,7 +29,7 @@ const StartSignupScreen = () => {
                     flex: 1,
                     justifyContent: 'flex-end',
                     marginBottom: 36
-                }}>
+                }} onPress={()=>navigation.navigate('StartScreen')}>
                     <Text style={{
                         color: "#0097e6",
                         fontWeight: "bold"

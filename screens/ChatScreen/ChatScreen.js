@@ -65,7 +65,7 @@ class ChatScreen extends Component {
     }
     onRefresh() {
         console.log('cc')
-        this.setState({ refreshing: false })
+        this.setState({ refreshing: false }) 
     }
     render() {
         // const content = ConventionData[0].content;

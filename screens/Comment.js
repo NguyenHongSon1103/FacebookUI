@@ -1,6 +1,6 @@
 //import libraries
 import React from 'react';
-import { View, Text, StyleSheet, TextInput } from 'react-native';
+import { View, Text, StyleSheet, TextInput, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CommentHeader from '../components/CommentHeader';
 import CommentItem from '../components/CommentItem';
@@ -10,14 +10,23 @@ const Comment = () => {
     return (
         <View style={styles.container}>
             <CommentHeader />
-            <CommentItem />
-            <CommentItem />
-            <CommentItem />
-            <CommentItem />
+            <ScrollView style={{marginBottom:0,height:'90%',flexGrow:1}}> 
+              <CommentItem />
+              <CommentItem />
+              <CommentItem />
+              <CommentItem />
+              <CommentItem /> 
+              <CommentItem />
+              <CommentItem />
+              <CommentItem /> 
+              <CommentItem />
+              <CommentItem />
+              <CommentItem /> 
+            </ScrollView>
             <View style={styles.bottom}>
-                <View style={{ flexDirection: 'row', alignItems: 'center', padding: 10, ...styles.input }}>
+                <View style={{ flexDirection: 'row',alignItems: 'center', padding: 0, ...styles.input }}> 
                     <Icon name="camera-plus-outline" size={25} />
-                    <TextInput style={styles.textInput} />
+                    <TextInput style={styles.textInput} placeholder="Nhập bình luận "/>
                 </View>
             </View>
         </View>
@@ -27,18 +36,24 @@ const Comment = () => {
 // define your styles
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        paddingTop: 50,
-        backgroundColor: '#FFF'
+        paddingTop: 20,
+        backgroundColor: '#FFF',
+        marginLeft: -20,
+        flexDirection:'column' 
     },
     bottom: {
         justifyContent: 'flex-end',
         flex: 1,
-        marginBottom: 36,
+        width:'100%' ,
+        backgroundColor:'red',
+        position:'absolute',
+        bottom:-50,
+        // margiTop: 20,
+        //marginBottom: '10%'   
         // elevation: 4,
     },
     input: {
-        // height: 50,
+        height: 80,
         shadowOpacity: 0.2,
         backgroundColor: "white",
         shadowOffset: {
@@ -54,8 +69,8 @@ const styles = StyleSheet.create({
         flex: 1,
         borderColor: '#cecece',
         padding: 8,
-        marginLeft: 10,
-        fontSize: 15
+        marginLeft: 10,  
+        fontSize: 20
     }
 });
 

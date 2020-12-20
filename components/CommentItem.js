@@ -6,12 +6,12 @@ import SubCmt from './SubComment';
 // create a component
 const CommentItem = () => {
     return (
-        <View style={styles.container}>
+        <TouchableOpacity style={styles.container}>
             <View style={{ flexDirection: "column", height: "100%" }}>
                 <Avatar style={{}} urlImage="https://picsum.photos/200" />
             </View>
             <CmtBox />
-        </View>
+        </TouchableOpacity> 
     );
 };
 
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     logo: {
         height: 40,
         width: 40,
-        borderRadius: 25,
+        borderRadius: 30,
     },
     cmtBox: {
         backgroundColor: "#eeeeee",

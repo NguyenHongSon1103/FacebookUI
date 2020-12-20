@@ -115,10 +115,10 @@ const StartScreen = () => {
             flexDirection: 'row',
             ...styles.touch,
           }}>
-          <Icon.Button
+          <Icon
             name="search"
-            size={19}
-            backgroundColor="blue"
+            size={20}
+            
             style={styles.icon}
           />
           <Text
@@ -149,6 +149,7 @@ const StartScreen = () => {
               color: 'white',
               alignSelf: 'center',
               marginTop: 5,
+              justifyContent:'center'
             }}>
             Tạo tài khoản Facebook khác
           </Text>
