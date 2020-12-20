@@ -137,140 +137,140 @@ class Notification extends Component {
     }
     read(items, index) {
         let displayAvatarUri, Description, icon;
-        switch (items[index].type) {
-            case notificationTypes.ANYONE_ACCEPT_YOUR_FRIEND_REQUEST:
-                icon = {
-                    name: 'user',
-                    color: '#fff',
-                    size: 14,
-                    bgColor: '#318bfb'
-                }
-                Description = () => <Text style={styles.pureTxt}>
-                    <Text style={styles.hightlightTxt}>{items[index].user.name}</Text> chấp nhận lời mời kết bạn của bạn.</Text>
-                break
-            case notificationTypes.ANYONE_ADD_TO_STORY:
-                icon = {
-                    name: 'image',
-                    color: '#fff',
-                    size: 14,
-                    bgColor: '#318bfb'
-                }
-                Description = () => <Text style={styles.pureTxt}>
-                    <Text style={styles.hightlightTxt}>{items[index].user.name}</Text> thêm vào story của họ.</Text>
-                break
-            case notificationTypes.ANYONE_ANSWER_YOUR_COMMENT:
-                icon = {
-                    name: 'comment-alt',
-                    color: '#fff',
-                    size: 14,
-                    bgColor: '#63BE09'
-                }
-                Description = () => <Text style={styles.pureTxt}>
-                    <Text style={styles.hightlightTxt}>{items[index].user.name}</Text> trả lời bình luận của bạn.</Text>
-                break
-            case notificationTypes.ANYONE_ANSWER_YOUR_COMMENT_IN_GROUP:
-                icon = {
-                    name: 'comment-alt',
-                    color: '#fff',
-                    size: 14,
-                    bgColor: '#63BE09'
-                }
-                Description = () => <Text style={styles.pureTxt}>
-                    <Text style={styles.hightlightTxt}>{items[index].user.name}</Text> trả lời bình luận của bạn trong nhóm <Text style={styles.hightlightTxt}>{items[index].group.name}</Text>.</Text>
-                break
-            case notificationTypes.ANYONE_COMMENT_POST_IN_GROUP_TOO:
-                icon = {
-                    name: 'comment-alt',
-                    color: '#fff',
-                    size: 14,
-                    bgColor: '#318bfb'
-                }
-                Description = () => <Text style={styles.pureTxt}>
-                    <Text style={styles.hightlightTxt}>{items[index].user.name}</Text> bình luận vào bài viết mà bạn theo dõi trong nhóm <Text style={styles.hightlightTxt}>{items[index].group.name}</Text> too.</Text>
-                break
-            case notificationTypes.ANYONE_COMMENT_POST_OF_ANYONE_TOO:
-                icon = {
-                    name: 'comment-alt',
-                    color: '#fff',
-                    size: 14,
-                    bgColor: '#63BE09'
-                }
-                Description = () => <Text style={styles.pureTxt}>
-                    <Text style={styles.hightlightTxt}>{items[index].user.name}</Text> bình luận ở <Text style={styles.hightlightTxt}>{items[index].ownUser?.name}</Text>'s post too.</Text>
-                break
-            case notificationTypes.ANYONE_LIVE_STREAM:
-                icon = {
-                    name: 'video',
-                    color: '#fff',
-                    size: 14,
-                    bgColor: '#e8343d'
-                }
-                Description = () => <Text style={styles.pureTxt}>
-                    <Text style={styles.hightlightTxt}>{items[index].user.name}</Text> đang phát trực tiếp.</Text>
-                break
-            case notificationTypes.ANYONE_REACT_YOUR_COMMENT:
+        // switch (items[index].type) {
+        //     case notificationTypes.ANYONE_ACCEPT_YOUR_FRIEND_REQUEST:
+        //         icon = {
+        //             name: 'user',
+        //             color: '#fff',
+        //             size: 14,
+        //             bgColor: '#318bfb'
+        //         }
+        //         Description = () => <Text style={styles.pureTxt}>
+        //             <Text style={styles.hightlightTxt}>{items[index].user.name}</Text> chấp nhận lời mời kết bạn của bạn.</Text>
+        //         break
+        //     case notificationTypes.ANYONE_ADD_TO_STORY:
+        //         icon = {
+        //             name: 'image',
+        //             color: '#fff',
+        //             size: 14,
+        //             bgColor: '#318bfb'
+        //         }
+        //         Description = () => <Text style={styles.pureTxt}>
+        //             <Text style={styles.hightlightTxt}>{items[index].user.name}</Text> thêm vào story của họ.</Text>
+        //         break
+        //     case notificationTypes.ANYONE_ANSWER_YOUR_COMMENT:
+        //         icon = {
+        //             name: 'comment-alt',
+        //             color: '#fff',
+        //             size: 14,
+        //             bgColor: '#63BE09'
+        //         }
+        //         Description = () => <Text style={styles.pureTxt}>
+        //             <Text style={styles.hightlightTxt}>{items[index].user.name}</Text> trả lời bình luận của bạn.</Text>
+        //         break
+        //     case notificationTypes.ANYONE_ANSWER_YOUR_COMMENT_IN_GROUP:
+        //         icon = {
+        //             name: 'comment-alt',
+        //             color: '#fff',
+        //             size: 14,
+        //             bgColor: '#63BE09'
+        //         }
+        //         Description = () => <Text style={styles.pureTxt}>
+        //             <Text style={styles.hightlightTxt}>{items[index].user.name}</Text> trả lời bình luận của bạn trong nhóm <Text style={styles.hightlightTxt}>{items[index].group.name}</Text>.</Text>
+        //         break
+        //     case notificationTypes.ANYONE_COMMENT_POST_IN_GROUP_TOO:
+        //         icon = {
+        //             name: 'comment-alt',
+        //             color: '#fff',
+        //             size: 14,
+        //             bgColor: '#318bfb'
+        //         }
+        //         Description = () => <Text style={styles.pureTxt}>
+        //             <Text style={styles.hightlightTxt}>{items[index].user.name}</Text> bình luận vào bài viết mà bạn theo dõi trong nhóm <Text style={styles.hightlightTxt}>{items[index].group.name}</Text> too.</Text>
+        //         break
+        //     case notificationTypes.ANYONE_COMMENT_POST_OF_ANYONE_TOO:
+        //         icon = {
+        //             name: 'comment-alt',
+        //             color: '#fff',
+        //             size: 14,
+        //             bgColor: '#63BE09'
+        //         }
+        //         Description = () => <Text style={styles.pureTxt}>
+        //             <Text style={styles.hightlightTxt}>{items[index].user.name}</Text> bình luận ở <Text style={styles.hightlightTxt}>{items[index].ownUser?.name}</Text>'s post too.</Text>
+        //         break
+        //     case notificationTypes.ANYONE_LIVE_STREAM:
+        //         icon = {
+        //             name: 'video',
+        //             color: '#fff',
+        //             size: 14,
+        //             bgColor: '#e8343d'
+        //         }
+        //         Description = () => <Text style={styles.pureTxt}>
+        //             <Text style={styles.hightlightTxt}>{items[index].user.name}</Text> đang phát trực tiếp.</Text>
+        //         break
+        //     case notificationTypes.ANYONE_REACT_YOUR_COMMENT:
 
-                icon = {
-                    name: iconName,
-                    color: iconColor,
-                    size: 24,
-                }
-                Description = () => <Text style={styles.pureTxt}>
-                    <Text style={styles.hightlightTxt}>{items[index].user.name}</Text> và {items[index].remainingCount} người khác đã bày tỏ cảm xúc vào bình luận của bạn.</Text>
-                break
-            case notificationTypes.ANYONE_REACT_YOUR_POST:
-                icon = {
-                    name: iconitemName,
-                    color: iconColor,
-                    size: 24,
-                }
-                Description = () => <Text style={styles.pureTxt}>
-                    <Text style={styles.hightlightTxt}>{items[index].user.name}</Text> và {items[index].remainingCount} người khác đã bình luận bài viết của bạn.</Text>
-                break
-            case notificationTypes.ANYONE_TAG_YOU_ON_POST_IN_GROUP:
-                icon = {
-                    name: 'comment-alt',
-                    color: '#fff',
-                    size: 14,
-                    bgColor: '#63BE09'
-                }
-                Description = () => <Text style={styles.pureTxt}>
-                    <Text style={styles.hightlightTxt}>{items[index].user.name}</Text> đã đánh dấu bạn vào một bài viết trong nhóm <Text style={styles.hightlightTxt}>{items[index].group.name}</Text>.</Text>
-                break
-            case notificationTypes.ANYONE_TAG_YOU_ON_POST_OF_ANYONE:
-                icon = {
-                    name: 'comment-alt',
-                    color: '#fff',
-                    size: 14,
-                    bgColor: '#63BE09'
-                }
-                Description = () => <Text style={styles.pureTxt}>
-                    <Text style={styles.hightlightTxt}>{items[index].user.name}</Text> đánh dấu bạn vào một bình luận <Text style={styles.hightlightTxt}>{items[index].ownUser?.name}</Text>'s post.</Text>
-                break
-            case notificationTypes.NEW_PHOTO_IN_GROUP:
-                icon = {
-                    name: 'users',
-                    color: '#fff',
-                    size: 14,
-                    bgColor: '#318bfb'
-                }
-                Description = () => {
-                    return <Text style={styles.pureTxt}>
-                        <Text style={styles.hightlightTxt}>{items[index].user.name}</Text> tạo một ảnh mới trong nhóm <Text style={styles.hightlightTxt}>{items[index].group.name}</Text>.</Text>
-                }
-                break
-            case notificationTypes.NEW_POST_IN_GROUP:
-                icon = {
-                    name: 'users',
-                    color: '#fff',
-                    bgColor: '#318bfb'
-                }
-                Description = () => {
-                    return <Text style={styles.pureTxt}>
-                        <Text style={styles.hightlightTxt}>{items[index].title}</Text> tạo một bài viết trong nhóm <Text style={styles.hightlightTxt}>{items[index].group.name}</Text>.</Text>
-                }
-                break
-        }
+        //         icon = {
+        //             name: iconName,
+        //             color: iconColor,
+        //             size: 24,
+        //         }
+        //         Description = () => <Text style={styles.pureTxt}>
+        //             <Text style={styles.hightlightTxt}>{items[index].user.name}</Text> và {items[index].remainingCount} người khác đã bày tỏ cảm xúc vào bình luận của bạn.</Text>
+        //         break
+        //     case notificationTypes.ANYONE_REACT_YOUR_POST:
+        //         icon = {
+        //             name: iconitemName,
+        //             color: iconColor,
+        //             size: 24,
+        //         }
+        //         Description = () => <Text style={styles.pureTxt}>
+        //             <Text style={styles.hightlightTxt}>{items[index].user.name}</Text> và {items[index].remainingCount} người khác đã bình luận bài viết của bạn.</Text>
+        //         break
+        //     case notificationTypes.ANYONE_TAG_YOU_ON_POST_IN_GROUP:
+        //         icon = {
+        //             name: 'comment-alt',
+        //             color: '#fff',
+        //             size: 14,
+        //             bgColor: '#63BE09'
+        //         }
+        //         Description = () => <Text style={styles.pureTxt}>
+        //             <Text style={styles.hightlightTxt}>{items[index].user.name}</Text> đã đánh dấu bạn vào một bài viết trong nhóm <Text style={styles.hightlightTxt}>{items[index].group.name}</Text>.</Text>
+        //         break
+        //     case notificationTypes.ANYONE_TAG_YOU_ON_POST_OF_ANYONE:
+        //         icon = {
+        //             name: 'comment-alt',
+        //             color: '#fff',
+        //             size: 14,
+        //             bgColor: '#63BE09'
+        //         }
+        //         Description = () => <Text style={styles.pureTxt}>
+        //             <Text style={styles.hightlightTxt}>{items[index].user.name}</Text> đánh dấu bạn vào một bình luận <Text style={styles.hightlightTxt}>{items[index].ownUser?.name}</Text>'s post.</Text>
+        //         break
+        //     case notificationTypes.NEW_PHOTO_IN_GROUP:
+        //         icon = {
+        //             name: 'users',
+        //             color: '#fff',
+        //             size: 14,
+        //             bgColor: '#318bfb'
+        //         }
+        //         Description = () => {
+        //             return <Text style={styles.pureTxt}>
+        //                 <Text style={styles.hightlightTxt}>{items[index].user.name}</Text> tạo một ảnh mới trong nhóm <Text style={styles.hightlightTxt}>{items[index].group.name}</Text>.</Text>
+        //         }
+        //         break
+        //     case notificationTypes.NEW_POST_IN_GROUP:
+        //         icon = {
+        //             name: 'users',
+        //             color: '#fff',
+        //             bgColor: '#318bfb'
+        //         }
+        //         Description = () => {
+        //             return <Text style={styles.pureTxt}>
+        //                 <Text style={styles.hightlightTxt}>{items[index].title}</Text> tạo một bài viết trong nhóm <Text style={styles.hightlightTxt}>{items[index].group.name}</Text>.</Text>
+        //         }
+        //         break
+        // }
         return (
             <TouchableOpacity style={{ flexDirection: "row" }} style={this.set_style(items[index])} onPress={() => this.onPressNotificationHandler(items[index])}>
                 <View style={{ flex: 0.05 }}>
