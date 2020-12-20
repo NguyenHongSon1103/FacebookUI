@@ -282,8 +282,8 @@ class Notification extends Component {
                     />
                 </View>
                 <View style={{ flexDirection: "column", flex: 0.7 }}>
-                    <View style={{}} >
-                        <Description/>
+                    <View style={{}}>
+                        <Text style={{fontSize:20, fontWeight:"bold"}}>{items[index].title}</Text>
                     </View>
                     <View>
                         {this.view_time_lose(items[index].created)}
