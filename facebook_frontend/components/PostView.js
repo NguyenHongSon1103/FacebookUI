@@ -1,5 +1,5 @@
 import React from "react";
-import {Text, TextInput, View, Image, StyleSheet, TouchableHighlight, ScrollView } from "react-native";
+import {Text, TextInput, View, Image, StyleSheet, TouchableHighlight, ScrollView, BackHandler } from "react-native";
 import {Avatar, Button, Icon} from "react-native-elements";
 import Popup from "./Popup";
 
@@ -34,6 +34,28 @@ class PostView extends React.Component<PostStatus> {
         this.setState({
             modalVisible: isVisible
         });
+    }
+
+    backAction = () => {
+        if(!(this.state.isImage || this.state.text.length > 1 || this.state.isVideo || this.state.isStatus)) {
+            alert("Home");
+        }
+        else {
+            this.setModalVisible(true);
+        }
+        return true;
+    };
+
+    removeBackAction = () => {
+        this.setModalVisible(false)
+    };
+
+    componentDidMount() {
+        BackHandler.addEventListener("hardwareBackPress", this.backAction);
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener("hardwareBackPress", this.removeBackAction);
     }
 
     inputText = (e)=>{
@@ -138,7 +160,7 @@ class PostView extends React.Component<PostStatus> {
                     </ScrollView>
                 </View>
                 {/*<SelectedList style={{height: 150}}/>*/}
-                <Popup style={{alignItems: 'stretch'}} modalVisible={this.state.modalVisible} setModalVisible={this.setModalVisible}/>
+                <Popup style={{alignItems: 'stretch', backgroundColor: 'blue'}} modalVisible={this.state.modalVisible} setModalVisible={this.setModalVisible}/>
             </View>
         );
     }
