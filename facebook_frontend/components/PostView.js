@@ -1,8 +1,7 @@
 import React from "react";
 import {Text, TextInput, View, Image, StyleSheet, TouchableHighlight, ScrollView } from "react-native";
 import {Avatar, Button, Icon} from "react-native-elements";
-import SelectedList from "./SelectedList";
-import { ImagePicker } from 'react-native-image-picker';
+import Popup from "./Popup";
 
 interface PostStatus {
     avatar: String,
@@ -25,9 +24,17 @@ class PostView extends React.Component<PostStatus> {
             isStatus: false,
             isImage: false,
             isText: false,
-            isVideo: false
-        }
+            isVideo: false,
+            modalVisible: false
+        };
+        this.setModalVisible = this.setModalVisible.bind(this)
     };
+
+    setModalVisible(isVisible) {
+        this.setState({
+            modalVisible: isVisible
+        });
+    }
 
     inputText = (e)=>{
         this.setState({
@@ -48,7 +55,7 @@ class PostView extends React.Component<PostStatus> {
                         color="black"
                         type="ionicon"
                         onPress={()=>{
-                            alert("Bảng tin")}}
+                            this.setModalVisible(true)}}
                     />
                     <Text style={{fontSize: 22}}>Tạo bài viết</Text>
                     <Button
@@ -131,6 +138,7 @@ class PostView extends React.Component<PostStatus> {
                     </ScrollView>
                 </View>
                 {/*<SelectedList style={{height: 150}}/>*/}
+                <Popup style={{alignItems: 'stretch'}} modalVisible={this.state.modalVisible} setModalVisible={this.setModalVisible}/>
             </View>
         );
     }
