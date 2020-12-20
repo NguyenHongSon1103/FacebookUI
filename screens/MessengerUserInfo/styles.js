@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
 	},
 	
 	optionDialogContainer: {
-		width: 170,
+		width: 200,
 		start: 210,
 		top: -290,
 		backgroundColor: 'white',
@@ -91,7 +91,8 @@ const styles = StyleSheet.create({
 		//height:100,
 		width:'100%',
 		backgroundColor:'white',
-		borderRadius:15,
+		borderBottomLeftRadius:15,
+    borderBottomRightRadius:15,
 		justifyContent:'center',
 		alignItems:'center'
 	},

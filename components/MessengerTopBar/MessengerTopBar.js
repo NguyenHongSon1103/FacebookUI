@@ -2,16 +2,19 @@ import React, { Component } from 'react';
 import { View, Text, Image } from 'react-native';
 import { TouchableHighlight, TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { withNavigation } from 'react-navigation'
+// import { withNavigation } from 'react-navigation'
 import styles from './styles'
 class MessengerTopBar extends Component {
+    constructor(props){
+      super(props)
+    }
     render() {
 
         //const{messengerTopBar}=this.props
         return (
             <View style={styles.container}>
                 <TouchableOpacity
-                    onPress={() => { this.props.navigation.navigate('Setting') }}
+                    onPress={() => { this.props.navigation.navigate('MessengerUserSetting', {}) }}
                 >
                     <Image
                         style={styles.avatar}
@@ -36,4 +39,4 @@ class MessengerTopBar extends Component {
         );
     }
 }
-export default withNavigation(MessengerTopBar)
+export default MessengerTopBar 

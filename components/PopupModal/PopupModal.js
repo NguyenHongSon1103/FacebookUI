@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { View, TouchableOpacity, Text, Dimensions } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons'; 
-import styles from './styles'
-import Modal from 'react-native-modal';
+import styles from './styles' 
+import Modal from 'react-native-modal'
 
-const PopupModal = (props) => {
+const PopupModal = (props) => {  
   const {
     options = [ {'icon':'image', 'text':'Xem ảnh bìa'},
                 {'icon':'upload', 'text':'Tải ảnh lên'}],

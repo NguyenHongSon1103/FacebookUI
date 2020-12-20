@@ -4,7 +4,7 @@ import { View, Text, FlatList, Keyboard, TextInput, KeyboardAvoidingView, Toucha
 
 import styles from './styles'
 import ChatBoxTopBar from '../../components/ChatBoxTopBar/ChatBoxTopBar'
-import ConventionData from '../../app/ConversationData'
+import ConventionData from '../../app/ConversationData.json'
 import ChatLine from '../../components/ChatLine/ChatLine'
 
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -68,12 +68,12 @@ class ChatScreen extends Component {
         this.setState({ refreshing: false })
     }
     render() {
-        const content = ConventionData[0].content;
-        const { params } = this.props.navigation.state;
-        return (
+        // const content = ConventionData[0].content;
+        const params = this.props.route.params;
+        return (   
             <View style={styles.container}>
                 <View style={styles.TopBar}>
-                    <ChatBoxTopBar data={params.data} />
+                    <ChatBoxTopBar data={params.data} navigation={this.props.navigation}/>
                 </View>
                 <View style={{ flexGrow: 1, marginBottom: this.state.bottom }}>
                     <View style={[styles.chatContainer]}>

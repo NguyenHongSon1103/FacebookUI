@@ -6,7 +6,7 @@ import styles from './styles'
 import Avatar from '../../components/Avatar/Avatar'
 class MessengerUserSetting extends Component {
 	render() {
-		const { params } = this.props.navigation.state;
+		// const { params } = this.props.navigation.state; 
 
 		return (
 			<View style={styles.container}>

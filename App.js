@@ -30,6 +30,13 @@ import Search from './screens/Search'
 import SearchEdit from './screens/SearchEdit'
 import Comment from './screens/Comment'
 import ReactionModal from './screens/ReactionModal'
+/* Dactt Import part */
+import Messenger from './screens/Messenger/Messenger'
+import ChatSreen from './screens/ChatScreen/ChatScreen'
+import MessageRequest from './screens/MessageRequest/MessageRequest' 
+import MessengerUserInfo from './screens/MessengerUserInfo/MessengerUserInfo'
+import MessengerUserSetting from './screens/MessengerUserSetting/MessengerUserSetting'
+import NewConversation from './screens/NewConversation/NewConversation'
 
 const Stack = createStackNavigator();
 const refNavigation = React.createRef();
@@ -80,6 +87,13 @@ export default function App() {
         <Stack.Screen name="SearchEdit" component={SearchEdit} options={{ headerShown: false }}/>
         <Stack.Screen name="Comment" component={Comment} options={{ headerShown: false }}/>     
         <Stack.Screen name="ReactionModal" component={ReactionModal} options={{ headerShown: false }}/>    
+        {/******* DacTT Screen *******/}
+        <Stack.Screen name="Messenger" component={Messenger} options={{ headerShown: false }}/> 
+        <Stack.Screen name="ChatScreen" component={ChatSreen} options={{ headerShown: false }}/> 
+        <Stack.Screen name="MessageRequest" component={MessageRequest} options={{ headerShown: false }}/> 
+        <Stack.Screen name="MessengerUserInfo" component={MessengerUserInfo} options={{ headerShown: false }}/> 
+        <Stack.Screen name="MessengerUserSetting" component={MessengerUserSetting} options={{ headerShown: false }}/> 
+        <Stack.Screen name="NewConversation" component={NewConversation} options={{ headerShown: false }}/> 
       </Stack.Navigator >
     </NavigationContainer>
   )

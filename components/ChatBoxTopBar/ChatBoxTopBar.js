@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { View, Text, Image } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { withNavigation } from 'react-navigation'
+// import { withNavigation } from 'react-navigation'
 import Icon from 'react-native-vector-icons/AntDesign'
 import styles from './styles'
 class ChatBoxTopBar extends Component {
     navigateInfo(data) {
-        this.props.navigation.navigate('Info', { data: data })
+        this.props.navigation.navigate('MessengerUserInfo', { data: data })
     }
     render() {
         const { data } = this.props;
@@ -39,4 +39,4 @@ class ChatBoxTopBar extends Component {
         );
     }
 }
-export default withNavigation(ChatBoxTopBar)
+export default ChatBoxTopBar

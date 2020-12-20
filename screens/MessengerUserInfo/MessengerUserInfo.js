@@ -5,6 +5,8 @@ import AntDesignIcon from 'react-native-vector-icons/AntDesign'
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome'
 import Avatar from '../../components/Avatar/Avatar'
 import styles from './styles'
+import AvatarImage from '../../components/AvatarImage/AvatarImage'
+import PersonalPageCoverImage from '../../components/PersonalPageCoverImage/PersonalPageCoverImage'
 class MessengerUserInfo extends Component {
 	constructor(props) {
 		super(props)
@@ -24,7 +26,7 @@ class MessengerUserInfo extends Component {
 		console.log('delete')
 	}
 	render() {
-		const { params } = this.props.navigation.state;
+		const { params } = this.props.route; 
 		return (
 			<View style={styles.container}>
 				<View style={styles.topBar}>
@@ -106,7 +108,12 @@ class MessengerUserInfo extends Component {
 						</View>
 						<TouchableWithoutFeedback>
 							<View style={styles.homeDialogContainer}>
+                <View style={{backgroundColor:'#fff', borderTopLeftRadius: 15, borderTopRightRadius:15}}>
+                  <PersonalPageCoverImage currentPosition='None'/>
+                  <AvatarImage hasCameraIcon={false} positionStyle={{top: -50, alignSelf:'center'}}/>
+                </View>
 								<View style={styles.homeDialog1}>
+                  
 									<TouchableOpacity
 										style={styles.bodyIcon}
 										onPress={() => { this.setHomeDialogVisible(false), this.props.navigation.goBack() }}

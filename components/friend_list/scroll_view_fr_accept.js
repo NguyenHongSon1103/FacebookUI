@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Text, Image, View, StyleSheet, ScrollView, Button, FlatList, StatusBar, TouchableOpacity, Modal } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import AvatarImage from '../AvatarImage/AvatarImage'
 
 class ScrollView_request extends Component {
   constructor(props) {

@@ -12,7 +12,7 @@ class MessageRequest extends Component {
 			data: [],
 			optionDialogVisible: false
 		}
-	}
+	}  
 	componentDidMount() {
 		this.setState({ data: this.state.data = customData.data })
 	}

@@ -8,6 +8,7 @@ import PopupModal from '../PopupModal/PopupModal'
 const PersonalPageCoverImage = (props) => {
   const {
     currentPosition = 'PersonalPage',
+    hasCameraIcon = false
   } = props
   const [modalVisible, setModalVisible] = React.useState(false);
   const options = [ {'icon':'image', 'text':'Xem ảnh bìa'},
@@ -24,9 +25,10 @@ const PersonalPageCoverImage = (props) => {
       <TouchableOpacity onPress={()=>showModalImage()}>
         <ImageBackground  source={require('@expo/snack-static/react-native-logo.png')}
           style={styles.image}>
-            <View style={styles.cameraIconView}>
+          {hasCameraIcon ?(<View style={styles.cameraIconView}>
               <FontAwesome5 name='camera' size={20} style={styles.cameraIcon}/>
-            </View>
+            </View>) : null
+          }
         </ImageBackground>
       </TouchableOpacity>
     </View>

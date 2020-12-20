@@ -16,7 +16,7 @@ import MessengerTopBar from '../../components/MessengerTopBar/MessengerTopBar';
 import SearchConversation from '../../components/SearchConversation/SearchConversation';
 import ConversationListItem from '../../components/ConversationListItem/ConversationListItem'
 import Avatar from '../../components/Avatar/Avatar'
-import MessengerActiveListData from 'Messenger/src/app/MessengerActiveListData.js'
+// import MessengerActiveListData from './Messenger/src/app/MessengerActiveListData.js'
 import MessengerActiveItem from '../../components/MessengerActiveItem/MessengerActiveItem'
 
 import customData from '../../app/ConversationListData.json'
@@ -25,7 +25,7 @@ class Messenger extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: [],
+            data: customData.data,
         }
     }
     componentDidMount(){
@@ -33,13 +33,13 @@ class Messenger extends Component {
     }
     
     onPress(item) {
-        this.props.navigation.navigate('Chat', { data: item })
+        this.props.navigation.navigate('ChatScreen', { data: item })
     }
     render() {
         return (
             <View style={styles.container}>
                 <View style={styles.TopBar}>
-                    <MessengerTopBar />
+                    <MessengerTopBar navigation={this.props.navigation}/>
                 </View>
                 <View styles={{ display: 'flex', flexDirection: 'column' }}>
                     {/* <View style={styles.SearchConvention}>
