@@ -4,28 +4,10 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 class ScrollView_allfriend extends Component{
     constructor(props) {
         super(props);
-        this.number_friend = props.number_friend
+        this.data = props.data;
         this.state = {
           infor_view: false ,  
           title: "Tất cả bạn bè",
-          names : [
-            {'name': 'Nguyễn Việt Hoài', 'id': 1,"same_friend":0,"img_url":'https://reactnative.dev/img/tiny_logo.png'},
-            {'name': 'Nguyễn Việt Hoài', 'id': 2,"same_friend":1,"img_url":'https://reactnative.dev/img/tiny_logo.png'},
-            {'name': 'Nguyễn Việt Hoài', 'id': 3,"same_friend":1,"img_url":'https://reactnative.dev/img/tiny_logo.png'},
-            {'name': 'Nguyễn Việt Hoài', 'id': 4,"same_friend":1,"img_url":'https://reactnative.dev/img/tiny_logo.png'},
-            {'name': 'Nguyễn Việt Hoài', 'id': 5,"same_friend":1,"img_url":'https://reactnative.dev/img/tiny_logo.png'},
-            {'name': 'Nguyễn Việt Hoài', 'id': 6,"same_friend":1,"img_url":'https://reactnative.dev/img/tiny_logo.png'},
-            {'name': 'Nguyễn Việt Hoài', 'id': 7,"same_friend":1,"img_url":'https://reactnative.dev/img/tiny_logo.png'},
-            {'name': 'Nguyễn Việt Hoài', 'id': 8,"same_friend":0,"img_url":'https://reactnative.dev/img/tiny_logo.png'},
-            {'name': 'Nguyễn Việt Hoài', 'id': 9,"same_friend":0,"img_url":'https://reactnative.dev/img/tiny_logo.png'},
-            {'name': 'Nguyễn Việt Hoài', 'id': 10,"same_friend":1,"img_url":'https://reactnative.dev/img/tiny_logo.png'},
-            {'name': 'Nguyễn Việt Hoài', 'id': 11,"same_friend":1,"img_url":'https://reactnative.dev/img/tiny_logo.png'},
-            {'name': 'Nguyễn Việt Hoài', 'id': 12,"same_friend":1,"img_url":'https://reactnative.dev/img/tiny_logo.png'},
-            {'name': 'Nguyễn Việt Hoài', 'id': 13,"same_friend":1,"img_url":'https://reactnative.dev/img/tiny_logo.png'},
-            {'name': 'Nguyễn Việt Hoài', 'id': 14,"same_friend":1,"img_url":'https://reactnative.dev/img/tiny_logo.png'},
-            {'name': 'Nguyễn Việt Hoài', 'id': 15,"same_friend":1,"img_url":'https://reactnative.dev/img/tiny_logo.png'},
-            {'name': 'Nguyễn Việt Hoài', 'id': 16,"same_friend":0,"img_url":'https://reactnative.dev/img/tiny_logo.png'}
-            ]
         };
       }
 
@@ -38,7 +20,7 @@ render() {
                <View style={{flex:0.1}}>
                  <Icon
                    size={30}
-                   name='arrow-left'
+                   username='arrow-left'
                    onPress={() => console.log('hello')} />  
                </View> 
                <View style={{flex:0.8}}>
@@ -51,13 +33,13 @@ render() {
                <View style={{flex:0.1}}>
                  <Icon
                    size={30}
-                   name='search'
+                   username='search'
                    onPress={() => console.log('hello')} /> 
                </View>                         
              </View>   
              <View style={styles.search}>
                <View style={{flex:0.05}}></View>
-               <Icon style={{flex:0.05,alignSelf:'center'}} name="search" size={20} visible="true"></Icon>
+               <Icon style={{flex:0.05,alignSelf:'center'}} username="search" size={20} visible="true"></Icon>
                <TextInput style={{flex:0.9, alignSelf:'center'}} placeholder="Tìm kiếm bạn bè">
                </TextInput>
               
@@ -78,27 +60,27 @@ render() {
            <View>
            {
              
-               this.state.names.map((item, index) => (
+               this.state.friend.map((item, index) => (
                    <View >
                        <View style={{flexDirection: "row"}} key = {item.id} style = {styles.item} >
                            <View style={{width: 20,flex:0.2 }}>
                                <Image
                                style={styles.logo}
-                               source={{uri: item.img_url}}
+                               source={{uri: item.avatar}}
                                />  
                            </View>
                            <View style={{flexDirection: "column",flex:0.7 }}>
                                <View  style={{height: 28 }} >
                                <Text style={{ 
                                fontSize: 20,
-                               fontWeight: 'bold'}}>{item.name}</Text>
+                               fontWeight: 'bold'}}>{item.username}</Text>
                                </View>
                                <View style={{flexDirection: "row", height: 26 }}>
-                                   <Text>{item.same_friend+" bạn chung"}</Text>
+                                   <Text>{item.same_friends+" bạn chung"}</Text>
                                </View>
                            </View>
                            <View style={{flex:0.06}}>
-                             <Icon name="ellipsis-h" size={20} onPress={() => this.state.infor_view=true}></Icon>                              
+                             <Icon username="ellipsis-h" size={20} onPress={() => this.state.infor_view=true}></Icon>                              
                            </View>
                        </View>
                    </View>

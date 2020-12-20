@@ -1,0 +1,23 @@
+{
+    "code":"",
+    "message":"",
+    "friends" : [
+        {"username": "Nguyễn Việt Hoài", "id": 1,"same_friends":"0","avatar":"https://reactnative.dev/img/tiny_logo.png","created":"2020-11-25 13:41:39"},
+        {"username": "Nguyễn Việt Hoài", "id": 2,"same_friends":"1","avatar":"https://reactnative.dev/img/tiny_logo.png","created":"2020-11-25 13:41:39"},
+        {"username": "Nguyễn Việt Hoài", "id": 3,"same_friends":"1","avatar":"https://reactnative.dev/img/tiny_logo.png","created":"2020-11-25 13:41:39"},
+        {"username": "Nguyễn Việt Hoài", "id": 4,"same_friends":"1","avatar":"https://reactnative.dev/img/tiny_logo.png","created":"2020-11-25 13:41:39"},
+        {"username": "Nguyễn Việt Hoài", "id": 5,"same_friends":"1","avatar":"https://reactnative.dev/img/tiny_logo.png","created":"2020-11-25 13:41:39"},
+        {"username": "Nguyễn Việt Hoài", "id": 6,"same_friends":"1","avatar":"https://reactnative.dev/img/tiny_logo.png","created":"2020-11-25 13:41:39"},
+        {"username": "Nguyễn Việt Hoài", "id": 7,"same_friends":"1","avatar":"https://reactnative.dev/img/tiny_logo.png","created":"2020-11-25 13:41:39"},
+        {"username": "Nguyễn Việt Hoài", "id": 8,"same_friends":"1","avatar":"https://reactnative.dev/img/tiny_logo.png","created":"2020-11-25 13:41:39"},
+        {"username": "Nguyễn Việt Hoài", "id": 9,"same_friends":"0","avatar":"https://reactnative.dev/img/tiny_logo.png","created":"2020-11-25 13:41:39"},
+        {"username": "Nguyễn Việt Hoài", "id": 10,"same_friends":"1","avatar":"https://reactnative.dev/img/tiny_logo.png","created":"2020-11-25 13:41:39"},
+        {"username": "Nguyễn Việt Hoài", "id": 11,"same_friends":"1","avatar":"https://reactnative.dev/img/tiny_logo.png","created":"2020-11-25 13:41:39"},
+        {"username": "Nguyễn Việt Hoài", "id": 12,"same_friends":"1","avatar":"https://reactnative.dev/img/tiny_logo.png","created":"2020-11-25 13:41:39"},
+        {"username": "Nguyễn Việt Hoài", "id": 13,"same_friends":"1","avatar":"https://reactnative.dev/img/tiny_logo.png","created":"2020-11-25 13:41:39"},
+        {"username": "Nguyễn Việt Hoài", "id": 14,"same_friends":"1","avatar":"https://reactnative.dev/img/tiny_logo.png","created":"2020-11-25 13:41:39"},
+        {"username": "Nguyễn Việt Hoài", "id": 15,"same_friends":"1","avatar":"https://reactnative.dev/img/tiny_logo.png","created":"2020-11-25 13:41:39"},
+        {"username": "Nguyễn Việt Hoài", "id": 16,"same_friends":"0","avatar":"https://reactnative.dev/img/tiny_logo.png","created":"2020-11-25 13:41:39"}
+        ],
+    "total":189
+}

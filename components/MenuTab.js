@@ -5,8 +5,8 @@ import Home from '../screens/Home';
 import Users from '../screens/Users';
 import Video from '../screens/Video';
 import Setting from '../screens/Setting'
-import FriendList from '../screens/friend'
-import Notification from '../screens/notification';
+import FriendList from '../screens/FriendList'
+import Notification from '../screens/Notification';
 
 const Tab = createMaterialTopTabNavigator();
 

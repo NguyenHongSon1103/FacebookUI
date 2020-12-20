@@ -1,0 +1,19 @@
+{
+    "code":"",
+    "message":"",
+    "data": [
+        {"type":"1","object_id":"1",  "notification_id:": 1, "title": "bạn là người đẹp trai nhất thế gian này", "avatar": "https://reactnative.dev/img/tiny_logo.png", "created": "2020-12-20 12:10:39", "read": "1" ,"group": "1"},
+        {"type":"1","object_id":"1", "notification_id:": 2, "title": "bạn là người đẹp trai nhất thế gian này", "avatar": "https://reactnative.dev/img/tiny_logo.png", "created": "2020-12-20 11:50:39", "read": "0" ,"group": "1"},
+        {"type":"1","object_id":"1",  "notification_id:": 3, "title": "bạn là người đẹp trai nhất thế gian này", "avatar": "https://reactnative.dev/img/tiny_logo.png", "created": "2020-12-20 07:41:39", "read": "1" ,"group": "1"},
+        {"type":"1","object_id":"1", "notification_id:": 4, "title": "bạn là người đẹp trai nhất thế gian này", "avatar": "https://reactnative.dev/img/tiny_logo.png", "created": "2020-12-10 13:41:39", "read": "0" ,"group": "1"},
+        {"type":"1","object_id":"1", "notification_id:": 5, "title": "bạn là người đẹp trai nhất thế gian này", "avatar": "https://reactnative.dev/img/tiny_logo.png", "created": "2020-12-10 13:41:39", "read": "0" ,"group": "1"},
+        {"type":"1","object_id":"1", "notification_id:": 6, "title": "bạn là người đẹp trai nhất thế gian này", "avatar": "https://reactnative.dev/img/tiny_logo.png", "created": "2020-12-10 13:41:39", "read": "1" ,"group": "1"},
+        {"type":"1","object_id":"1",  "notification_id:": 7, "title": "bạn là người đẹp trai nhất thế gian này", "avatar": "https://reactnative.dev/img/tiny_logo.png", "created": "2020-12-10 13:41:39", "read": "1" ,"group": "1"},
+        {"type":"1","object_id":"1",  "notification_id:": 8, "title": "bạn là người đẹp trai nhất thế gian này", "avatar": "https://reactnative.dev/img/tiny_logo.png", "created": "2020-12-10 13:41:39", "read": "1" ,"group": "1"},
+        {"type":"1","object_id":"1",  "notification_id:": 9, "title": "bạn là người đẹp trai nhất thế gian này", "avatar": "https://reactnative.dev/img/tiny_logo.png", "created": "2020-10-10 13:41:39", "read": "0" ,"group": "1"},
+        {"type":"1","object_id":"1", "notification_id:": 11, "title": "bạn là người đẹp trai nhất thế gian này", "avatar": "https://reactnative.dev/img/tiny_logo.png", "created":  "2018-11-25 13:41:39", "read": "1" ,"group": "1"},
+        {"type":"1","object_id":"1",  "notification_id:": 12, "title": "bạn là người đẹp trai nhất thế gian này", "avatar": "https://reactnative.dev/img/tiny_logo.png", "created": "2018-11-25 13:41:39", "read": "0" ,"group": "1"}
+    ],
+    "last_update":"",
+    "badge":""
+}

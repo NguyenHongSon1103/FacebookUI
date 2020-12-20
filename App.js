@@ -13,9 +13,8 @@ import SettingBlockUser from './screens/SettingBlockUser'
 import HomeHeaderBar from './components/HomeHeaderBar/HomeHeaderBar';
 import MenuTab from './components/MenuTab'
 /* Hoainv Import part */
-import FriendList from './screens/friend';
-import HintFriend from './screens/hint_friend';
-import AllFriend from './screens/all_friends';
+import HintFriend from './screens/HintFriend';
+import AllFriend from './screens/AllFriend';
 /* Ducns Import part */
 import StartSignupScreen from './screens/StartSignupScreen'
 import SignupName from './screens/SignupName'
