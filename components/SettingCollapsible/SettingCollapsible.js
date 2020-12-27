@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Image, Button, TouchableOpacity, TextInput, Dim
 ScrollView } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons'; 
 import CollapsibleView from "@eliav2/react-native-collapsible-view";
-// import styles from './styles' 
+import styles from './styles' 
 import { useNavigation } from '@react-navigation/native';
 
 const height = Dimensions.get('screen').height

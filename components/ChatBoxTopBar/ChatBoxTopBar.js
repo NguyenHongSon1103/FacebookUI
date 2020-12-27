@@ -23,15 +23,15 @@ class ChatBoxTopBar extends Component {
                     onPress={() => { this.navigateInfo(data) }}>
                     <Image
                         style={styles.avatar}
-                        source={{ uri: data.patner.avatar }}
+                        source={{ uri: data.Partner.avatar }}
                     />
                 </TouchableOpacity>
 
                 <View style={styles.info}>
-                    <Text style={styles.title}>{data.patner.username}</Text>
+                    <Text style={styles.title}>{data.Partner.username}</Text>
                 </View>
                 <TouchableOpacity
-                    style={styles.backIconContainer}
+                    style={styles.backIconContainer} 
                     onPress={() => { this.navigateInfo(data) }}>
                     <Icon name={'infocirlce'} size={30} />
                 </TouchableOpacity>

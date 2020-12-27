@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, Modal, TouchableOpacity, TouchableWithoutFeedback } from 'react-native'
+import { View, Text, Modal, TouchableOpacity, TouchableWithoutFeedback ,ActivityIndicator} from 'react-native'
 import EntypoIcon from 'react-native-vector-icons/Entypo'
 import AntDesignIcon from 'react-native-vector-icons/AntDesign'
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome'
@@ -52,11 +52,11 @@ class MessengerUserInfo extends Component {
 				<View style={{ marginBottom: 20 }}>
 					<Avatar
 						avatarStyle={styles.avatar}
-						containerStyle={styles.bgAvatar}
-						src={'https://cdn.pixabay.com/photo/2015/03/04/22/35/head-659651_1280.png'}
+						containerStyle={styles.bgAvatar} 
+            src = {params.data.Partner.avatar}
 					/>
 					<View style={styles.nameContainer}>
-						<Text style={styles.name}>{params.data.patner.username}</Text>
+						<Text style={styles.name}>{params.data.Partner.username}</Text>
 					</View>
 				</View>
 
@@ -136,6 +136,7 @@ class MessengerUserInfo extends Component {
 					</TouchableOpacity>
 				</Modal>
 			</View >
+      
 		);
 	}
 }
