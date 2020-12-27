@@ -3,7 +3,8 @@ import React, { Component } from 'react'
 import { StyleSheet, Image, Text, View, Modal, StatusBar, Button, ScrollView, TouchableOpacity, TouchableHighlight, TextInput } from 'react-native';
 import ScrollView_allfriend from '../../components/friend_list/ScrollView_allfriend';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import data from '../../db/all_friend.json';
+import state from '../../state.json';
+const URL = state.url;
 class AllFriend extends Component {
   constructor(props) {
     super(props);
@@ -12,24 +13,54 @@ class AllFriend extends Component {
       title: "Tất cả bạn bè",
       item_name: null,
       modal_arrange: false,
-      modal_infor: false
+      modal_infor: false,
+      data: [],
+      total_fr : null,
+      isLoading:true,
     };
   }
+  componentDidMount() {
+    if (this.state.isLoading) {
+        fetch(URL+"get_user_friend", {
+            method: 'POST',
+            headers: new Headers({
+                'Content-Type': 'application/x-www-form-urlencoded', // <-- Specifying the Content-Type
+            }),
+            body: "user_id="+this.props.user_id+"&count=10" // <-- Post parameters
+        })
+            .then((response) => response.json())
+            .then((json) => {
+                this.setState({ data: json.data.friends,total_fr:json.data.total });
+                console.log( json.data)
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+            .finally(() => {
+                this.setState({ isLoading: false });
+            });
+    }
+}
   setModalArrange = (visible) => {
     this.setState({ modal_arrange: visible });
   }
+
   setModalInfor = (visible, item) => {
     this.setState({ modal_infor: visible, item_name: item });
   }
+
   onPressListFriend(){
     this.props.navigation.navigate('List_Friend')
   }
+
   onPressSearch(){
     this.props.navigation.navigate('Search')
   }
+
   render() {
     const { modal_arrange } = this.state;
     const { modal_infor } = this.state;
+    const data = this.state.data;
     return (
       <View style={styles.container}>
         <View>
@@ -65,14 +96,14 @@ class AllFriend extends Component {
           </View>
           <ScrollView >
             <View style={{ flexDirection: "row" }}>
-              <Text style={styles.num_fr}>{data.total + " bạn bè"}</Text>
+              <Text style={styles.num_fr}>{this.state.total_fr + " bạn bè"}</Text>
               <TouchableOpacity style={styles.view_all_fr} onPress={() => this.setModalArrange(true)}>
                 <Text style={styles.arrange}>Sắp xếp</Text>
               </TouchableOpacity>
             </View>
             <View>
               {
-                data.friends.map((item, index) => (
+                data.map((item, index) => (
                   <View >
                     <View style={{ flexDirection: "row" }} key={item.id} style={styles.item} >
                       <View style={{ width: 20, flex: 0.2 }}>
