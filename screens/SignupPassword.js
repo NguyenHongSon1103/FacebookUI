@@ -32,7 +32,7 @@ export default class SignupPassword extends Component {
                         value={this.state.first_input}
                         secureTextEntry={true} />
 
-                    <NextButton text={"Tiếp"} nextScreen='SignupPolicy' navigation={this.props.navigation}/>
+                    <NextButton text={"Tiếp"} nextScreen='SignupEmail' info={{name:this.props.route.params.name, password: this.state.first_input}} navigation={this.props.navigation}/>
                 </View>
             </View>
         );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useState} from 'react';
 import {
   View,
   Text,
@@ -6,16 +6,26 @@ import {
   Image,
   Button,
   TouchableOpacity,
-  Modal,
+  Modal,Alert
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Tooltip from 'react-native-walkthrough-tooltip';
-import {useNavigation} from '@react-navigation/native'
+import {useNavigation, useRoute} from '@react-navigation/native';
+import statetus from '../state.json';
 
 const StartScreen = () => {
   const [show, setShow] = React.useState(false);
-  const [toolTipVisible, setToolTipVisible] = React.useState(true);
-  const navigation = useNavigation()
+  const [toolTipVisible, setToolTipVisible] = React.useState(false);
+  const navigation = useNavigation();
+  const route = useRoute();
+  var name = statetus.name;
+  var avatar = statetus.avatar;
+  var phonenumber = statetus.phonenumber;
+  if( typeof route.params !== 'undefined'){
+     name = route.params.name;
+     phonenumber = route.params.phonenumber;
+     avatar = route.params.avatar;
+  }
   return (
     <View style={styles.container}>
       <View
@@ -24,7 +34,7 @@ const StartScreen = () => {
         }}></View>
       <View style={{ flex: 1 }}>
         <Image
-          source={require('../Images/fb_login.png')}
+          source={{uri:"https://i.imgur.com/ZmGJrz6.png"}}
           style={styles.logo}
           resizeMode="contain"></Image>
       </View>
@@ -37,13 +47,13 @@ const StartScreen = () => {
           style={{
             flexDirection: 'row',
             marginLeft: '5%',
-          }} onPress={()=>navigation.navigate('LoginPassword')}>
+          }} onPress={()=>navigation.navigate('LoginPassword', {name:name, avatar: avatar, phonenumber: phonenumber})}>
           <Image
-            source={require('../Images/user.png')}
+            source={{uri: avatar}}
             style={styles.user}
             resizeMode="contain"
           />
-          <Text style={styles.name_user}>Nguyễn Sỹ Đức</Text>
+          <Text style={styles.name_user}>{name}</Text>
         </TouchableOpacity>
         <View
           style={{

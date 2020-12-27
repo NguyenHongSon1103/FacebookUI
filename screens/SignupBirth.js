@@ -1,11 +1,11 @@
 //import libraries
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, Button, TouchableOpacity, TextInput,
-DatePickerAndroid} from 'react-native';
+DatePickerAndroid, Alert} from 'react-native';
 import Header from '../components/Header';
 import NextButton from '../components/NextButton';
 // import DatePicker from 'react-native-date-picker';
-import {useNavigation} from '@react-navigation/native'
+import {useNavigation, useRoute} from '@react-navigation/native'
 
 // create a component
 const SignupBirth = () => {
@@ -14,7 +14,8 @@ const SignupBirth = () => {
     const [show, setShow] = React.useState(true)
     const [date2, setDate2] = React.useState(date1)
     const [dateShow, setDateShow] = React.useState("Chọn ngày sinh")
-
+    const route = useRoute();
+    const {name} = route.params;
     function chooseDate(){
         setShow(true)
     }
@@ -31,6 +32,7 @@ const SignupBirth = () => {
                 <Text style={styles.name}>
                     Ngày sinh của bạn?
                 </Text>
+                <Text>{name}</Text>
                 {/* <TouchableOpacity style={styles.showdate} onPress={this.chooseDate}>
                     <Text style={styles.date}>{this.state.date_show}</Text>
                 </TouchableOpacity>
@@ -42,7 +44,7 @@ const SignupBirth = () => {
                 androidVariant="nativeAndroid"
                 fadeToColor="blue"
                 onDateChange={(date)=>setDate2(date)}/>)} */}
-                <NextButton text = {"Tiếp"} nextScreen='SignupPassword'navigation={navigation}/>
+                <NextButton text = {"Tiếp"} nextScreen='SignupPassword' info={{name:name}} navigation={navigation}/>
             </View>
         </View>
     );

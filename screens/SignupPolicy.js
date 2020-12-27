@@ -1,16 +1,18 @@
 //import libraries
 import React from 'react';
-import { View, Text, StyleSheet, Image, Button, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, Button, TouchableOpacity , Alert} from 'react-native';
 import Header from '../components/Header';
 import NextButton from '../components/NextButton';
-import {useNavigation} from '@react-navigation/native'
+import {useNavigation, useRoute} from '@react-navigation/native'
 
 // create a component
 const SignupPolicy = () => {
-    const navigation = useNavigation()
+    const navigation = useNavigation();
+    const route = useRoute();
+    const {params} = route;
     return (
         <View style={styles.container}>
-            <Header title="Điều khoản và quyền đăng ký" prevScreen='SignupPassword' navigation={navigation} />
+            <Header title="Điều khoản và quyền đăng ký" prevScreen='SignupEmail' navigation={navigation} />
             <View style={styles.content}>
                 <Text style={styles.join}>
                     Hoàn tất đăng ký
@@ -21,7 +23,7 @@ const SignupPolicy = () => {
                     lúc nào.Thông tin từ danh bạ của bạn sẽ được tải lên Facebook liên tục để chúng tôi có thể gợi ý bạn bè,
                     cung cấp và cải thiện quảng cáo cho bạn và người khác, cũng như dịch vụ tốt hơn.
                 </Text>
-                <NextButton text={"Đăng ký"} nextScreen='SignupEmail' navigation={navigation} />
+                <NextButton text={"Đăng ký"} nextScreen='SaveLoginInfo' info={{name:params.name,phonenumber:params.phonenumber, password: params.password}} navigation={navigation} />
                 <TouchableOpacity style={{
                     flex: 1,
                     marginTop: "5%"

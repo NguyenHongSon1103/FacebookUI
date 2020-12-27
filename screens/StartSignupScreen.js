@@ -7,7 +7,6 @@ import {useNavigation} from '@react-navigation/native'
 
 // create a component
 const StartSignupScreen = () => {
-    const [image, setImage] = React.useState(require("../Images/fb_login.png"))
     const navigation = useNavigation()
     return (
         <View style={styles.container}>
@@ -16,7 +15,7 @@ const StartSignupScreen = () => {
                 <Image
                     resizeMode="contain"
                     style={styles.logo}
-                    source={image}
+                    source={{uri:"https://i.imgur.com/ZmGJrz6.png"}}
                 />
                 <Text style={styles.join}>
                     Tham gia Facebook

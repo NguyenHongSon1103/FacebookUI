@@ -9,8 +9,6 @@ import {useNavigation} from '@react-navigation/native'
 // create a component
 const SignupName = () => {
   const navigation = useNavigation()
-  const [first_name, setFirst_name] = React.useState(true);
-  const [last_name, setLast_name] = React.useState(false);
   const [color_first, setColor_first] = React.useState('#0984e3');
   const [color_last, setColor_last] = React.useState("gray");
   const [first_input, setFirst_input] = React.useState('');
@@ -26,20 +24,20 @@ const SignupName = () => {
               <View style={styles.input_zone}>
                   <TextInput style={[styles.zone, {borderBottomColor: color_first}]} 
                   placeholder="Họ" 
-                  onChangeText={(text) => setFirst_input()} 
+                  onChangeText={(text) => setFirst_input(text)} 
                   keyboardType="default" 
                   onFocus = {()=> {setColor_first("#0984e3"); setColor_last('gray')}}
                   value={first_input}/>
 
                   <TextInput style={[styles.zone, {borderBottomColor: color_last}]} 
                   placeholder="Tên" 
-                  onChangeText={(text) => setLast_input()} 
+                  onChangeText={(text) => setLast_input(text)} 
                   keyboardType="default" 
                   onFocus = {()=> {setColor_first("gray"); setColor_last('#0984e3')}}
                   value={last_input}/>
                   
               </View>
-              <NextButton text={"Tiếp"} nextScreen='SignupBirth' navigation={navigation}/>
+              <NextButton text={"Tiếp"} nextScreen='SignupBirth' info={{name: first_input+last_input}} navigation={navigation}/>
           </View>
       </View>
     );
