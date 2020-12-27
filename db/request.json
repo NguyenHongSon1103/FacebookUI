@@ -3,8 +3,7 @@
     "message":"",
     "request": [
     { "username": "Nguyễn Việt Hoài", "id": 1, "same_friends": "0", "avatar": "https://reactnative.dev/img/tiny_logo.png", "created":"2020-11-25 13:41:39"},
-    { "username": "Nguyễn Việt Hoài", "id": 2, "same_friends": "1", "avatar": "https://reactnative.dev/img/tiny_logo.png","created":"2020-11-25 13:41:39"},
-    { "username": "Nguyễn Việt Hoài", "id": 4, "same_friends": "2", "avatar": "https://reactnative.dev/img/tiny_logo.png","created":"2020-11-25 13:41:39"},
-    { "username": "Nguyễn Việt Hoài", "id": 5, "same_friends": "1", "avatar": "https://reactnative.dev/img/tiny_logo.png","created":"2020-11-25 13:41:39"}
+    { "username": "Trần Tất Đắc", "id": 2, "same_friends": "1", "avatar": "https://reactnative.dev/img/tiny_logo.png","created":"2020-11-25 13:41:39"},
+    { "username": "Vũ Hồng Phúc", "id": 4, "same_friends": "2", "avatar": "https://reactnative.dev/img/tiny_logo.png","created":"2020-11-25 13:41:39"}
 ],
-"total":192}
+"total":3}
