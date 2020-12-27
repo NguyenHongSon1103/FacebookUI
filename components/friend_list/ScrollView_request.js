@@ -1,21 +1,15 @@
 import React, { Component } from 'react';
 import { Text, Image, View, StyleSheet, ScrollView, Button, FlatList, StatusBar, TouchableOpacity, Modal } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
 class ScrollView_request extends Component {
   constructor(props) {
     super(props);
+    this.data = props.data_request;
     this.state = {
       title_request: "Lời mời kết bạn",
-      number_request: 199,
-      names: [
-        { 'name': 'Nguyễn Việt Hoài', 'id': 1, "same_friend": 1, "img_url": 'https://reactnative.dev/img/tiny_logo.png', "isdelete": false },
-        { 'name': 'Nguyễn Việt Hoài', 'id': 2, "same_friend": 1, "img_url": 'https://reactnative.dev/img/tiny_logo.png', "isdelete": false },
-        { 'name': 'Nguyễn Việt Hoài', 'id': 3, "same_friend": 1, "img_url": 'https://reactnative.dev/img/tiny_logo.png', "isdelete": false },
-        { 'name': 'Nguyễn Việt Hoài', 'id': 4, "same_friend": 1, "img_url": 'https://reactnative.dev/img/tiny_logo.png', "isdelete": false }
-      ],
+      isDelete: [],
       confirm: false,
-      viewDelete: false,
+      viewDelete: false
     };
   }
   setDelete(items, index, visible) {
@@ -25,16 +19,45 @@ class ScrollView_request extends Component {
     this.setState({ names: items });
     this.setModalConfirm(visible);
   }
-  viewDelete(item) {
+  view_tinilogo(index){
+    if (this.data.request[index].same_friends == 0){
+        return (<View style={{ flexDirection: "row", height: 26 }}>
+          <Text>{this.data.request[index].same_friends + " bạn chung"}</Text>
+      </View>);
+    }
+    else if (this.data.request[index].same_friends  == 1){
+        return (<View style={{ flexDirection: "row", height: 26 }}>
+        <Image
+          style={styles.tinilogo}
+          source={{ uri: this.data.request[index].avatar }}
+        />
+        <Text>{this.data.request[index].same_friends + " bạn chung"}</Text>
+      </View>)
+    }
+    else{
+        return (<View style={{ flexDirection: "row", height: 26 }}>
+        <Image
+          style={styles.tinilogo}
+          source={{ uri: this.data.request[index].avatar }}
+        />
+        <Image
+          style={styles.tinilogo}
+          source={{ uri: this.data.request[index].avatar }}
+        />
+        <Text>{this.data.request[index].same_friends + " bạn chung"}</Text>
+      </View>)}
+    
+  }
+  viewDelete(index) {
 
-    if (item.isdelete) {
+    if (this.state.isDelete[index].isdelete) {
       return (
         <View style={{ flexDirection: "row", flex: 0.75 }}>
           <View style={{ height: 28, flex: 0.8 }} >
             <Text style={{
               fontSize: 20,
               fontWeight: 'bold'
-            }}>{item.name}</Text>
+            }}>{this.data.request[index].username}</Text>
             <Text style={{
               fontSize: 15,
               fontWeight: '200'
@@ -52,19 +75,9 @@ class ScrollView_request extends Component {
           <Text style={{
             fontSize: 20,
             fontWeight: 'bold'
-          }}>{item.name}</Text>
+          }}>{this.data.request[index].username}</Text>
         </View>
-        <View style={{ flexDirection: "row", height: 26 }}>
-          <Image
-            style={styles.tinilogo}
-            source={{ uri: item.img_url }}
-          />
-          <Image
-            style={styles.tinilogo}
-            source={{ uri: item.img_url }}
-          />
-          <Text>{item.same_friend + " bạn chung"}</Text>
-        </View>
+        {this.view_tinilogo(index)}
 
         <View style={{ flexDirection: "row", height: 20 }}>
           <View style={{ flex: 0.5 }} >
@@ -104,21 +117,25 @@ class ScrollView_request extends Component {
   render() {
     const { confirm } = this.state;
     const { viewDelete } = this.state;
+    var i;
+    for (i=0; i < this.data.request.length;i++){
+        var id =this.data.request[i].id;
+        this.state.isDelete.push({"id":id,"isDelete":false})
+    }
     return (
       <View>
         {
-          this.state.names.map((item, index) => (
+          this.data.request.map((item, index) => (
             <View >
 
               <View style={{ flexDirection: "row" }} key={item.id} style={styles.item} >
-                <TouchableOpacity style={{ width: 10, flex: 0.2 }}
-                 onPress={()=>this.props.navigation.navigate('PersonalPage', {currentPosition:'None'})}>
+                <View style={{ width: 10, flex: 0.2 }}>
                   <Image
                     style={styles.logo}
-                    source={{ uri: item.img_url }}
+                    source={{ uri: item.avatar }}
                   />
-                </TouchableOpacity>
-                {this.viewDelete(item)}
+                </View>
+                {this.viewDelete(index)}
 
               </View>
               <Modal animationType="slide"
@@ -139,7 +156,7 @@ class ScrollView_request extends Component {
                       borderBottomLeftRadius: 10,
                       borderBottomRightRadius: 10,
                       padding: 10
-                    }} onPress={() => this.setDelete(this.state.names, index, !confirm)}>
+                    }} onPress={() => this.setDelete(this.state.isDelete, index, !confirm)}>
                       <Text>Xác nhận</Text>
                     </TouchableOpacity>
                   </View>
@@ -173,14 +190,14 @@ class ScrollView_request extends Component {
                       <Icon name="user-alt-slash" size={20}></Icon>
                       <View style={{ flexDirection:"column"}}>
                         <Text style={{fontSize:20,fontWeight:"bold"}}>Bạn thấy sao về lời mời kết bạn này</Text>
-                        <Text>{item.name} sẽ không nhận được thông báo này</Text>
+                        <Text>{item.username} sẽ không nhận được thông báo này</Text>
                       </View>
                     </View>
                     <View style={{ flexDirection:"row"}}>
                       <Icon name="comments" size={20}></Icon>
                       <View style={{ flexDirection:"column"}}>
-                        <Text style={{fontSize:20,fontWeight:"bold"}}>Chặn {item.name}</Text>
-                        <Text>{item.name} sẽ không thể nhìn thấy bạn hoặc liên hệ với bạn trên Facebook</Text>
+                        <Text style={{fontSize:20,fontWeight:"bold"}}>Chặn {item.username}</Text>
+                        <Text>{item.username} sẽ không thể nhìn thấy bạn hoặc liên hệ với bạn trên Facebook</Text>
                       </View>
                     </View>
                   

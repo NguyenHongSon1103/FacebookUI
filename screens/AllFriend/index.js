@@ -1,33 +1,15 @@
 // import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react'
 import { StyleSheet, Image, Text, View, Modal, StatusBar, Button, ScrollView, TouchableOpacity, TouchableHighlight, TextInput } from 'react-native';
-import ScrollView_allfriend from '../../components/friend_list/scroll_view_all_fr';
+import ScrollView_allfriend from '../../components/friend_list/ScrollView_allfriend';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import data from '../../db/all_friend.json';
 class AllFriend extends Component {
   constructor(props) {
     super(props);
     this.state = {
       infor_view: false,
       title: "Tất cả bạn bè",
-      number_friend: 1.419,
-      names: [
-        { 'name': 'Nguyễn Việt Hoài', 'id': 1, "same_friend": 0, "img_url": 'https://reactnative.dev/img/tiny_logo.png' },
-        { 'name': 'Nguyễn Việt Hoài', 'id': 2, "same_friend": 1, "img_url": 'https://reactnative.dev/img/tiny_logo.png' },
-        { 'name': 'Nguyễn Việt Hoài', 'id': 3, "same_friend": 1, "img_url": 'https://reactnative.dev/img/tiny_logo.png' },
-        { 'name': 'Nguyễn Việt Hoài', 'id': 4, "same_friend": 1, "img_url": 'https://reactnative.dev/img/tiny_logo.png' },
-        { 'name': 'Nguyễn Việt Hoài', 'id': 5, "same_friend": 1, "img_url": 'https://reactnative.dev/img/tiny_logo.png' },
-        { 'name': 'Nguyễn Việt Hoài', 'id': 6, "same_friend": 1, "img_url": 'https://reactnative.dev/img/tiny_logo.png' },
-        { 'name': 'Nguyễn Việt Hoài', 'id': 7, "same_friend": 1, "img_url": 'https://reactnative.dev/img/tiny_logo.png' },
-        { 'name': 'Nguyễn Việt Hoài', 'id': 8, "same_friend": 0, "img_url": 'https://reactnative.dev/img/tiny_logo.png' },
-        { 'name': 'Nguyễn Việt Hoài', 'id': 9, "same_friend": 0, "img_url": 'https://reactnative.dev/img/tiny_logo.png' },
-        { 'name': 'Nguyễn Việt Hoài', 'id': 10, "same_friend": 1, "img_url": 'https://reactnative.dev/img/tiny_logo.png' },
-        { 'name': 'Nguyễn Việt Hoài', 'id': 11, "same_friend": 1, "img_url": 'https://reactnative.dev/img/tiny_logo.png' },
-        { 'name': 'Nguyễn Việt Hoài', 'id': 12, "same_friend": 1, "img_url": 'https://reactnative.dev/img/tiny_logo.png' },
-        { 'name': 'Nguyễn Việt Hoài', 'id': 13, "same_friend": 1, "img_url": 'https://reactnative.dev/img/tiny_logo.png' },
-        { 'name': 'Nguyễn Việt Hoài', 'id': 14, "same_friend": 1, "img_url": 'https://reactnative.dev/img/tiny_logo.png' },
-        { 'name': 'Nguyễn Việt Hoài', 'id': 15, "same_friend": 1, "img_url": 'https://reactnative.dev/img/tiny_logo.png' },
-        { 'name': 'Nguyễn Việt Hoài', 'id': 16, "same_friend": 0, "img_url": 'https://reactnative.dev/img/tiny_logo.png' }
-      ],
       item_name: null,
       modal_arrange: false,
       modal_infor: false
@@ -83,20 +65,20 @@ class AllFriend extends Component {
           </View>
           <ScrollView >
             <View style={{ flexDirection: "row" }}>
-              <Text style={styles.num_fr}>{this.state.number_friend + " bạn bè"}</Text>
+              <Text style={styles.num_fr}>{data.total + " bạn bè"}</Text>
               <TouchableOpacity style={styles.view_all_fr} onPress={() => this.setModalArrange(true)}>
                 <Text style={styles.arrange}>Sắp xếp</Text>
               </TouchableOpacity>
             </View>
             <View>
               {
-                this.state.names.map((item, index) => (
+                data.friends.map((item, index) => (
                   <View >
                     <View style={{ flexDirection: "row" }} key={item.id} style={styles.item} >
                       <View style={{ width: 20, flex: 0.2 }}>
                         <Image
                           style={styles.logo}
-                          source={{ uri: item.img_url }}
+                          source={{ uri: item.avatar }}
                         />
                       </View>
                       <View style={{ flexDirection: "column", flex: 0.7 }}>
@@ -104,10 +86,10 @@ class AllFriend extends Component {
                           <Text style={{
                             fontSize: 20,
                             fontWeight: 'bold'
-                          }}>{item.name}</Text>
+                          }}>{item.username}</Text>
                         </View>
                         <View style={{ flexDirection: "row", height: 26 }}>
-                          <Text>{item.same_friend + " bạn chung"}</Text>
+                          <Text>{item.same_friends + " bạn chung"}</Text>
                         </View>
                       </View>
                       <View style={{ flex: 0.06 }}>
@@ -136,30 +118,30 @@ class AllFriend extends Component {
             <TouchableOpacity onPress={() => this.setModalInfor(!modal_infor)}>
               <View style={{ flexDirection: 'row' }}>
                 <View style={{ flex: 0.1 }}>
-                  <Image style={styles.logo} source={{ uri: this.state.item_name != null ? this.state.item_name.img_url : null }} />
+                  <Image style={styles.logo} source={{ uri: this.state.item_name != null ? this.state.item_name.avatar : null }} />
                 </View>
                 <View style={{ flexDirection: 'column', flex: 0.9, alignContent: 'center' }} >
-                  <Text style={{ fontSize: 25, fontWeight: 'bold', alignSelf: 'center' }}>{this.state.item_name != null ? this.state.item_name.name : null}</Text>
+                  <Text style={{ fontSize: 25, fontWeight: 'bold', alignSelf: 'center' }}>{this.state.item_name != null ? this.state.item_name.username : null}</Text>
                 </View>
               </View>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => this.setModalInfor(!modal_infor)}>
               <View style={{ flexDirection: 'row' }}>
                 <Icon name="facebook-messenger" size={30} style={{ flex: 0.2, alignSelf: 'center' }}></Icon>
-                <Text style={{ fontSize: 20, fontWeight: '100', flex: 0.8, alignSelf: 'center' }}>Nhắn tin cho {this.state.item_name != null ? this.state.item_name.name : null}</Text>
+                <Text style={{ fontSize: 20, fontWeight: '100', flex: 0.8, alignSelf: 'center' }}>Nhắn tin cho {this.state.item_name != null ? this.state.item_name.username : null}</Text>
               </View>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => this.setModalInfor(!modal_infor)}>
               <View style={{ flexDirection: 'row' }}>
                 <Icon name="user-times" size={30} style={{ flex: 0.2, alignSelf: 'center' }}></Icon>
-                <Text style={{ fontSize: 20, fontWeight: '100', flex: 0.8, alignSelf: 'center' }}>Chặn {this.state.item_name != null ? this.state.item_name.name : null}</Text>
+                <Text style={{ fontSize: 20, fontWeight: '100', flex: 0.8, alignSelf: 'center' }}>Chặn {this.state.item_name != null ? this.state.item_name.username : null}</Text>
 
               </View>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => this.setModalInfor(!modal_infor)}>
               <View style={{ flexDirection: 'row' }}>
                 <Icon name="user-times" size={30} style={{ flex: 0.2, alignSelf: 'center' }}></Icon>
-                <Text style={{ fontSize: 20, fontWeight: '100', flex: 0.8, alignSelf: 'center' }}>Hủy kết bạn với {this.state.item_name != null ? this.state.item_name.name : null}</Text>
+                <Text style={{ fontSize: 20, fontWeight: '100', flex: 0.8, alignSelf: 'center' }}>Hủy kết bạn với {this.state.item_name != null ? this.state.item_name.username : null}</Text>
               </View>
             </TouchableOpacity>
           </View>

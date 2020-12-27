@@ -1,33 +1,56 @@
 import React, { Component } from 'react';
 import { Text, Image, View, StyleSheet, ScrollView, Button, FlatList, TouchableOpacity } from 'react-native';
 class ScrollView_hint extends Component {
-    state = {
-        title_hint: "Những người bạn có thể  biết",
-        names: [
-            { 'name': 'Nguyễn Việt Hoài', 'id': 1, "same_friend": 0, "img_url": 'https://reactnative.dev/img/tiny_logo.png', accepted : false },
-            { 'name': 'Nguyễn Việt Hoài', 'id': 2, "same_friend": 1, "img_url": 'https://reactnative.dev/img/tiny_logo.png', accepted : false },
-            { 'name': 'Nguyễn Việt Hoài', 'id': 3, "same_friend": 1, "img_url": 'https://reactnative.dev/img/tiny_logo.png', accepted: false },
-            { 'name': 'Nguyễn Việt Hoài', 'id': 4, "same_friend": 1, "img_url": 'https://reactnative.dev/img/tiny_logo.png', accepted : false },
-            { 'name': 'Nguyễn Việt Hoài', 'id': 5, "same_friend": 1, "img_url": 'https://reactnative.dev/img/tiny_logo.png', accepted : false },
-            { 'name': 'Nguyễn Việt Hoài', 'id': 6, "same_friend": 1, "img_url": 'https://reactnative.dev/img/tiny_logo.png', accepted : false },
-            { 'name': 'Nguyễn Việt Hoài', 'id': 7, "same_friend": 1, "img_url": 'https://reactnative.dev/img/tiny_logo.png', accepted : false },
-            { 'name': 'Nguyễn Việt Hoài', 'id': 8, "same_friend": 0, "img_url": 'https://reactnative.dev/img/tiny_logo.png', accepted : false }
-        ],
-    }
+    constructor(props) {
+        super(props);
+        this.data = props.data_hint;
+        this.state = {
+            title_hint: "Những người bạn có thể  biết",
+            set_accepted :[]
+        };
+      }
     changeAccepted(items,index){
         let item = {...items[index]};
         item.accepted = true;
         items[index] = item;
-        this.setState({names:items});
+        this.setState({set_accepted:items});
     }
     changeNotAccepted(items,index){
         let item = {...items[index]};
         item.accepted = false;
         items[index] = item;
-        this.setState({names:items});
+        this.setState({set_accepted:items});
     }
+    view_tinilogo(index){
+        if (this.data.list_users[index].same_friends == 0){
+            return (<View style={{ flexDirection: "row", height: 26 }}>
+              <Text>{this.data.list_users[index].same_friends + " bạn chung"}</Text>
+          </View>);
+        }
+        else if (this.data.list_users[index].same_friends  == 1){
+            return (<View style={{ flexDirection: "row", height: 26 }}>
+            <Image
+              style={styles.tinilogo}
+              source={{ uri: this.data.list_users[index].avatar }}
+            />
+            <Text>{this.data.list_users[index].same_friends + " bạn chung"}</Text>
+          </View>)
+        }
+        else{
+            return (<View style={{ flexDirection: "row", height: 26 }}>
+            <Image
+              style={styles.tinilogo}
+              source={{ uri: this.data.list_users[index].avatar }}
+            />
+            <Image
+              style={styles.tinilogo}
+              source={{ uri: this.data.list_users[index].avatar }}
+            />
+            <Text>{this.data.list_users[index].same_friends + " bạn chung"}</Text>
+          </View>)}
+        
+      }
     ViewAccept(items,index) {
-        console.log([items[index]])
         if (items[index].accepted) {
             return (
                 <TouchableOpacity style={styles.btn_cancel} 
@@ -47,7 +70,7 @@ class ScrollView_hint extends Component {
             <View style={{ flexDirection: "row", height: 20 }}>
                 <View style={{ flex: 0.5 }} >
                 <TouchableOpacity style={styles.btn_accept} 
-                onPress={() => this.changeAccepted(items,index)} >
+                onPress={() => this.changeAccepted(this.state.set_accepted,index)} >
                     <Text style={{
                         alignSelf: 'center',
                         color: 'white',
@@ -74,6 +97,11 @@ class ScrollView_hint extends Component {
         )
     }
     render() {
+        var i;
+        for (i=0; i < this.data.list_users.length;i++){
+            var user_id =this.data.list_users[i].user_id;
+            this.state.set_accepted.push({"user_id":user_id,"accepted":false})
+        }
         return (
             <View>
                 <View>
@@ -85,13 +113,13 @@ class ScrollView_hint extends Component {
                     }}>{this.state.title_hint}</Text>
                 </View>
                 {
-                    this.state.names.map((item, index) => (
+                    this.data.list_users.map((item, index) => (
                         <View >
-                            <View style={{ flexDirection: "row" }} key={item.id} style={styles.item} >
+                            <View style={{ flexDirection: "row" }} key={item.user_id} style={styles.item} >
                                 <View style={{ width: 20, flex: 0.2 }}>
                                     <Image
                                         style={styles.logo}
-                                        source={{ uri: item.img_url }}
+                                        source={{ uri: item.avatar }}
                                     />
                                 </View>
                                 <View style={{ flexDirection: "column", flex: 0.75 }}>
@@ -99,20 +127,10 @@ class ScrollView_hint extends Component {
                                         <Text style={{
                                             fontSize: 20,
                                             fontWeight: 'bold'
-                                        }}>{item.name}</Text>
+                                        }}>{item.username}</Text>
                                     </View>
-                                    <View style={{ flexDirection: "row", height: 26 }}>
-                                        <Image
-                                            style={styles.tinilogo}
-                                            source={{ uri: item.img_url }}
-                                        />
-                                        <Image
-                                            style={styles.tinilogo}
-                                            source={{ uri: item.img_url }}
-                                        />
-                                        <Text>{item.same_friend + " bạn chung"}</Text>
-                                    </View>
-                                    {this.ViewAccept(this.state.names,index)}
+                                    {this.view_tinilogo(index)}
+                                    {this.ViewAccept(this.state.set_accepted,index)}
                                 </View>
                             </View>
                         </View>

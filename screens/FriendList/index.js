@@ -1,19 +1,19 @@
+// import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, StatusBar, Button,ScrollView,TouchableOpacity } from 'react-native';
-import ScrollView_request from '../../components/friend_list/scroll_view_fr_accept'
-import ScrollView_hint from '../../components/friend_list/scroll_view_fr_hint';
+import { StyleSheet, Text,Alert, View, StatusBar, Button,ScrollView,TouchableOpacity } from 'react-native';
+import ScrollView_request from '../../components/friend_list/ScrollView_request'
+import ScrollView_hint from '../../components/friend_list/ScrollView_hint';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-// import { navigation } from '../../rootNavigation';
+import data_request from '../../db/request.json';
+import data_hint from '../../db/hint_friend.json';
 class FriendList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       title_hint: "Những người bạn có thể biết",
       title_request: "Lời mời kết bạn",
-      number_request:199
     };
   }
-  
   onPressHint() {
     this.props.navigation.navigate('Hint_Friend')
   }
@@ -35,7 +35,6 @@ class FriendList extends Component {
                   fontWeight: 'bold',
                   paddingBottom: 5 }}>Bạn bè</Text>
               </View>
-              
         </View>
         <ScrollView>
           <View style={{ flexDirection: "row" }}>
@@ -74,7 +73,7 @@ class FriendList extends Component {
                       alignSelf: 'center',
                       color: 'red',
                       fontSize: 18,
-                      fontWeight: 'bold'}}>{this.state.number_request}</Text>
+                      fontWeight: 'bold'}}>{data_request.total}</Text>
                   <TouchableOpacity style={styles.view_all_fr} onPress={()=> this.onPressAllFriend()}>
                       <Text style={{ alignSelf: 'center',
                                     color: 'blue',
@@ -84,7 +83,7 @@ class FriendList extends Component {
                                     paddingBottom: 10 }}>Xem tất cả</Text>
                 </TouchableOpacity> 
                 </View>
-                <ScrollView_request navigation={this.props.navigation}/>
+                <ScrollView_request data_request={data_request}/>
                 <View>
                   <TouchableOpacity style={styles.view_all_fr_1} onPress={()=>this.onPressAllFriend()}>
                         <Text style={{ alignSelf: 'center',
@@ -99,7 +98,7 @@ class FriendList extends Component {
 
           </View> 
           <View>
-              <ScrollView_hint/>
+              <ScrollView_hint data_hint = {data_hint}/>
           </View>
 
         </ScrollView>

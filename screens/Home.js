@@ -18,7 +18,7 @@ const Home = ({setHeaderVisible}) =>{
     <View>
       <View style={{backgroundColor: '#ffffff'}}>
         <ScrollView>
-          <PostStatusBar currentPosition='Home'/>
+          <PostStatusBar currentPosition='Home' navigation={navigation}/>
           <Post currentPosition={'Home'} navigation={navigation}/>
           <Post currentPosition={'Home'} navigation={navigation}/>
           <Post currentPosition={'Home'} navigation={navigation}/>

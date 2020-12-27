@@ -3,26 +3,28 @@ import React, { Component, useState, useEffect } from 'react'
 import { StyleSheet, Modal, Text, modalVisible, FlatList, TouchableHighlight, View, Image, Button, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Moment from 'moment';
+import data from '../../db/notification.json';
+const notificationTypes = {
+    NEW_POST_IN_GROUP: "1",
+    NEW_PHOTO_IN_GROUP: "2",
+    ANYONE_REACT_YOUR_POST: "3",
+    ANYONE_REACT_YOUR_COMMENT: "4",
+    ANYONE_ADD_TO_STORY: "5",
+    ANYONE_ANSWER_YOUR_COMMENT: "6",
+    ANYONE_ACCEPT_YOUR_FRIEND_REQUEST: "7",
+    ANYONE_COMMENT_POST_IN_GROUP_TOO: "8",
+    ANYONE_COMMENT_POST_OF_ANYONE_TOO: "9",
+    ANYONE_TAG_YOU_ON_POST_IN_GROUP: "10",
+    ANYONE_TAG_YOU_ON_POST_OF_ANYONE: "11",
+    ANYONE_LIVE_STREAM: "12",
+    ANYONE_ANSWER_YOUR_COMMENT_IN_GROUP: "13",
+}
 class Notification extends Component {
     constructor(props) {
         super(props);
         this.state = {
             title_hint: "Những người bạn có thể biết",
             title_request: "Lời mời kết bạn",
-            items: [
-                { 'name': 'Nguyễn Việt Hoài', 'id': 1, "title": "bạn là người đẹp trai nhất thế gian này", "img_url": 'https://reactnative.dev/img/tiny_logo.png', "time": "2020-11-25 16:41:39", "isread": "1" },
-                { 'name': 'Nguyễn Việt Hoài', 'id': 2, "title": "bạn là người đẹp trai nhất thế gian này", "img_url": 'https://reactnative.dev/img/tiny_logo.png', "time": "2020-11-25 16:41:39", "isread": "0" },
-                { 'name': 'Nguyễn Việt Hoài', 'id': 3, "title": "bạn là người đẹp trai nhất thế gian này", "img_url": 'https://reactnative.dev/img/tiny_logo.png', "time": "2020-11-25 16:41:39", "isread": "1" },
-                { 'name': 'Nguyễn Việt Hoài', 'id': 4, "title": "bạn là người đẹp trai nhất thế gian này", "img_url": 'https://reactnative.dev/img/tiny_logo.png', "time": "2020-11-25 13:41:39", "isread": "0" },
-                { 'name': 'Nguyễn Việt Hoài', 'id': 5, "title": "bạn là người đẹp trai nhất thế gian này", "img_url": 'https://reactnative.dev/img/tiny_logo.png', "time": "2020-11-25 13:41:39", "isread": "0" },
-                { 'name': 'Nguyễn Việt Hoài', 'id': 6, "title": "bạn là người đẹp trai nhất thế gian này", "img_url": 'https://reactnative.dev/img/tiny_logo.png', "time": "2020-11-25 13:41:39", "isread": "1" },
-                { 'name': 'Nguyễn Việt Hoài', 'id': 7, "title": "bạn là người đẹp trai nhất thế gian này", "img_url": 'https://reactnative.dev/img/tiny_logo.png', "time": "2020-11-25 13:41:39", "isread": "1" },
-                { 'name': 'Nguyễn Việt Hoài', 'id': 8, "title": "bạn là người đẹp trai nhất thế gian này", "img_url": 'https://reactnative.dev/img/tiny_logo.png', "time": "2020-11-25 13:41:39", "isread": "1" },
-                { 'name': 'Nguyễn Việt Hoài', 'id': 9, "title": "bạn là người đẹp trai nhất thế gian này", "img_url": 'https://reactnative.dev/img/tiny_logo.png', "time": "2020-11-25 13:41:39", "isread": "0" },
-                { 'name': 'Nguyễn Việt Hoài', 'id': 10, "title": "bạn là người đẹp trai nhất thế gian này", "img_url": 'https://reactnative.dev/img/tiny_logo.png', "time": "2020-11-25 13:41:39", "isread": "1" },
-                { 'name': 'Nguyễn Việt Hoài', 'id': 11, "title": "bạn là người đẹp trai nhất thế gian này", "img_url": 'https://reactnative.dev/img/tiny_logo.png', "time": "2020-11-25 13:41:39", "isread": "1" },
-                { 'name': 'Nguyễn Việt Hoài', 'id': 12, "title": "bạn là người đẹp trai nhất thế gian này", "img_url": 'https://reactnative.dev/img/tiny_logo.png', "time": "2020-11-25 13:41:39", "isread": "0" }
-            ],
             items_new: [],
             items_old: [],
             threshold_time: 3,
@@ -31,50 +33,185 @@ class Notification extends Component {
             modalRemove: false
         };
     }
-    changeReaded(items,index){
-        let item = {...items[index]};
-        item.isread = "1";
+    changeReaded(items, index) {
+        let item = { ...items[index] };
+        item.read = "1";
         items[index] = item;
-        this.setState({items:items});
+        this.setState({ items: items });
+    }
+    view_time_lose(time) {
+        var current_hour = parseInt(Moment().locale('vi').format("HH"))
+        var noti_hour = parseInt(Moment(time).locale('vi').format("HH"))
+        if (parseInt(Moment().locale('vi').format("YYYY")) > parseInt(Moment(time).locale('vi').format("YYYY"))) {
+            return (<View><Text>{parseInt(Moment().locale('vi').format("YYYY")) - parseInt(Moment(time).locale('vi').format("YYYY"))} năm trước</Text></View>)
+        }
+        else if (parseInt(Moment().locale('vi').format("M")) > parseInt(Moment(time).locale('vi').format("M"))) {
+            return (<View><Text>{parseInt(Moment().locale('vi').format("M")) - parseInt(Moment(time).locale('vi').format("M"))} tháng trước </Text></View>)
+        }
+        else if (parseInt(Moment().locale('vi').format("DD")) > parseInt(Moment(time).locale('vi').format("DD"))) {
+            return (<View><Text>{parseInt(Moment().locale('vi').format("DD")) - parseInt(Moment(time).locale('vi').format("DD"))} ngày trước </Text></View>)
+
+        }
+        else if (current_hour > noti_hour) {
+            return (<View><Text>{current_hour - noti_hour} giờ trước</Text></View>)
+        }
+        else if (parseInt(Moment().locale('vi').format("mm")) > parseInt(Moment(time).locale('vi').format("mm"))) {
+            return (<View><Text>{parseInt(Moment().locale('vi').format("mm")) - parseInt(Moment(time).locale('vi').format("mm"))} phút trước</Text></View>)
+        }
+        else if (parseInt(Moment().locale('vi').format("ss")) > parseInt(Moment(time).locale('vi').format("ss"))) {
+            return (<View><Text>{parseInt(Moment().locale('vi').format("ss")) - parseInt(Moment(time).locale('vi').format("ss"))} giây trước</Text></View>)
+        }
     }
     check_time(time) {
-        var categorical_time = Moment().locale('vi').format("a")
-        var current_hour = parseInt(Moment().locale('vi').format("h"))
-        var categorical_noti_time = Moment().locale('vi').format("a")
-        var noti_hour = parseInt(Moment(time).locale('vi').format("h"))
-        if (categorical_time == "pm") {
-            current_hour += 12
+        var current_hour = parseInt(Moment().locale('vi').format("HH"))
+        var noti_hour = parseInt(Moment(time).locale('vi').format("HH"))
+        if (parseInt(Moment().locale('vi').format("YYYY")) > parseInt(Moment(time).locale('vi').format("YYYY"))) {
+            return false
         }
-        if (categorical_noti_time == "pm") {
-            noti_hour += 12
+        else if (parseInt(Moment().locale('vi').format("M")) > parseInt(Moment(time).locale('vi').format("M"))) {
+            return false
         }
-        if (current_hour - noti_hour < this.state.threshold_time)
+        else if (parseInt(Moment().locale('vi').format("DD")) > parseInt(Moment(time).locale('vi').format("DD"))) {
+            return false
+        }
+        else if (current_hour == noti_hour) {
             return true
-        return false
+        }
     }
     set_style(item) {
-        if (item.isread == "1")
+        if (item.read == "1")
             return (styles.item_readed)
         return (styles.item)
     }
-    isread(items,index) {
+    onPressNotificationHandler() {
+        switch (item.type) {
+            case notificationTypes.ANYONE_ACCEPT_YOUR_FRIEND_REQUEST:
+                this.props.navigation.navigate("ProfileX", {
+                    userId: user.id
+                })
+                break
+            case notificationTypes.ANYONE_ADD_TO_STORY:
+                const userIds = stories.map(story => story.userId)
+                this.props.navigation.navigate("StoryDetail", {
+                    position: userIds.indexOf(user.id)
+                })
+                break
+            case notificationTypes.ANYONE_ANSWER_YOUR_COMMENT:
+                break
+            case notificationTypes.ANYONE_ANSWER_YOUR_COMMENT_IN_GROUP:
+                break
+            case notificationTypes.ANYONE_COMMENT_POST_IN_GROUP_TOO:
+                break
+            case notificationTypes.ANYONE_COMMENT_POST_OF_ANYONE_TOO:
+                break
+            case notificationTypes.ANYONE_LIVE_STREAM:
+                break
+            case notificationTypes.ANYONE_REACT_YOUR_COMMENT:
+                break
+            case notificationTypes.ANYONE_REACT_YOUR_POST:
+                this.props.navigation.navigate("PostDetail", {
+                    id: item.post.id
+                })
+                break
+            case notificationTypes.ANYONE_TAG_YOU_ON_POST_IN_GROUP:
+                this.props.navigation.navigate("GroupProfile", {
+                    id: item.group.id
+                })
+                break
+            case notificationTypes.ANYONE_TAG_YOU_ON_POST_OF_ANYONE:
+                this.props.navigation.navigate("PostDetail", {
+                    id: item.post.id
+                })
+                break
+            case notificationTypes.NEW_PHOTO_IN_GROUP:
+                this.props.navigation.navigate("GroupProfile", {
+                    id: item.group.id
+                })
+                break
+            case notificationTypes.NEW_POST_IN_GROUP:
+                this.props.navigation.navigate("GroupProfile", {
+                    id: item.group.id
+                })
+                break
+        }
+    }
+    read(items, index) {
+        let displayAvatarUri, Description, icon;
+        switch (items[index].type) {
+            case notificationTypes.ANYONE_ACCEPT_YOUR_FRIEND_REQUEST:
+                Description = () => <Text style={styles.pureTxt}>
+                    <Text style={styles.hightlightTxt}>{items[index].title}</Text> chấp nhận lời mời kết bạn của bạn.</Text>
+                break
+            case notificationTypes.ANYONE_ADD_TO_STORY:
+                Description = () => <Text style={styles.pureTxt}>
+                    <Text style={styles.hightlightTxt}>{items[index].title}</Text> thêm vào story của họ.</Text>
+                break
+            case notificationTypes.ANYONE_ANSWER_YOUR_COMMENT:
+                Description = () => <Text style={styles.pureTxt}>
+                    <Text style={styles.hightlightTxt}>{items[index].title}</Text> trả lời bình luận của bạn.</Text>
+                break
+            case notificationTypes.ANYONE_ANSWER_YOUR_COMMENT_IN_GROUP:
+                Description = () => <Text style={styles.pureTxt}>
+                    <Text style={styles.hightlightTxt}>{items[index].title}</Text> trả lời bình luận của bạn trong nhóm </Text>
+                break
+            case notificationTypes.ANYONE_COMMENT_POST_IN_GROUP_TOO:
+                Description = () => <Text style={styles.pureTxt}>
+                    <Text style={styles.hightlightTxt}>{items[index].title}</Text> bình luận vào bài viết mà bạn theo dõi trong nhóm </Text>
+                break
+            case notificationTypes.ANYONE_COMMENT_POST_OF_ANYONE_TOO:
+                Description = () => <Text style={styles.pureTxt}>
+                    <Text style={styles.hightlightTxt}>{items[index].title}</Text> bình luận ở </Text>
+                break
+            case notificationTypes.ANYONE_LIVE_STREAM:
+                Description = () => <Text style={styles.pureTxt}>
+                    <Text style={styles.hightlightTxt}>{items[index].title}</Text> đang phát trực tiếp.</Text>
+                break
+            case notificationTypes.ANYONE_REACT_YOUR_COMMENT:
+                Description = () => <Text style={styles.pureTxt}>
+                    <Text style={styles.hightlightTxt}>{items[index].title}</Text> và {items[index].remainingCount} người khác đã bày tỏ cảm xúc vào bình luận của bạn.</Text>
+                break
+            case notificationTypes.ANYONE_REACT_YOUR_POST:
+                Description = () => <Text style={styles.pureTxt}>
+                    <Text style={styles.hightlightTxt}>{items[index].title}</Text> và {items[index].remainingCount} người khác đã bình luận bài viết của bạn.</Text>
+                break
+            case notificationTypes.ANYONE_TAG_YOU_ON_POST_IN_GROUP:
+                Description = () => <Text style={styles.pureTxt}>
+                    <Text style={styles.hightlightTxt}>{items[index].title}</Text> đã đánh dấu bạn vào một bài viết trong nhóm </Text>
+                break
+            case notificationTypes.ANYONE_TAG_YOU_ON_POST_OF_ANYONE:
+                Description = () => <Text style={styles.pureTxt}>
+                    <Text style={styles.hightlightTxt}>{items[index].title}</Text> đánh dấu bạn vào một bình luận </Text>
+                break
+            case notificationTypes.NEW_PHOTO_IN_GROUP:
+                Description = () => {
+                    return <Text style={styles.pureTxt}>
+                        <Text style={styles.hightlightTxt}>{items[index].title}</Text> tạo một ảnh mới trong nhóm </Text>
+                }
+                break
+            case notificationTypes.NEW_POST_IN_GROUP:
+                Description = () => {
+                    return <Text style={styles.pureTxt}>
+                        <Text style={styles.hightlightTxt}>{items[index].title}</Text> tạo một bài viết trong nhóm </Text>
+                }
+                break
+        }
         return (
-            <TouchableOpacity style={{ flexDirection: "row" }} style={this.set_style(items[index])}>
+            <TouchableOpacity style={{ flexDirection: "row" }} style={this.set_style(items[index])} onPress={() => this.onPressNotificationHandler(items[index])}>
                 <View style={{ flex: 0.05 }}>
                 </View>
                 <View style={{ width: 20, flex: 0.2 }}>
                     <Image
                         style={styles.logo}
-                        source={{ uri: items[index].img_url }}
+                        source={{ uri: items[index].avatar }}
                     />
                 </View>
                 <View style={{ flexDirection: "column", flex: 0.7 }}>
-                    <View style={{}} >
-                        <Text style={{
-                            fontSize: 20,
-                            fontWeight: 'bold',
-                            marginBottom: 20
-                        }}>{items[index].title}</Text>
+                    <View style={{}}>
+                        {/* <Text style={{fontSize:20, fontWeight:"bold"}}>{items[index].title}</Text> */}
+                        <Description/>
+                    </View>
+                    <View>
+                        {this.view_time_lose(items[index].created)}
                     </View>
                 </View>
                 <View style={{ flex: 0.06 }}>
@@ -93,12 +230,12 @@ class Notification extends Component {
         this.setState({ modalRemove: visible, item_undo: item });
     }
     render() {
-        for (var i = 0; i < this.state.items.length; i++) {
-            if (this.check_time(this.state.items[i].time)) {
-                this.state.items_new.push(this.state.items[i])
+        for (var i = 0; i < data.data.length; i++) {
+            if (this.check_time(data.data[i].created)) {
+                this.state.items_new.push(data.data[i])
             }
             else {
-                this.state.items_old.push(this.state.items[i])
+                this.state.items_old.push(data.data[i])
             }
         }
         const { modalNotification } = this.state;
@@ -124,7 +261,7 @@ class Notification extends Component {
                             <View style={{ width: 20, alignSelf: "center" }}>
                                 <Image
                                     style={styles.logo}
-                                    source={{ uri: this.state.item_view != null ? this.state.item_view.img_url : null }}
+                                    source={{ uri: this.state.item_view != null ? this.state.item_view.avatar : null }}
                                 />
                             </View>
                             <Text style={{ alignSelf: "center", fontSize: 20 }}>{this.state.item_view != null ? this.state.item_view.title : null}</Text>
@@ -156,9 +293,9 @@ class Notification extends Component {
                         </TouchableHighlight>
                         <View style={styles.modalViewRemove}>
                             <Text fontWeight="100" style={{ flex: 0.8, color: "white" }} >Đã gỡ thông báo</Text>
-                            <TouchableOpacity style={{ flex: 0.2}} >
-                            <Text style={{color: "blue" ,alignSelf:"center" }}>Hoàn tác</Text>
-                             </TouchableOpacity> 
+                            <TouchableOpacity style={{ flex: 0.2 }} >
+                                <Text style={{ color: "blue", alignSelf: "center" }}>Hoàn tác</Text>
+                            </TouchableOpacity>
                         </View>
                     </View>
                 </Modal>
@@ -194,8 +331,8 @@ class Notification extends Component {
                         }}>Mới</Text>
                         {
                             this.state.items_new.map((item, index) => (
-                                <View style={item.isread ? styles.item : styles.item_readed} >
-                                    {this.isread(this.state.items_new,index)}
+                                <View style={item.read ? styles.item : styles.item_readed} >
+                                    {this.read(this.state.items_new, index)}
                                 </View>
                             ))
                         }
@@ -210,8 +347,8 @@ class Notification extends Component {
                         }}>Trước đó</Text>
                         {
                             this.state.items_old.map((item, index) => (
-                                <View style={item.isread ? styles.item : styles.item_readed}>
-                                    {this.isread(this.state.items_old,index)}
+                                <View style={item.read ? styles.item : styles.item_readed}>
+                                    {this.read(this.state.items_old, index)}
                                 </View>
                             ))
                         }
@@ -271,4 +408,11 @@ const styles = StyleSheet.create({
         width: 20,
         height: 20,
     },
+    pureTxt: {
+        fontSize: 20,
+    },
+    hightlightTxt: {
+        fontSize: 16,
+        fontWeight: 'bold',
+    }
 });
