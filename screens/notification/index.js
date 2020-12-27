@@ -1,24 +1,17 @@
 // import { StatusBar } from 'expo-status-bar';
 import React, { Component, useState, useEffect } from 'react'
-import { StyleSheet, Modal, Text, modalVisible, FlatList, TouchableHighlight, View, Image, Button, ScrollView, TouchableOpacity, TextInput } from 'react-native';
+import { ActivityIndicator, StyleSheet, Modal, Text, Alert, modalVisible, FlatList, TouchableHighlight, View, Image, Button, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Moment from 'moment';
-import data from '../../db/notification.json';
+// import data from '../../db/notification.json';
+import state from '../../state.json';
+const URL = state.server;
 const notificationTypes = {
-    NEW_POST_IN_GROUP: "1",
-    NEW_PHOTO_IN_GROUP: "2",
-    ANYONE_REACT_YOUR_POST: "3",
-    ANYONE_REACT_YOUR_COMMENT: "4",
-    ANYONE_ADD_TO_STORY: "5",
-    ANYONE_ANSWER_YOUR_COMMENT: "6",
-    ANYONE_ACCEPT_YOUR_FRIEND_REQUEST: "7",
-    ANYONE_COMMENT_POST_IN_GROUP_TOO: "8",
-    ANYONE_COMMENT_POST_OF_ANYONE_TOO: "9",
-    ANYONE_TAG_YOU_ON_POST_IN_GROUP: "10",
-    ANYONE_TAG_YOU_ON_POST_OF_ANYONE: "11",
-    ANYONE_LIVE_STREAM: "12",
-    ANYONE_ANSWER_YOUR_COMMENT_IN_GROUP: "13",
+    Like: 0,
+    Comment: 1,
+    Add_Friend: 2
 }
+let Description;
 class Notification extends Component {
     constructor(props) {
         super(props);
@@ -30,13 +23,37 @@ class Notification extends Component {
             threshold_time: 3,
             modalNotification: false,
             item_view: null,
-            modalRemove: false
+            modalRemove: false,
+            data: [],
+            isLoading: true,
         };
+        this.result = {}
+    }
+    componentDidMount() {
+        if (this.state.isLoading) {
+            fetch(URL+"get_notification", {
+                method: 'POST',
+                headers: new Headers({
+                    'Content-Type': 'application/x-www-form-urlencoded', // <-- Specifying the Content-Type
+                }),
+                body: "count=10&user_id="+this.props.user_id // <-- Post parameters
+            })
+                .then((response) => response.json())
+                .then((json) => {
+                    this.setState({ data: json.data });
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+                .finally(() => {
+                    this.setState({ isLoading: false });
+                });
+        }
     }
     changeReaded(items, index) {
-        let item = { ...items[index] };
-        item.read = "1";
-        items[index] = item;
+        let item = { ...item };
+        item.read = 1;
+        item = item;
         this.setState({ items: items });
     }
     view_time_lose(time) {
@@ -79,148 +96,71 @@ class Notification extends Component {
         }
     }
     set_style(item) {
-        if (item.read == "1")
+        if (item.read == 1)
             return (styles.item_readed)
         return (styles.item)
     }
-    onPressNotificationHandler() {
+    onPressNotificationHandler(item) {
         switch (item.type) {
-            case notificationTypes.ANYONE_ACCEPT_YOUR_FRIEND_REQUEST:
-                this.props.navigation.navigate("ProfileX", {
-                    userId: user.id
+            case notificationTypes.Like:
+                this.props.navigation.navigate("SinglePost", {
+                    post_id: item.post_id,
+                    user_id: item.user_id
                 })
                 break
-            case notificationTypes.ANYONE_ADD_TO_STORY:
-                const userIds = stories.map(story => story.userId)
-                this.props.navigation.navigate("StoryDetail", {
-                    position: userIds.indexOf(user.id)
+            case notificationTypes.Comment:
+                this.props.navigation.navigate("SinglePost", {
+                    post_id: item.post_id,
+                    user_id: item.user_id
                 })
                 break
-            case notificationTypes.ANYONE_ANSWER_YOUR_COMMENT:
+            case notificationTypes.Add_Friend:
                 break
-            case notificationTypes.ANYONE_ANSWER_YOUR_COMMENT_IN_GROUP:
-                break
-            case notificationTypes.ANYONE_COMMENT_POST_IN_GROUP_TOO:
-                break
-            case notificationTypes.ANYONE_COMMENT_POST_OF_ANYONE_TOO:
-                break
-            case notificationTypes.ANYONE_LIVE_STREAM:
-                break
-            case notificationTypes.ANYONE_REACT_YOUR_COMMENT:
-                break
-            case notificationTypes.ANYONE_REACT_YOUR_POST:
-                this.props.navigation.navigate("PostDetail", {
-                    id: item.post.id
-                })
-                break
-            case notificationTypes.ANYONE_TAG_YOU_ON_POST_IN_GROUP:
-                this.props.navigation.navigate("GroupProfile", {
-                    id: item.group.id
-                })
-                break
-            case notificationTypes.ANYONE_TAG_YOU_ON_POST_OF_ANYONE:
-                this.props.navigation.navigate("PostDetail", {
-                    id: item.post.id
-                })
-                break
-            case notificationTypes.NEW_PHOTO_IN_GROUP:
-                this.props.navigation.navigate("GroupProfile", {
-                    id: item.group.id
-                })
-                break
-            case notificationTypes.NEW_POST_IN_GROUP:
-                this.props.navigation.navigate("GroupProfile", {
-                    id: item.group.id
-                })
-                break
+
         }
     }
-    read(items, index) {
-        let displayAvatarUri, Description, icon;
-        switch (items[index].type) {
-            case notificationTypes.ANYONE_ACCEPT_YOUR_FRIEND_REQUEST:
+    read(item) {
+        let displayAvatarUri, icon;
+        switch (item.type) {
+            case notificationTypes.Like:
                 Description = () => <Text style={styles.pureTxt}>
-                    <Text style={styles.hightlightTxt}>{items[index].title}</Text> chấp nhận lời mời kết bạn của bạn.</Text>
+                    <Text style={styles.hightlightTxt}>{item.username}</Text> đã thích bài viết của bạn.</Text>
                 break
-            case notificationTypes.ANYONE_ADD_TO_STORY:
+            case notificationTypes.Comment:
                 Description = () => <Text style={styles.pureTxt}>
-                    <Text style={styles.hightlightTxt}>{items[index].title}</Text> thêm vào story của họ.</Text>
+                    <Text style={styles.hightlightTxt}>{item.username}</Text> đã bình luận bài viết của bạn.</Text>
                 break
-            case notificationTypes.ANYONE_ANSWER_YOUR_COMMENT:
+            case notificationTypes.Add_Friend:
                 Description = () => <Text style={styles.pureTxt}>
-                    <Text style={styles.hightlightTxt}>{items[index].title}</Text> trả lời bình luận của bạn.</Text>
+                    <Text style={styles.hightlightTxt}>{item.username}</Text> đã gửi lời mời kết bạn cho bạn.</Text>
                 break
-            case notificationTypes.ANYONE_ANSWER_YOUR_COMMENT_IN_GROUP:
-                Description = () => <Text style={styles.pureTxt}>
-                    <Text style={styles.hightlightTxt}>{items[index].title}</Text> trả lời bình luận của bạn trong nhóm </Text>
-                break
-            case notificationTypes.ANYONE_COMMENT_POST_IN_GROUP_TOO:
-                Description = () => <Text style={styles.pureTxt}>
-                    <Text style={styles.hightlightTxt}>{items[index].title}</Text> bình luận vào bài viết mà bạn theo dõi trong nhóm </Text>
-                break
-            case notificationTypes.ANYONE_COMMENT_POST_OF_ANYONE_TOO:
-                Description = () => <Text style={styles.pureTxt}>
-                    <Text style={styles.hightlightTxt}>{items[index].title}</Text> bình luận ở </Text>
-                break
-            case notificationTypes.ANYONE_LIVE_STREAM:
-                Description = () => <Text style={styles.pureTxt}>
-                    <Text style={styles.hightlightTxt}>{items[index].title}</Text> đang phát trực tiếp.</Text>
-                break
-            case notificationTypes.ANYONE_REACT_YOUR_COMMENT:
-                Description = () => <Text style={styles.pureTxt}>
-                    <Text style={styles.hightlightTxt}>{items[index].title}</Text> và {items[index].remainingCount} người khác đã bày tỏ cảm xúc vào bình luận của bạn.</Text>
-                break
-            case notificationTypes.ANYONE_REACT_YOUR_POST:
-                Description = () => <Text style={styles.pureTxt}>
-                    <Text style={styles.hightlightTxt}>{items[index].title}</Text> và {items[index].remainingCount} người khác đã bình luận bài viết của bạn.</Text>
-                break
-            case notificationTypes.ANYONE_TAG_YOU_ON_POST_IN_GROUP:
-                Description = () => <Text style={styles.pureTxt}>
-                    <Text style={styles.hightlightTxt}>{items[index].title}</Text> đã đánh dấu bạn vào một bài viết trong nhóm </Text>
-                break
-            case notificationTypes.ANYONE_TAG_YOU_ON_POST_OF_ANYONE:
-                Description = () => <Text style={styles.pureTxt}>
-                    <Text style={styles.hightlightTxt}>{items[index].title}</Text> đánh dấu bạn vào một bình luận </Text>
-                break
-            case notificationTypes.NEW_PHOTO_IN_GROUP:
-                Description = () => {
-                    return <Text style={styles.pureTxt}>
-                        <Text style={styles.hightlightTxt}>{items[index].title}</Text> tạo một ảnh mới trong nhóm </Text>
-                }
-                break
-            case notificationTypes.NEW_POST_IN_GROUP:
-                Description = () => {
-                    return <Text style={styles.pureTxt}>
-                        <Text style={styles.hightlightTxt}>{items[index].title}</Text> tạo một bài viết trong nhóm </Text>
-                }
-                break
+
         }
         return (
-            <TouchableOpacity style={{ flexDirection: "row" }} style={this.set_style(items[index])} onPress={() => this.onPressNotificationHandler(items[index])}>
+            <TouchableOpacity style={{ flexDirection: "row" }} onPress={() => console.log("ok")}>
                 <View style={{ flex: 0.05 }}>
                 </View>
                 <View style={{ width: 20, flex: 0.2 }}>
                     <Image
                         style={styles.logo}
-                        source={{ uri: items[index].avatar }}
+                        source={{ uri: item.avatar }}
                     />
                 </View>
                 <View style={{ flexDirection: "column", flex: 0.7 }}>
                     <View style={{}}>
-                        {/* <Text style={{fontSize:20, fontWeight:"bold"}}>{items[index].title}</Text> */}
-                        <Description/>
+                        <Description />
                     </View>
                     <View>
-                        {this.view_time_lose(items[index].created)}
+                        {this.view_time_lose(item.created)}
                     </View>
                 </View>
                 <View style={{ flex: 0.06 }}>
-                    <Icon name="ellipsis-h" size={20} onPress={() => { this.setModalNoti(true, items[index]) }}></Icon>
+                    <Icon name="ellipsis-h" size={20} onPress={() => { this.setModalNoti(true, item) }}></Icon>
                 </View>
             </TouchableOpacity>
         )
     }
-    setRead = (item) => {
+    setRead = (item, visible) => {
         this.setState({ item: visible, item_view: item });
     }
     setModalNoti = (visible, item) => {
@@ -230,132 +170,145 @@ class Notification extends Component {
         this.setState({ modalRemove: visible, item_undo: item });
     }
     render() {
-        for (var i = 0; i < data.data.length; i++) {
-            if (this.check_time(data.data[i].created)) {
-                this.state.items_new.push(data.data[i])
+        // this.get_data()
+        const data = this.state.data;
+        const isLoading = this.state.isLoading;
+        this.state.items_new = []
+        this.state.items_old = []
+        for (var i = 0; i < data.length; i++) {
+            if (this.check_time(data[i].created)) {
+                this.state.items_new.push(data[i])
             }
             else {
-                this.state.items_old.push(data.data[i])
+                this.state.items_old.push(data[i])
             }
         }
+        console.log(isLoading)
         const { modalNotification } = this.state;
         const { modalRemove } = this.state;
         return (
             <View>
-                <Modal
-                    animationType="slide"
-                    transparent={true}
-                    visible={modalNotification}
-                    onRequestClose={() => {
-                        Alert.alert("Modal has been closed.");
-                    }}
-                >
-                    <View >
-                        <TouchableOpacity
-                            style={{ opacity: 0.5, height: "80%", backgroundColor: "black" }}
-                            onPress={() => {
-                                this.setModalNoti(!modalNotification, null)
-                            }}><Text></Text>
-                        </TouchableOpacity>
-                        <View style={styles.modalView}>
-                            <View style={{ width: 20, alignSelf: "center" }}>
-                                <Image
-                                    style={styles.logo}
-                                    source={{ uri: this.state.item_view != null ? this.state.item_view.avatar : null }}
-                                />
+                {isLoading ? <ActivityIndicator /> :
+                    <View>
+                        <Modal
+                            animationType="slide"
+                            transparent={true}
+                            visible={modalNotification}
+                            onRequestClose={() => {
+                                Alert.alert("Modal has been closed.");
+                            }}
+                        >
+                            <View >
+                                <TouchableOpacity
+                                    style={{ opacity: 0.5, height: "80%", backgroundColor: "black" }}
+                                    onPress={() => {
+                                        this.setModalNoti(!modalNotification, null)
+                                    }}><Text></Text>
+                                </TouchableOpacity>
+                                <View style={styles.modalView}>
+                                    <View style={{ width: 20, alignSelf: "center" }}>
+                                        <Image
+                                            style={styles.logo}
+                                            source={{ uri: this.state.item_view != null ? this.state.item_view.avatar : null }}
+                                        />
+                                    </View>
+                                    <Text style={{ alignSelf: "center", fontSize: 20 }}>{this.state.item_view != null ? <Description /> : null}</Text>
+                                    <View style={{ flexDirection: 'row' }}>
+                                        <View style={{ flex: 0.1 }}></View>
+                                        <Icon name="calendar-times" size={25} style={{ flex: 0.1 }}></Icon>
+                                        <TouchableOpacity style={{ flex: 0.8 }} onPress={() => {
+                                            this.setModalNoti(!modalNotification, null);
+                                            this.setModalRemove(true, this.state.item_view)
+                                        }}>
+                                            <Text style={{ fontSize: 20, fontWeight: "bold" }}>Gỡ thông báo này</Text></TouchableOpacity>
+                                    </View>
+                                </View>
                             </View>
-                            <Text style={{ alignSelf: "center", fontSize: 20 }}>{this.state.item_view != null ? this.state.item_view.title : null}</Text>
-                            <View style={{ flexDirection: 'row' }}>
-                                <View style={{ flex: 0.1 }}></View>
-                                <Icon name="calendar-times" size={25} style={{ flex: 0.1 }}></Icon>
-                                <TouchableOpacity style={{ flex: 0.8 }} onPress={() => {
-                                    this.setModalNoti(!modalNotification, null);
-                                    this.setModalRemove(true, this.state.item_view)
-                                }}>
-                                    <Text style={{ fontSize: 20, fontWeight: "bold" }}>Gỡ thông báo này</Text></TouchableOpacity>
+                        </Modal>
+                        <Modal
+                            animationType="slide"
+                            transparent={true}
+                            visible={modalRemove}
+                            onRequestClose={() => {
+                                Alert.alert("Modal has been closed.");
+                            }}>
+                            <View >
+                                <TouchableHighlight
+                                    style={{ opacity: 0.1, height: "90%", backgroundColor: "black" }}
+                                    onPress={() => {
+                                        this.setModalRemove(!modalRemove);
+                                    }}><Text></Text>
+                                </TouchableHighlight>
+                                <View style={styles.modalViewRemove}>
+                                    <Text fontWeight="100" style={{ flex: 0.8, color: "white" }} >Đã gỡ thông báo</Text>
+                                    <TouchableOpacity style={{ flex: 0.2 }} >
+                                        <Text style={{ color: "blue", alignSelf: "center" }}>Hoàn tác</Text>
+                                    </TouchableOpacity>
+                                </View>
                             </View>
-                        </View>
-                    </View>
-                </Modal>
-                <Modal
-                    animationType="slide"
-                    transparent={true}
-                    visible={modalRemove}
-                    onRequestClose={() => {
-                        Alert.alert("Modal has been closed.");
-                    }}>
-                    <View >
-                        <TouchableHighlight
-                            style={{ opacity: 0.1, height: "90%", backgroundColor: "black" }}
-                            onPress={() => {
-                                this.setModalRemove(!modalRemove);
-                            }}><Text></Text>
-                        </TouchableHighlight>
-                        <View style={styles.modalViewRemove}>
-                            <Text fontWeight="100" style={{ flex: 0.8, color: "white" }} >Đã gỡ thông báo</Text>
-                            <TouchableOpacity style={{ flex: 0.2 }} >
-                                <Text style={{ color: "blue", alignSelf: "center" }}>Hoàn tác</Text>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                </Modal>
+                        </Modal>
+                        <ScrollView>
+                            <View>
+                                <View style={styles.container}>
+                                    <View style={{ flexDirection: 'row' }}>
+                                        <Text style={{
+                                            alignSelf: 'center',
+                                            flex: 0.9,
+                                            color: 'black',
+                                            fontSize: 20,
+                                            fontWeight: 'bold',
+                                            paddingBottom: 5
+                                        }}>Thông báo</Text>
+                                        <Icon name="search" fontSize="20" style={{
+                                            alignSelf: 'center',
+                                            flex: 0.1,
+                                            color: 'black',
+                                            fontSize: 20,
+                                            fontWeight: 'bold',
+                                            paddingBottom: 5
+                                        }}></Icon>
+                                    </View>
+                                </View>
+                                <View>
+                                    <Text style={{
+                                        flex: 0.9,
+                                        color: 'black',
+                                        fontSize: 20,
+                                        fontWeight: 'bold',
+                                        paddingBottom: 5
+                                    }}>Mới</Text>
+                                    {
+                                        this.state.items_new.map((item, index) => (
+                                            <View style={item.read ? styles.item_readed : styles.item} >
+                                                {this.read(item)}
+                                            </View>
+                                        ))
+                                    }
+                                </View>
+                                <View>
+                                    <Text style={{
+                                        flex: 0.9,
+                                        color: 'black',
+                                        fontSize: 20,
+                                        fontWeight: 'bold',
+                                        paddingBottom: 5
+                                    }}>Trước đó</Text>
+                                    {
+                                        this.state.items_old.map((item, index) => (
+                                            <View style={item.read ? styles.item_readed : styles.item}>
+                                                {this.read(item)}
+                                            </View>
+                                        ))
+                                    }
 
-                <ScrollView>
-                    <View style={styles.container}>
-                        <View style={{ flexDirection: 'row' }}>
-                            <Text style={{
-                                alignSelf: 'center',
-                                flex: 0.9,
-                                color: 'black',
-                                fontSize: 20,
-                                fontWeight: 'bold',
-                                paddingBottom: 5
-                            }}>Thông báo</Text>
-                            <Icon name="search" fontSize="20" style={{
-                                alignSelf: 'center',
-                                flex: 0.1,
-                                color: 'black',
-                                fontSize: 20,
-                                fontWeight: 'bold',
-                                paddingBottom: 5
-                            }}></Icon>
-                        </View>
-                    </View>
-                    <View>
-                        <Text style={{
-                            flex: 0.9,
-                            color: 'black',
-                            fontSize: 20,
-                            fontWeight: 'bold',
-                            paddingBottom: 5
-                        }}>Mới</Text>
-                        {
-                            this.state.items_new.map((item, index) => (
-                                <View style={item.read ? styles.item : styles.item_readed} >
-                                    {this.read(this.state.items_new, index)}
                                 </View>
-                            ))
-                        }
+                            </View>
+                        </ScrollView>
                     </View>
-                    <View>
-                        <Text style={{
-                            flex: 0.9,
-                            color: 'black',
-                            fontSize: 20,
-                            fontWeight: 'bold',
-                            paddingBottom: 5
-                        }}>Trước đó</Text>
-                        {
-                            this.state.items_old.map((item, index) => (
-                                <View style={item.read ? styles.item : styles.item_readed}>
-                                    {this.read(this.state.items_old, index)}
-                                </View>
-                            ))
-                        }
-                    </View>
-                </ScrollView>
+    }
             </View>
         )
+
     }
 }
 
@@ -387,7 +340,7 @@ const styles = StyleSheet.create({
         // margin: 2,
         // borderColor: '#2a4944',
         // borderWidth: 0.1,
-        backgroundColor: '#b3e5e5'
+        backgroundColor: '#b3e5e5',
     },
     item_readed: {
         flexDirection: 'row',
@@ -409,10 +362,10 @@ const styles = StyleSheet.create({
         height: 20,
     },
     pureTxt: {
-        fontSize: 20,
+        fontSize: 18,
     },
     hightlightTxt: {
-        fontSize: 16,
+        fontSize: 20,
         fontWeight: 'bold',
     }
 });
