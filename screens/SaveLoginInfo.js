@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native';
-import {useNavigation} from '@react-navigation/native'
+import {useNavigation, useRoute} from '@react-navigation/native'
 
 const SaveLoginInfo = () => {
-    const navigation = useNavigation()
+    const navigation = useNavigation();
+    const route = useRoute();
+    const {params} = route;
     return (
         <View style={styles.container}>
             <View style={{
@@ -26,8 +28,8 @@ const SaveLoginInfo = () => {
                     width: "100%",
                     height: "100%"
                 }}>
-                    <Image source={require("../Images/phone.png")} style={styles.phone} resizeMode="stretch" />
-                    <Image source={require("../Images/fb_login.png")} style={styles.logo} resizeMode="contain" />
+                    <Image source={{uri:"https://i.imgur.com/ueuVlxT.png"}} style={styles.phone} resizeMode="stretch" />
+                    <Image source={{uri:"https://i.imgur.com/ZmGJrz6.png"}} style={styles.logo} resizeMode="contain" />
                     <View style={{
                         flexDirection: "row",
                         position: "absolute",
@@ -35,8 +37,8 @@ const SaveLoginInfo = () => {
                         marginLeft: "10%",
                         height: 50
                     }}>
-                        <Image source={require("../Images/user.png")} style={styles.user} resizeMode="contain" />
-                        <Text style={styles.name_user}>Nguyễn Sỹ Đức</Text>
+                        <Image source={{uri:"https://i.imgur.com/HkkDL9c.png"}} style={styles.user} resizeMode="contain" />
+                        <Text style={styles.name_user}>{params.name}</Text>
                     </View>
                 </View>
 
@@ -59,7 +61,7 @@ const SaveLoginInfo = () => {
                         <Text style={{fontSize:17}}>Lúc khác</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={{...styles.zonebot,borderLeftColor:"gray", borderLeftWidth:1}}
-                    onPress={()=>navigation.navigate('StartScreen')}>
+                    onPress={()=>navigation.navigate('StartScreen',{name:params.name,phonenumber:params.phonenumber, password: params.password, avatar: "https://i.imgur.com/HkkDL9c.png"})}>
                         <Text style={{fontSize:17, color:"#3366FF"}}>OK</Text>
                     </TouchableOpacity>
 

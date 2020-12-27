@@ -1,17 +1,18 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity, Modal } from 'react-native';
 import NextButton from "../components/NextButton";
-import {useNavigation} from '@react-navigation/native'
+import {useNavigation, useRoute} from '@react-navigation/native'
 
 const LoginPassword = () => {
     const navigation = useNavigation()
-    const [text, setText] = React.useState("")
+    const [text, setText] = React.useState("");
+    const {params} = useRoute();
     return (
         <View style={styles.container}>
             <View style={{
             }}>
-                <Image source={require("../Images/user.png")} style={styles.user} resizeMode="contain" />
-                <Text style={styles.name_user}>Nguyễn Sỹ Đức</Text>
+                <Image source={{uri:params.avatar}} style={styles.user} resizeMode="contain" />
+                <Text style={styles.name_user}>{params.name}</Text>
             </View>
             
             <View style={{
@@ -33,12 +34,12 @@ const LoginPassword = () => {
                         onPress={() => setText('')}>
                         <Image
                             style={styles.closeButton}
-                            source={require('../Images/close.png')}
+                            source={{uri:"https://i.imgur.com/ax6jRqD.png"}}
                         />
                     </TouchableOpacity>
                 </View>
             </View>
-            <NextButton text={"Đăng nhập"} nextScreen='Menutab' navigation={navigation}/>
+            <NextButton text={"Đăng nhập"} nextScreen='Menutab' info={{phonenumber: params.phonenumber, password: text}} navigation={navigation}/>
             <TouchableOpacity style={{
                     flex:1,
                     justifyContent: 'flex-end',

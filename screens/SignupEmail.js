@@ -3,22 +3,24 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native';
 import Header from '../components/Header';
 import NextButton from '../components/NextButton';
-import {useNavigation} from '@react-navigation/native'
+import {useNavigation, useRoute} from '@react-navigation/native'
 
 // create a component
 const SignupEmail = () => {
-    const navigation = useNavigation()
+    const navigation = useNavigation();
+    const route = useRoute();
     const [text, setText] = useState("");
+    const {name, password} = route.params;
     return (
         <View style={styles.container}>
-            <Header title="Đăng kí email" prevScreen='SignupPolicy' navigation={navigation} />
+            <Header title="Đăng kí phone" prevScreen='SignupPassword' navigation={navigation} />
             <View style={styles.content}>
 
                 <Text style={styles.join}>
-                    Nhập địa chỉ email của bạn
+                    Nhập số điện thoại của bạn
                 </Text>
                 <Text style={[styles.guide, { alignSelf: "flex-start" }]}>
-                    Địa chỉ email
+                    Số điện thoại
                 </Text>
                 <View style={ {flexDirection: "row"}}>
                     <TextInput style={styles.zone}
@@ -35,7 +37,7 @@ const SignupEmail = () => {
                         />
                     </TouchableOpacity>
                 </View>
-                <NextButton text={"Tiếp"} nextScreen='SaveLoginInfo' navigation={navigation}/>
+                <NextButton text={"Tiếp"} nextScreen='SignupPolicy' info={{name:name,phonenumber:text, password: password}}navigation={navigation}/>
                 <View style={{flex:1}}/>
                 <TouchableOpacity style={{
                     justifyContent: 'flex-end',
