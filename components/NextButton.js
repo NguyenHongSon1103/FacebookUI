@@ -29,26 +29,26 @@ const NextButton = (props) => {
         .then((responseJson) => {});
       props.navigation.navigate(props.nextScreen, props.info);
     } else if (props.text == 'Đăng nhập') {
-      // const phonenumber = props.info.phonenumber;
-      // const password = props.info.password;
-      // fetch(state.server + 'login', {
-      //   method: 'POST',
-      //   headers: {
-      //     // Accept: 'application/json',
-      //     'Content-Type': 'application/x-www-form-urlencoded',
-      //   },
-      //   body: 'phonenumber=' + phonenumber + '&password=' + password,
-      // })
-      //   .then((response) => response.json())
-      //   .then((responseJson) => {
-      //     // const info = {
-      //     //   username: responseJson.data.username,
-      //     //   avatar: responseJson.data.avatar,
-      //     //   id: responseJson.data.id,
-      //     // };
-          
-      //   });
-        props.navigation.navigate("Menutab");
+      const phonenumber = props.info.phonenumber;
+      const password = props.info.password;
+      fetch(state.server + 'login', {
+        method: 'POST',
+        headers: {
+          // Accept: 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'phonenumber=' + phonenumber + '&password=' + password,
+      })
+        .then((response) => response.json())
+        .then((responseJson) => {
+          const info = {
+            username: responseJson.data.username,
+            avatar: responseJson.data.avatar,
+            id: responseJson.data.id,
+          };
+          props.navigation.navigate("Menutab",info);
+        });
+        
     } else {
       props.navigation.navigate(props.nextScreen, props.info);
     }

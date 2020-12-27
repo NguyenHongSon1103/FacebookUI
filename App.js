@@ -51,7 +51,7 @@ export default function App() {
   return (
     <NavigationContainer ref={refNavigation}>
      {headerVisible ? <HomeHeaderBar navigate={navigate}/> : <View style={{height: 30}}></View> }
-      <Stack.Navigator initialRouteName='Menutab'> 
+      <Stack.Navigator initialRouteName='StartScreen'> 
         <Stack.Screen name='Menutab' options={{ headerShown: false }}>
         {prop => <MenuTab setHeaderVisible={setHeaderVisible}/>}
         </Stack.Screen>

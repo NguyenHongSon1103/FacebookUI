@@ -8,7 +8,8 @@ import Comment from '../screens/Comment'
 //import Modal from 'react-native-modal'
 
 const Post = (props) => {
-  const [modalVisible, setModalVisible] = React.useState(false)
+  const [modalVisible, setModalVisible] = React.useState(false);
+  const [cmt, setCmt] = React.useState([])
   const {
     currentPosition
   } = props
@@ -17,7 +18,7 @@ const Post = (props) => {
       <View style={{backgroundColor: '#697689', height: 15}}></View>
       <PostHeader currentPosition={currentPosition}/> 
       <PostDetail />
-      <PostReactCount setModalVisible={setModalVisible}/>
+      <PostReactCount setModalVisible={setModalVisible} getCmt={setCmt} post_id={2}/>
       <Modal
         visible={modalVisible} 
         transparent={true}
@@ -25,7 +26,7 @@ const Post = (props) => {
         animationType={'slide'}
       >
         <View>
-          <Comment /> 
+          <Comment cmt={cmt} user_id={4} post_id={2} setCmt={setCmt} avatar={"https://reactnative.dev/img/tiny_logo.png"} name={"son"}/> 
         </View>  
       </Modal>
     </View>

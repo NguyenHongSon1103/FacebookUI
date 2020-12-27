@@ -15,12 +15,9 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.4.tar.gz",
     "react-native-web": "~0.13.12",
     "moment": "*",
-    "prop-types": "*",
     "@types/react": "16.8.24",
-    "expo-constants": "~9.2.0",
     "lodash.debounce": "*",
     "react-native-svg": "12.1.0",
-    "@expo/vector-icons": "^10.0.0",
     "react-native-modal": "*",
     "react-native-paper": "3.6.0",
     "react-native-camera": "*",
@@ -31,14 +28,16 @@
     "react-native-reanimated": "~1.13.0",
     "@react-navigation/native": "*",
     "react-native-vector-icons": "*",
-    "react-native-gesture-handler": "~1.7.0",
     "react-native-safe-area-context": "3.1.4",
     "react-native-camera-roll-picker": "*",
     "react-native-walkthrough-tooltip": "*",
     "@react-native-community/cameraroll": "*",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/material-top-tabs": "*",
-    "@eliav2/react-native-collapsible-view": "*"
+    "@eliav2/react-native-collapsible-view": "*",
+    "react-native-gesture-handler": "~1.7.0",
+    "@expo/vector-icons": "^10.0.0",
+    "prop-types": "*"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0"
