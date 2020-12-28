@@ -36,6 +36,7 @@ import MessageRequest from './screens/MessageRequest/MessageRequest'
 import MessengerUserInfo from './screens/MessengerUserInfo/MessengerUserInfo'
 import MessengerUserSetting from './screens/MessengerUserSetting/MessengerUserSetting'
 import NewConversation from './screens/NewConversation/NewConversation'
+import SinglePost from './screens/SinglePost/SinglePost'
 /* Phucnv Import part */
 import ChooseActivitiesScreen from './screens/ChooseActivitiesScreen'
 import ChooseEmotionScreen from './screens/ChooseEmotionScreen'
@@ -97,6 +98,7 @@ export default function App() {
         <Stack.Screen name="MessengerUserInfo" component={MessengerUserInfo} options={{ headerShown: false }}/> 
         <Stack.Screen name="MessengerUserSetting" component={MessengerUserSetting} options={{ headerShown: false }}/> 
         <Stack.Screen name="NewConversation" component={NewConversation} options={{ headerShown: false }}/> 
+        <Stack.Screen name="SinglePost" component={SinglePost} options={{ headerShown: false }}/>
         {/******* PhucNV Screen *******/}
         <Stack.Screen name="ChooseActivitiesScreen" component={ChooseActivitiesScreen} options={{ headerShown: false }}/> 
         <Stack.Screen name="ChooseEmotionScreen" component={ChooseEmotionScreen} options={{ headerShown: false }}/> 

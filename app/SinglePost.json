@@ -1,0 +1,25 @@
+{
+    "code": 1000,
+    "data": {
+        "author": {
+            "avatar": "https://reactnative.dev/img/tiny_logo.png",
+            "id": 4,
+            "name": "son"
+        },
+        "created": "2010-12-22",
+        "described": "post này để test",
+        "id": 2,
+        "images": [
+            {
+                "id": 9,
+                "url": "https://reactnative.dev/img/tiny_logo.png"
+            },
+            {
+                "id": 10,
+                "url": "https://reactnative.dev/img/tiny_logo.png"
+            }
+        ],
+        "video_url": "http:\\kkk.images"
+    },
+    "message": "OK"
+}
