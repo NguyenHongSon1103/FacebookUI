@@ -8,7 +8,7 @@ class EmotionBar extends React.Component{
                 <TouchableHighlight
                     style={ this.props.isEmotion ? styles.currentCard : styles.otherCard }
                     onPress = { this.props.isEmotion ? () => {} : () => {
-                        alert("Cảm xúc")
+                        this.props.action('ChooseEmotion', {status: this.props.data})
                     }}
                     underlayColor="#DDDDDD"
                 >
@@ -17,7 +17,7 @@ class EmotionBar extends React.Component{
                 <TouchableHighlight
                     style={ this.props.isEmotion ? styles.otherCard : styles.currentCard }
                     onPress = { !this.props.isEmotion ? () => {} : () => {
-                        alert("Hoạt động")
+                        this.props.action('ChooseActivity', {status: this.props.data})
                     }}
                     underlayColor="#DDDDDD"
                 >

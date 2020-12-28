@@ -10,12 +10,14 @@ class ListStatus extends React.Component<List> {
     constructor(props: List) {
         super(props);
         this.state = {
-            GridListItems: []
+            GridListItems: [],
+            status: '',
         };
         Array.from(this.props.listStatus, x => this.state.GridListItems.push(x));
     }
 
     render() {
+        // this.state.status = this.props.status;
         return (
             <View style={styles.container}>
                 <FlatList
@@ -24,7 +26,8 @@ class ListStatus extends React.Component<List> {
                         <TouchableHighlight
                             style={styles.button}
                             onPress = { () => {
-                                alert(item.name)
+                                this.state.status = item.name;
+                                this.props.action("PostArticles", {status: this.state.status});
                             }}
                             underlayColor="#DDDDDD"
                         >

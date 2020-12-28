@@ -10,7 +10,7 @@ const Popup = (props) => {
     } = props;
 
     return (
-        <Modal isVisible={modalVisible} swipeDirection='up' style={{ justifyContent: 'flex-end', alignSelf: 'stretch', backgroundColor: 'yellow' }}
+        <Modal isVisible={modalVisible} swipeDirection='up' style={{ justifyContent: 'flex-end', alignItems: 'stretch' }}
                onBackdropPress={()=>setModalVisible(false)}
                onSwipeComplete={()=>setModalVisible(false)}
                onBackButtonPress={()=>setModalVisible(false)}
@@ -20,17 +20,19 @@ const Popup = (props) => {
                     <Text style={[styles.text]}>Bạn muốn hoàn thành bài viết của mình sau?</Text>
                     <Text style={styles.small}>Lưu làm bản nháp hoặc bạn có thể tiếp tục chỉnh sửa.</Text>
                 </View>
-                <TouchableOpacity style={styles.option}>
+                <TouchableOpacity
+                    style={styles.option}
+                    onPress={()=>{
+                        alert('Home');
+                        this.props.action("Home");
+                        setModalVisible(false)
+                    }}>
                     <View style={styles.btnView}>
                         <Icon
                             name={'bookmark-outline'}
                             size={35}
                             color="black"
                             type={'ionicon'}
-                            onPress={()=>{
-                                alert('Home');
-                                setModalVisible(false)
-                            }}
                         />
                     </View>
                     <View style={styles.top}>
@@ -38,31 +40,34 @@ const Popup = (props) => {
                         <Text style={styles.small}>Bạn sẽ nhận được thông báo về bản nháp.</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.option}>
+                <TouchableOpacity
+                    style={styles.option}
+                    onPress={()=>{
+                        alert('Home');
+                        this.props.action("Home");
+                        setModalVisible(false)
+                    }}>
                     <View style={styles.btnView}>
                         <Icon
                             name={'trash'}
                             size={40}
                             color="black"
                             type={'evilicon'}
-                            onPress={()=>{
-                                alert('Home');
-                                setModalVisible(false)
-                            }}
                         />
                     </View>
                     <Text style={[styles.text, {color: 'black'}]}>Bỏ bài viết</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.option}>
+                <TouchableOpacity
+                    style={styles.option}
+                    onPress={()=>{
+                        setModalVisible(false)
+                    }}>
                     <View style={styles.btnView}>
                         <Icon
                             name={'check'}
                             size={35}
                             color='#6698FF'
                             type={'feather'}
-                            onPress={()=>{
-                                setModalVisible(false)
-                            }}
                         />
                     </View>
                     <Text style={[styles.text, {color: '#6698FF'}]}>Tiếp tục chỉnh sửa</Text>

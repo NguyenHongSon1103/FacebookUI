@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View, Alert } from 'react-native';
-import { Button, Icon } from "react-native-elements";
+import { Icon } from "react-native-elements";
 // import { Icon } from 'react-native-vector-icons/FontAwesome';
 
 class TopBar extends React.Component{
@@ -13,7 +13,15 @@ class TopBar extends React.Component{
                     color="black"
                     type="ionicon"
                     onPress={()=>{
-                        alert(this.props.massage)}}
+                        if(this.props.type === 'image') {
+                            this.props.action(this.props.message, {images: this.props.data})
+                        }
+                        else {
+                            if (this.props.type === 'status') {
+                                this.props.action(this.props.message, {status: this.props.data})
+                            }
+                        }
+                    }}
                 />
                 <Text style={{fontSize: 22, paddingLeft: 10}}>{this.props.title}</Text>
                 {/*<Button*/}
@@ -46,9 +54,9 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center',
         paddingLeft: 10,
-        paddingRight: 10,
-        borderBottomColor: '#D3D3D3',
-        borderBottomWidth: 1
+        // paddingRight: 10,
+        // borderBottomColor: '#D3D3D3',
+        // borderBottomWidth: 1
     },
 });
 

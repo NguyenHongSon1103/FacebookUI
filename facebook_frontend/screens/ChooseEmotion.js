@@ -1,9 +1,9 @@
 import React from "react";
-import { Platform, StyleSheet, FlatList, Text, View, Alert } from "react-native";
+import {Platform, StyleSheet, FlatList, Text, View, Alert, BackHandler} from "react-native";
 import {Icon} from "react-native-elements";
-import TopBar from "./TopBar";
-import EmotionBar from "./EmotionBar";
-import ListStatus from "./ListStatus";
+import TopBar from "../components/TopBar";
+import EmotionBar from "../components/EmotionBar";
+import ListStatus from "../components/ListStatus";
 
 class ChooseEmotion extends React.Component {
     constructor(props) {
@@ -32,16 +32,35 @@ class ChooseEmotion extends React.Component {
         };
     }
 
+    backAction = () => {
+        this.props.navigation.navigate('PostArticles', {status: this.props.route.params.status});
+    };
+
+    componentDidMount() {
+        BackHandler.addEventListener("hardwareBackPress", this.backAction);
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener("hardwareBackPress", this.backAction);
+    }
+
     GetGridViewItem(item) {
         Alert.alert(item);
     }
 
     render() {
+        // alert(this.props.route.params.status);
         return (
             <View style={styles.container}>
-                <TopBar title={'Bạn đang cảm thấy thế nào?'} icon={'arrow-back'} massage={'Đăng bài'}/>
-                <EmotionBar isEmotion={true}/>
-                <ListStatus listStatus={this.state.GridListEmotions}/>
+                <TopBar style={{borderBottomColor: '#D3D3D3', borderBottomWidth: 1}}
+                        title={'Bạn đang cảm thấy thế nào?'}
+                        icon={'arrow-back'}
+                        action={this.props.navigation.navigate}
+                        message={'PostArticles'}
+                        data={this.props.route.params.status}
+                        type={'status'}/>
+                <EmotionBar isEmotion={true} action={this.props.navigation.navigate} data={this.props.route.params.status}/>
+                <ListStatus listStatus={this.state.GridListEmotions} action={this.props.navigation.navigate}/>
             </View>
         );
     }
