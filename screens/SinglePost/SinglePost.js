@@ -16,7 +16,8 @@ import {
 import customData from '../../app/SinglePost.json'
 import Avatar from '../../components/Avatar/Avatar'
 import emotion from '../../app/emotion'
-import API from '../../app/API.json'
+// import API from '../../app/API.json'
+import state from '../../state.json' 
 import styles from './styles'
 import EntypoIcon from 'react-native-vector-icons/Entypo'
 import AntDesignIcon from 'react-native-vector-icons/AntDesign'
@@ -27,7 +28,6 @@ class SinglePost extends Component {
 		this.state = {
 			data: customData.data,
 			isLoading: true,
-			url: API.URL,
 			like:500,
 			comment:120,
 		}
@@ -41,12 +41,12 @@ class SinglePost extends Component {
 		return text
 	}
 	componentDidMount() {
-		fetch(this.state.url + "/get_post", {
+		fetch(state.server + "get_post", {
 			method: 'POST',
 			headers: new Headers({
 				'Content-Type': 'application/x-www-form-urlencoded', // <-- Specifying the Content-Type
 			}),
-			body: "id=2" // <-- Post parameters
+			body: "id="+this.props.route.params.post_id // <-- Post parameters
 		})
 			.then((response) => response.json())
 			.then((json) => {
@@ -80,7 +80,7 @@ class SinglePost extends Component {
 						</TouchableOpacity>
 						<View style={styles.titleContainer}>
 							<Text style={styles.title}>{this.state.data.author.name}</Text>
-							<Text style={{ paddingLeft: 10 }}>1h trước</Text>
+							<Text style={{ paddingLeft: 10 }}>{this.props.route.params.time}</Text>
 						</View>
 						<TouchableOpacity
 							onPress={() => { Alert.alert("route") }}

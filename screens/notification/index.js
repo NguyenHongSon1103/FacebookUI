@@ -69,6 +69,29 @@ class Notification extends Component {
         item = item;
         this.setState({ items: items });
     }
+    get_time_left(time) {
+        var current_hour = parseInt(Moment().locale('vi').format("HH"))
+        var noti_hour = parseInt(Moment(time).locale('vi').format("HH"))
+        if (parseInt(Moment().locale('vi').format("YYYY")) > parseInt(Moment(time).locale('vi').format("YYYY"))) {
+            return (parseInt(Moment().locale('vi').format("YYYY")) - parseInt(Moment(time).locale('vi').format("YYYY"))).toString()+"năm trước"
+        }
+        else if (parseInt(Moment().locale('vi').format("M")) > parseInt(Moment(time).locale('vi').format("M"))) {
+            return (parseInt(Moment().locale('vi').format("M")) - parseInt(Moment(time).locale('vi').format("M"))).toString() +"tháng trước"
+        }
+        else if (parseInt(Moment().locale('vi').format("DD")) > parseInt(Moment(time).locale('vi').format("DD"))) {
+            return (parseInt(Moment().locale('vi').format("DD")) - parseInt(Moment(time).locale('vi').format("DD"))).toString()+ "ngày trước"
+
+        }
+        else if (current_hour > noti_hour) {
+            return (current_hour - noti_hour).toString()+"giờ trước"
+        }
+        else if (parseInt(Moment().locale('vi').format("mm")) > parseInt(Moment(time).locale('vi').format("mm"))) {
+            return (parseInt(Moment().locale('vi').format("mm")) - parseInt(Moment(time).locale('vi').format("mm"))).toString() + "phút trước"
+        }
+        else if (parseInt(Moment().locale('vi').format("ss")) > parseInt(Moment(time).locale('vi').format("ss"))) {
+            return (parseInt(Moment().locale('vi').format("ss")) - parseInt(Moment(time).locale('vi').format("ss"))).toString()+ "giây trước"
+        }
+    }
     view_time_lose(time) {
         var current_hour = parseInt(Moment().locale('vi').format("HH"))
         var noti_hour = parseInt(Moment(time).locale('vi').format("HH"))
@@ -118,14 +141,16 @@ class Notification extends Component {
             case notificationTypes.Like:
                 this.props.navigation.navigate("SinglePost", {
                     post_id: item.post_id,
-                    user_id: item.user_id
+                    time: this.get_time_left(item.created),
+                    avatar: item.avatar
                 }),
                 this.setRead(item.id)
                 break
             case notificationTypes.Comment:
                 this.props.navigation.navigate("SinglePost", {
                     post_id: item.post_id,
-                    user_id: item.user_id
+                    time: this.get_time_left(item.created),
+                    avatar: item.avatar
                 })
                 this.setRead(item.id)
                 break

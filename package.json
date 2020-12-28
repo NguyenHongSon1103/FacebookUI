@@ -32,12 +32,9 @@
     "react-native-camera-roll-picker": "*",
     "react-native-walkthrough-tooltip": "*",
     "@react-native-community/cameraroll": "*",
-    "@react-native-community/masked-view": "0.1.10",
+    "@react-native-community/masked-view": "^0.1.0",
     "@react-navigation/material-top-tabs": "*",
-    "@eliav2/react-native-collapsible-view": "*",
-    "react-native-gesture-handler": "~1.7.0",
-    "@expo/vector-icons": "^10.0.0",
-    "prop-types": "*"
+    "@eliav2/react-native-collapsible-view": "*"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0"
