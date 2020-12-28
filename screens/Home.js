@@ -7,18 +7,18 @@ import { useIsFocused } from '@react-navigation/native';
 import HomeHeaderBar from '../components/HomeHeaderBar/HomeHeaderBar';
 import {useNavigation} from '@react-navigation/native'
 
-const Home = ({setHeaderVisible}) =>{
+const Home = (props) =>{
   const navigation = useNavigation()
   if(useIsFocused())
-    setHeaderVisible(true)
+    props.setHeaderVisible(true)
   else
-    setHeaderVisible(false)
+    props.setHeaderVisible(false)
 
   return(
     <View>
       <View style={{backgroundColor: '#ffffff'}}>
         <ScrollView>
-          <PostStatusBar currentPosition='Home' navigation={navigation}/>
+          <PostStatusBar currentPosition='Home' navigation={navigation} info={props.info}/>
           <Post currentPosition={'Home'} navigation={navigation}/>
           <Post currentPosition={'Home'} navigation={navigation}/>
           <Post currentPosition={'Home'} navigation={navigation}/>

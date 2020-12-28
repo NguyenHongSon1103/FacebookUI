@@ -1,6 +1,6 @@
 import React from "react";
 import {Platform, StyleSheet, FlatList, Text, View, Alert, TouchableHighlight} from "react-native";
-import {Icon} from "react-native-elements";
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 interface List {
     listStatus: Array;
@@ -27,7 +27,7 @@ class ListStatus extends React.Component<List> {
                             style={styles.button}
                             onPress = { () => {
                                 this.state.status = item.name;
-                                this.props.action("PostArticles", {status: this.state.status});
+                                this.props.action("PostView", {status: this.state.status});
                             }}
                             underlayColor="#DDDDDD"
                         >

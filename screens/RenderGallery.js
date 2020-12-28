@@ -16,7 +16,7 @@ export default class RenderGallery extends Component {
     }
 
     backAction = () => {
-        this.props.navigation.navigate('PostArticles');
+        this.props.navigation.navigate('PostView');
     };
 
     componentDidMount() {
@@ -53,13 +53,13 @@ export default class RenderGallery extends Component {
                     <TopBar title ='Thư viện'
                             icon='close'
                             action={this.props.navigation.navigate}
-                            message={'PostArticles'}
+                            message={'PostView'}
                             data={this.props.route.params.selected}
                             type={'image'}/>
                     <TouchableHighlight style={styles.button}
                         onPress={this.state.num === 0 ? () => {} : () => {
                             // alert(this.state.selected.length);
-                            this.props.navigation.navigate("PostArticles", {images: this.state.selected});
+                            this.props.navigation.navigate("PostView", {images: this.state.selected});
                             // alert("Đăng bài")
                         }}
                         underlayColor="#DDDDDD"

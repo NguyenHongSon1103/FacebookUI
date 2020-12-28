@@ -29,7 +29,7 @@ const MenuTab = (props) => {
           showLabel: false,
         }}
       >
-        <Tab.Screen name='Home' component={()=><Home setHeaderVisible={setHeaderVisible}/>}> </Tab.Screen>
+        <Tab.Screen name='Home' component={()=><Home setHeaderVisible={setHeaderVisible} info={route.params.info}/>}> </Tab.Screen>
         <Tab.Screen name='List_Friend' component={()=><FriendList navigation={navigation} user_id={route.params.info.id}/>}> </Tab.Screen>
         <Tab.Screen name='Video' component={Video}> </Tab.Screen>
         <Tab.Screen name='Notification' component={()=> <Notification navigation={navigation} user_id={route.params.info.id}/>}> </Tab.Screen>

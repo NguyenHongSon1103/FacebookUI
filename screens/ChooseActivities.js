@@ -23,7 +23,7 @@ class ChooseActivities extends React.Component {
     }
 
     backAction = () => {
-        this.props.navigation.navigate('PostArticles', {status: this.props.route.params.status});
+        this.props.navigation.navigate('PostView', {status: this.props.route.params.status});
     };
 
     componentDidMount() {

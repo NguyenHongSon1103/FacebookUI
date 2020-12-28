@@ -9,17 +9,18 @@ import {
     ScrollView,
     BackHandler
 } from "react-native";
-import {Avatar, Button, Icon} from "react-native-elements";
+import {Avatar, Button} from "react-native-elements";
+import Icon from 'react-native-vector-icons/FontAwesome5';
 // import ImgToBase64 from 'react-native-image-base64';
 import Popup from "../components/Popup";
 import RenderImage from "../components/RenderImage";
-
+import state from '../state.json';
 
 class PostView extends React.Component {
     constructor(props) {
         super(props);
-        this.name = 'PhucVH';
-        this.avatar = require('D:/Mobile 20201/facebook_frontend/images/avatar.png');
+        this.name = props.route.params.info.username;
+        this.avatar = require('../Images/avatar.png');
         this.state = {
             text: '',
             image: [],
@@ -39,13 +40,22 @@ class PostView extends React.Component {
         this.setModalVisible = this.setModalVisible.bind(this);
         this.checkInput = this.checkInput.bind(this);
     };
-
+    onPressGallery(){
+      this.props.navigation.navigate('RenderGallery', {c: this.state.image});
+      this.state.isImage = true;
+    }
+    onPressEmotion(){
+      this.props.navigation.navigate('ChooseEmotion', {status: this.state.status});
+      this.state.isStatus = true;
+    }
     setModalVisible(isVisible) {
         this.setState({
             modalVisible: isVisible
         });
     }
-
+    onPressBack(){
+    this.props.navigation.navigate('Home')
+    }
     checkInput = () => {
         return !(this.state.numOfImage > 0 || this.state.text.length >= 1 || this.state.isVideo || this.state.status.length > 0)
     };
@@ -116,12 +126,11 @@ class PostView extends React.Component {
             <View style={styles.container}>
                 <View style={styles.topbar}>
                     <Icon
-                        name="arrow-back"
+                        name="arrow-left"
                         size={35}
                         color="black"
-                        type="ionicon"
                         onPress={()=>{
-                            this.backAction()}}
+                            this.onPressBack()}}
                     />
                     <Text style={{fontSize: 22}}>Tạo bài viết</Text>
                     <Button
@@ -130,29 +139,16 @@ class PostView extends React.Component {
                         onPress = {()=>{
                             // this.props.navigation.navigate('Home');
                             const data = new FormData();
-                            data.append('author_id', 4);
+                            data.append('author_id', this.props.route.params.info.id);
                             data.append('video', this.state.video);
                             data.append('described', this.state.text);
                             this.state.image.forEach((image) => {
                                 const split = image.uri.split('/');
                                 const img_name = split[split.length - 1];
                                 const img_type = 'image/' + img_name.split('.')[1];
-                                // alert(image.data);
                                 data.append('image', image.uri);
-                                // data.append('image_info', {
-                                //     uri: image.uri,
-                                //     type: img_type,
-                                //     filename: img_name
-                                // });
-                                // data.append("image", {
-                                //     filename: img_name,
-                                //     // name: 'image',
-                                //     type: img_type,
-                                //     uri:
-                                //         Platform.OS === "android" ? image.uri : image.uri.replace("file://", "")
-                                // });
                             });
-                            fetch("http://28c535a398fd.ngrok.io/addpost", {
+                            fetch(state.server+"addpost", {
                                 method: 'POST',
                                 headers: new Headers({
                                     // 'Content-Type': 'application/x-www-form-urlencoded', // <-- Specifying the Content-Type
@@ -162,9 +158,6 @@ class PostView extends React.Component {
                             })
                                 .then((response) => response.json())
                                 .then((json) => {
-                                    // this.setState({ data: json.data });
-                                    console.log(json.data);
-                                    alert('data: ' + json.data);
                                 })
                                 .catch((error) => {
                                     console.log(error);
@@ -209,17 +202,13 @@ class PostView extends React.Component {
                     <ScrollView>
                         <TouchableHighlight
                             onPress = {()=>{
-                                // this.props.
-                                // this.setState({image: '', numOfImage: 0});
-                                this.props.navigation.navigate('Gallery', {selected: this.state.image});
-                                this.state.isImage = true;
-                                // alert(typeof this.props.route.params);
+                                this.onPressGallery()
                             }}
                             underlayColor="#DDDDDD"
                         >
                             <View style={styles.itemView}>
                                 <View style={{flex: 1, justifyContent: 'flex-start'}}>
-                                    <Icon name={'images'} size={30} type={'ionicon'} color={'#41A317'}/>
+                                    <Icon name='images' size={30} color={'#41A317'}/>
                                 </View>
                                 <View style={{flex: 6, justifyContent: 'center'}}>
                                     <Text style={{fontSize:20}}>   {'Ảnh/Video'}</Text>
@@ -228,14 +217,13 @@ class PostView extends React.Component {
                         </TouchableHighlight>
                         <TouchableHighlight
                             onPress = {()=>{
-                                this.props.navigation.navigate('ChooseEmotion', {status: this.state.status});
-                                this.state.isStatus = true;
+                                this.onPressEmotion()
                             }}
                             underlayColor="#DDDDDD"
                         >
                             <View style={styles.itemView}>
                                 <View style={{flex: 1, justifyContent: 'center'}}>
-                                    <Icon name={'smiley'} size={30} type={'fontisto'} color={'#FFA500'}/>
+                                    <Icon name={'smile-wink'} size={30} color={'#FFA500'}/>
                                 </View>
                                 <View style={{flex: 6, justifyContent: 'center'}}>
                                     <Text style={{fontSize:20}}>   {'Cảm xúc/Hoạt động'}</Text>
@@ -250,7 +238,7 @@ class PostView extends React.Component {
                         >
                             <View style={styles.itemView}>
                                 <View style={{flex: 1, justifyContent: 'center'}}>
-                                    <Icon name={'camera'} size={30} type={'entypo'} color={'#6698FF'}/>
+                                    <Icon name={'camera'} size={30}  color={'#6698FF'}/>
                                 </View>
                                 <View style={{flex: 6, justifyContent: 'center'}}>
                                     <Text style={{fontSize:20}}>   {'Camera'}</Text>

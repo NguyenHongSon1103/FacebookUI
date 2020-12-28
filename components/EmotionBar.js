@@ -17,7 +17,7 @@ class EmotionBar extends React.Component{
                 <TouchableHighlight
                     style={ this.props.isEmotion ? styles.otherCard : styles.currentCard }
                     onPress = { !this.props.isEmotion ? () => {} : () => {
-                        this.props.action('ChooseActivity', {status: this.props.data})
+                        this.props.action('ChooseActivities', {status: this.props.data})
                     }}
                     underlayColor="#DDDDDD"
                 >

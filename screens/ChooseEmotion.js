@@ -54,9 +54,9 @@ class ChooseEmotion extends React.Component {
             <View style={styles.container}>
                 <TopBar style={{borderBottomColor: '#D3D3D3', borderBottomWidth: 1}}
                         title={'Bạn đang cảm thấy thế nào?'}
-                        icon={'arrow-back'}
+                        icon={'arrow-left'}
                         action={this.props.navigation.navigate}
-                        message={'PostArticles'}
+                        message={'PostView'}
                         data={this.props.route.params.status}
                         type={'status'}/>
                 <EmotionBar isEmotion={true} action={this.props.navigation.navigate} data={this.props.route.params.status}/>

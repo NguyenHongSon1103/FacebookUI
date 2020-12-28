@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View, Alert } from 'react-native';
-import { Icon } from "react-native-elements";
+import Icon from 'react-native-vector-icons/FontAwesome5';
 // import { Icon } from 'react-native-vector-icons/FontAwesome';
 
 class TopBar extends React.Component{
