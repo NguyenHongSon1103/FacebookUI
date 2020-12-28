@@ -38,10 +38,10 @@ import MessengerUserSetting from './screens/MessengerUserSetting/MessengerUserSe
 import NewConversation from './screens/NewConversation/NewConversation'
 import SinglePost from './screens/SinglePost/SinglePost'
 /* Phucnv Import part */
-import ChooseActivitiesScreen from './screens/ChooseActivitiesScreen'
-import ChooseEmotionScreen from './screens/ChooseEmotionScreen'
-import RenderGalleryScreen from './screens/RenderGalleryScreen'
-import PostViewScreen from './screens/PostViewScreen'
+import ChooseActivitiesScreen from './screens/ChooseActivities'
+import ChooseEmotionScreen from './screens/ChooseEmotion'
+import RenderGalleryScreen from './screens/RenderGallery'
+import PostViewScreen from './screens/PostView'
 const Stack = createStackNavigator();
 const refNavigation = React.createRef(); 
 function navigate(name, params) {

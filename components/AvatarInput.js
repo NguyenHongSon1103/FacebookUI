@@ -17,7 +17,7 @@ export default class AvatarInput extends Component {
                         <Avatar
                             containerStyle={styles.avatarStyle}
                             rounded
-                            source={require('../Images/user.png')}
+                            source={require('D:/Mobile 20201/facebook_frontend/images/avatar.jpg')}
                         />
                     </TouchableOpacity>
                     <TextInput underlineColorAndroid='transparent'
