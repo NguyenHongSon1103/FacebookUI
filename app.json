@@ -1,4 +1,37 @@
 {
+<<<<<<< HEAD
   "name": "facebook_frontend",
   "displayName": "facebook_frontend"
+=======
+  "expo": {
+    "name": "facebook",
+    "slug": "snack-3cd457c2-0a30-425d-bc97-fe01e4ba2e9a",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+>>>>>>> 4ad1441af40fdf142dc00f07a9f35071934ddd80
 }

@@ -13,13 +13,14 @@ import {Avatar, Button, Icon} from "react-native-elements";
 // import ImgToBase64 from 'react-native-image-base64';
 import Popup from "../components/Popup";
 import RenderImage from "../components/RenderImage";
+import * as info from 'state'
 
 
 class PostView extends React.Component {
     constructor(props) {
         super(props);
-        this.name = 'PhucVH';
-        this.avatar = require('D:/Mobile 20201/facebook_frontend/images/avatar.png');
+        this.name = info.name;
+        this.avatar = info.avatar;
         this.state = {
             text: '',
             image: [],
@@ -152,7 +153,7 @@ class PostView extends React.Component {
                                 //         Platform.OS === "android" ? image.uri : image.uri.replace("file://", "")
                                 // });
                             });
-                            fetch("http://28c535a398fd.ngrok.io/addpost", {
+                            fetch( info.server + "/addpost", {
                                 method: 'POST',
                                 headers: new Headers({
                                     // 'Content-Type': 'application/x-www-form-urlencoded', // <-- Specifying the Content-Type

@@ -1,0 +1,8 @@
+{
+    "code":"",
+    "message":"",
+    "list_users": [
+    { "username": "Nguyễn Sỹ Đức", "user_id": 1, "same_friends": "0", "avatar": "https://reactnative.dev/img/tiny_logo.png"},
+    { "username": "Nguyễn Hồng Sơn", "user_id": 2, "same_friends": "1", "avatar": "https://reactnative.dev/img/tiny_logo.png"}
+]
+}
