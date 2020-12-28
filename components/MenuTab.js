@@ -7,11 +7,14 @@ import Video from '../screens/Video';
 import Setting from '../screens/Setting'
 import FriendList from '../screens/FriendList'
 import Notification from '../screens/notification';
+import {useRoute,useNavigation} from '@react-navigation/native';
 
 const Tab = createMaterialTopTabNavigator();
 
 const MenuTab = (props) => {
   const {setHeaderVisible} = props
+  const route = useRoute()
+  const navigation = useNavigation()
   return (
     <Tab.Navigator
         screenOptions={({ route }) => ({
@@ -27,9 +30,9 @@ const MenuTab = (props) => {
         }}
       >
         <Tab.Screen name='Home' component={()=><Home setHeaderVisible={setHeaderVisible}/>}> </Tab.Screen>
-        <Tab.Screen name='List_Friend' component={FriendList}> </Tab.Screen>
+        <Tab.Screen name='List_Friend' component={()=><FriendList navigation={navigation} user_id={route.params.info.id}/>}> </Tab.Screen>
         <Tab.Screen name='Video' component={Video}> </Tab.Screen>
-        <Tab.Screen name='Notification' component={Notification}> </Tab.Screen>
+        <Tab.Screen name='Notification' component={()=> <Notification navigation={navigation} user_id={route.params.info.id}/>}> </Tab.Screen>
         <Tab.Screen name='Setting' component={Setting}> </Tab.Screen>
       </Tab.Navigator>
   )

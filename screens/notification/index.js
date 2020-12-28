@@ -50,6 +50,19 @@ class Notification extends Component {
                 });
         }
     }
+    setRead(notification_id){
+      fetch(state.server + 'set_read_notification', {
+        method: 'POST',
+        headers: {
+          // Accept: 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'notifications=' + notification_id,
+      })
+        .then((response) => response.json())
+        .then((responseJson) => {
+        });
+    }
     changeReaded(items, index) {
         let item = { ...item };
         item.read = 1;
@@ -106,15 +119,18 @@ class Notification extends Component {
                 this.props.navigation.navigate("SinglePost", {
                     post_id: item.post_id,
                     user_id: item.user_id
-                })
+                }),
+                this.setRead(item.id)
                 break
             case notificationTypes.Comment:
                 this.props.navigation.navigate("SinglePost", {
                     post_id: item.post_id,
                     user_id: item.user_id
                 })
+                this.setRead(item.id)
                 break
             case notificationTypes.Add_Friend:
+                this.setRead(item.id)
                 break
 
         }
@@ -134,10 +150,9 @@ class Notification extends Component {
                 Description = () => <Text style={styles.pureTxt}>
                     <Text style={styles.hightlightTxt}>{item.username}</Text> đã gửi lời mời kết bạn cho bạn.</Text>
                 break
-
         }
         return (
-            <TouchableOpacity style={{ flexDirection: "row" }} onPress={() => console.log("ok")}>
+            <TouchableOpacity style={{ flexDirection: "row" }} onPress={() => this.onPressNotificationHandler(item)}>
                 <View style={{ flex: 0.05 }}>
                 </View>
                 <View style={{ width: 20, flex: 0.2 }}>
@@ -160,9 +175,7 @@ class Notification extends Component {
             </TouchableOpacity>
         )
     }
-    setRead = (item, visible) => {
-        this.setState({ item: visible, item_view: item });
-    }
+  
     setModalNoti = (visible, item) => {
         this.setState({ modalNotification: visible, item_view: item });
     }
@@ -337,6 +350,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
+        padding:10,
         // margin: 2,
         // borderColor: '#2a4944',
         // borderWidth: 0.1,
@@ -346,6 +360,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
+        padding:10,
         // margin: 2,
         // borderColor: '#2a4944',
         // borderWidth: 0.1,
