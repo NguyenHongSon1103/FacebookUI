@@ -43,7 +43,7 @@ class ChooseActivities extends React.Component {
             <View style={styles.container}>
                 <TopBar style={{borderBottomColor: '#D3D3D3', borderBottomWidth: 1}}
                         title={'Bạn đang làm gì vậy?'}
-                        icon={'arrow-left'}
+                        icon={'arrow-back'}
                         action={this.props.navigation.navigate}
                         message={'PostArticles'}
                         data={this.props.route.params.status}

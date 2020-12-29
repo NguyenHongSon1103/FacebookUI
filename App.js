@@ -37,7 +37,6 @@ import MessengerUserInfo from './screens/MessengerUserInfo/MessengerUserInfo'
 import MessengerUserSetting from './screens/MessengerUserSetting/MessengerUserSetting'
 import NewConversation from './screens/NewConversation/NewConversation'
 import SinglePost from './screens/SinglePost/SinglePost'
-
 /* Phucnv Import part */
 import ChooseActivities from './screens/ChooseActivities'
 import ChooseEmotion from './screens/ChooseEmotion'
