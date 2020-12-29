@@ -19,10 +19,10 @@ const PostStatusBar = (props) => {
       <TextInput 
       style={styles.ps_status}
       value={'  Bạn đang nghĩ gì ?'} 
-      onFocus={()=>navigation.navigate('PostView',{info:props.info})} 
+      onFocus={()=>props.navigation.navigate('PostView',{info:props.info})} 
       />
       </TouchableOpacity>
-      <TouchableOpacity style={styles.ps_images} onPress={()=>navigation.navigate('PostView',{info:props.info})}>
+      <TouchableOpacity style={styles.ps_images} onPress={()=>props.navigation.navigate('PostView',{info:props.info})}>
         <FontAwesome5 name='images' size={30} color='green' />
       </TouchableOpacity>
     </View>
