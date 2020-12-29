@@ -10,24 +10,24 @@ class ChooseEmotion extends React.Component {
         super(props);
         this.state = {
             GridListEmotions: [
-                { thumb: "smiley", type: "fontisto", name: "hạnh phúc" },
-                { thumb: "smiley", type: "fontisto", name: "có phúc" },
-                { thumb: "smiley", type: "fontisto", name: "được yêu" },
-                { thumb: "smiley", type: "fontisto", name: "buồn" },
-                { thumb: "smiley", type: "fontisto", name: "đáng yêu" },
-                { thumb: "smiley", type: "fontisto", name: "biết ơn" },
-                { thumb: "smiley", type: "fontisto", name: "hào hứng" },
-                { thumb: "smiley", type: "fontisto", name: "đang yêu" },
-                { thumb: "smiley", type: "fontisto", name: "điên" },
-                { thumb: "smiley", type: "fontisto", name: "cảm kích" },
-                { thumb: "smiley", type: "fontisto", name: "sung sướng" },
-                { thumb: "smiley", type: "fontisto", name: "tuyệt vời" },
-                { thumb: "smiley", type: "fontisto", name: "ngốc nghếch" },
-                { thumb: "smiley", type: "fontisto", name: "vui vẻ" },
-                { thumb: "smiley", type: "fontisto", name: "lo lắng" },
-                { thumb: "smiley", type: "fontisto", name: "thật phong cách" },
-                { thumb: "smiley", type: "fontisto", name: "thú vị" },
-                { thumb: "smiley", type: "fontisto", name: "thư giãn" }
+                { thumb: "smile", type: "fontisto", name: "hạnh phúc" },
+                { thumb: "smile", type: "fontisto", name: "có phúc" },
+                { thumb: "smile", type: "fontisto", name: "được yêu" },
+                { thumb: "smile", type: "fontisto", name: "buồn" },
+                { thumb: "smile", type: "fontisto", name: "đáng yêu" },
+                { thumb: "smile", type: "fontisto", name: "biết ơn" },
+                { thumb: "smile", type: "fontisto", name: "hào hứng" },
+                { thumb: "smile", type: "fontisto", name: "đang yêu" },
+                { thumb: "smile", type: "fontisto", name: "điên" },
+                { thumb: "smile", type: "fontisto", name: "cảm kích" },
+                { thumb: "smile", type: "fontisto", name: "sung sướng" },
+                { thumb: "smile", type: "fontisto", name: "tuyệt vời" },
+                { thumb: "smile", type: "fontisto", name: "ngốc nghếch" },
+                { thumb: "smile", type: "fontisto", name: "vui vẻ" },
+                { thumb: "smile", type: "fontisto", name: "lo lắng" },
+                { thumb: "smile", type: "fontisto", name: "thật phong cách" },
+                { thumb: "smile", type: "fontisto", name: "thú vị" },
+                { thumb: "smile", type: "fontisto", name: "thư giãn" }
             ],
         };
     }

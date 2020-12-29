@@ -10,14 +10,14 @@ class ChooseActivities extends React.Component {
         super(props);
         this.state = {
             GridListActivities: [
-                { thumb: "glasses-outline", type: "ionicon", name: "Đang chúc mừng hạnh phúc" },
-                { thumb: "glasses-outline", type: "ionicon", name: "Đang xem tivi" },
-                { thumb: "glasses-outline", type: "ionicon", name: "Đang ăn cơm" },
-                { thumb: "glasses-outline", type: "ionicon", name: "Đang tham gia buổi tiệc" },
-                { thumb: "glasses-outline", type: "ionicon", name: "Đang đi tới chỗ làm" },
-                { thumb: "glasses-outline", type: "ionicon", name: "Đang nghe nhạc" },
-                { thumb: "glasses-outline", type: "ionicon", name: "Đang tìm nhà" },
-                { thumb: "glasses-outline", type: "ionicon", name: "Đang nghĩ về người yêu" },
+                { thumb: "car-side", type: "ionicon", name: "Đang chúc mừng hạnh phúc" },
+                { thumb: "car-side", type: "ionicon", name: "Đang xem tivi" },
+                { thumb: "car-side", type: "ionicon", name: "Đang ăn cơm" },
+                { thumb: "car-side", type: "ionicon", name: "Đang tham gia buổi tiệc" },
+                { thumb: "car-side", type: "ionicon", name: "Đang đi tới chỗ làm" },
+                { thumb: "car-side", type: "ionicon", name: "Đang nghe nhạc" },
+                { thumb: "car-side", type: "ionicon", name: "Đang tìm nhà" },
+                { thumb: "car-side", type: "ionicon", name: "Đang nghĩ về người yêu" },
             ]
         };
     }
@@ -43,7 +43,7 @@ class ChooseActivities extends React.Component {
             <View style={styles.container}>
                 <TopBar style={{borderBottomColor: '#D3D3D3', borderBottomWidth: 1}}
                         title={'Bạn đang làm gì vậy?'}
-                        icon={'arrow-back'}
+                        icon={'arrow-left'}
                         action={this.props.navigation.navigate}
                         message={'PostArticles'}
                         data={this.props.route.params.status}

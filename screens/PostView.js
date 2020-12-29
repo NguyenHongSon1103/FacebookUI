@@ -41,7 +41,7 @@ class PostView extends React.Component {
         this.checkInput = this.checkInput.bind(this);
     };
     onPressGallery(){
-      this.props.navigation.navigate('RenderGallery', {c: this.state.image});
+      this.props.navigation.navigate('RenderGallery', {selected: this.state.image});
       this.state.isImage = true;
     }
     onPressEmotion(){
