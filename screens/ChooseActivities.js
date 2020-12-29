@@ -10,14 +10,14 @@ class ChooseActivities extends React.Component {
         super(props);
         this.state = {
             GridListActivities: [
-                { thumb: "car-side", type: "ionicon", name: "Đang chúc mừng hạnh phúc" },
-                { thumb: "car-side", type: "ionicon", name: "Đang xem tivi" },
-                { thumb: "car-side", type: "ionicon", name: "Đang ăn cơm" },
-                { thumb: "car-side", type: "ionicon", name: "Đang tham gia buổi tiệc" },
-                { thumb: "car-side", type: "ionicon", name: "Đang đi tới chỗ làm" },
-                { thumb: "car-side", type: "ionicon", name: "Đang nghe nhạc" },
-                { thumb: "car-side", type: "ionicon", name: "Đang tìm nhà" },
-                { thumb: "car-side", type: "ionicon", name: "Đang nghĩ về người yêu" },
+                { thumb: "car-side", type: "ionicon", name: "chúc mừng hạnh phúc" },
+                { thumb: "car-side", type: "ionicon", name: "xem tivi" },
+                { thumb: "car-side", type: "ionicon", name: "ăn cơm" },
+                { thumb: "car-side", type: "ionicon", name: "tham gia buổi tiệc" },
+                { thumb: "car-side", type: "ionicon", name: "đi tới chỗ làm" },
+                { thumb: "car-side", type: "ionicon", name: "nghe nhạc" },
+                { thumb: "car-side", type: "ionicon", name: "tìm nhà" },
+                { thumb: "car-side", type: "ionicon", name: "nghĩ về người yêu" },
             ]
         };
     }

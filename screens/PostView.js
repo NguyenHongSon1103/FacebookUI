@@ -179,7 +179,7 @@ class PostView extends React.Component {
                         />
                         <View style={styles.statContainer}>
                             <Text style={styles.userName}>{this.state.status.length > 0 ?
-                                                           this.name + ' - Đang 🙂 cảm thấy\n' + this.state.status + '.' : this.name}
+                                                           this.name + ' - Đang 🙂 ' + this.state.status + '.' : this.name}
                             </Text>
                         </View>
                         {/*</View>*/}
