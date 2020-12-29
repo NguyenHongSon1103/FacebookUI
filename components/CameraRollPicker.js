@@ -8,6 +8,7 @@ import {
     ActivityIndicator,
 } from 'react-native';
 import CameraRoll from "@react-native-community/cameraroll";
+// import CameraRoll from 'expo-cameraroll'
 import PropTypes from 'prop-types';
 import Row from './Row';
 
@@ -119,6 +120,7 @@ class CameraRollPicker extends Component {
             first: 100,
             groupTypes,
             assetType,
+            // include: {'filename', 'fizeSize', 'imageSize'}
         };
 
         if (Platform.OS === 'android') {

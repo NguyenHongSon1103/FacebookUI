@@ -15,10 +15,10 @@ class FriendList extends Component {
     };
   }
   onPressHint() {
-    this.props.navigation.navigate('Hint_Friend')
+    this.props.navigation.navigate('Hint_Friend',{user_id:this.props.user_id})
   }
   onPressAllFriend(){
-    this.props.navigation.navigate('All_Friend')
+    this.props.navigation.navigate('All_Friend',{user_id:this.props.user_id})
   }
   render() {
   return ( 

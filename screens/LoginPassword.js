@@ -24,7 +24,7 @@ const LoginPassword = () => {
             }}>
                 <View style={ {flexDirection: "row"}}>
                     <TextInput style={styles.zone}
-                        placeholder="Nhập địa chỉ"
+                        placeholder="Nhập mật khẩu"
                         onChangeText={(text) => setText(text)}
                         keyboardType="default"
                         value={text} 

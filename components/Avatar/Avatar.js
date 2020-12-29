@@ -11,7 +11,7 @@ import styles from './styles'
 
 class Avatar extends Component {
     render() {
-        const { src = 'https://cdn.pixabay.com/photo/2012/04/13/21/07/user-33638_960_720.png',
+        const { src = 'https://cdn.pixabay.com/photo/2015/03/04/22/35/head-659651_1280.png',
                 containerStyle,
                 avatarStyle,
                 active = false,

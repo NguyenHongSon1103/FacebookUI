@@ -1,7 +1,7 @@
 //import libraries
 import React from 'react';
-import { View, Text, StyleSheet, TextInput, ScrollView, FlatList } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { View, Text, StyleSheet, TextInput, ScrollView, FlatList , TouchableOpacity} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import CommentHeader from '../components/CommentHeader';
 import CommentItem from '../components/CommentItem';
 import state from '../state.json';
@@ -14,7 +14,7 @@ const Comment = (props) => {
             <CommentItem avatar={item.poster.avatar} name={item.poster.name} created={item.created} cmt = {item.comment}/>
         )
     }
-    function setComment(text){
+    function setComment(){
       fetch(state.server + 'set_comment', {
         method: 'POST',
         headers: {
@@ -37,6 +37,7 @@ const Comment = (props) => {
           }
           data.push(comment);
           props.setCmt(data);
+          setText("")
         });
     }
     return (
@@ -60,8 +61,15 @@ const Comment = (props) => {
                     <View style={styles.inputzone}>
                         <TextInput style={styles.input_search} placeholder="Nhập bình luận..." onChangeText={(text) => setText(text)}
                         value={text} 
-                        onEndEditing= {(text) => setComment(text)}/>
+                        />
                     </View>
+                    <TouchableOpacity style={styles.centerItem} onPress= {() => setComment()}>
+                        <Icon name="paper-plane"
+                            color="black"
+                            backgroundColor="#FFF"
+                            size={25}
+                        />
+                    </TouchableOpacity>
                 </View>
             </View>
         </View>
@@ -87,6 +95,11 @@ const styles = StyleSheet.create({
     //marginBottom: '10%'
     // elevation: 4,
   },
+  centerItem:{
+    paddingHorizontal:10,
+    justifyContent:"center",
+    flex:1
+  },
   input: {
     height: 60,
     shadowOpacity: 0.2,
@@ -97,6 +110,7 @@ const styles = StyleSheet.create({
     },
     shadowColor: '#000000',
     fontSize: 20,
+    flex:4
   },
   textInput: {
     borderRadius: 15,

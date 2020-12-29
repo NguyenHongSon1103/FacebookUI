@@ -10,7 +10,8 @@ import {
   RefreshControl,
   ActivityIndicator
 } from 'react-native';
-import API from '../../app/API.json'
+// import API from '../../app/API.json'
+import state from '../../state.json';
 import styles from './styles';
 import ChatBoxTopBar from '../../components/ChatBoxTopBar/ChatBoxTopBar';
 //import ConventionData from '../../app/ConversationData'
@@ -30,7 +31,7 @@ class ChatScreen extends Component {
       conventionData: customData.data,
       isLoading: true,
       textReplaced: '',
-      url:API.URL,
+      url:state.server,
     };
   }
 
@@ -53,7 +54,7 @@ class ChatScreen extends Component {
       this._keyboardDidHide
     );
 
-    fetch(this.state.url + '/get_conversation', {
+    fetch(state.server + 'get_conversation', {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/x-www-form-urlencoded', // <-- Specifying the Content-Type
@@ -103,7 +104,7 @@ class ChatScreen extends Component {
 
   onSubmit(sender,receiver,text,conversation_id) {
     console.log(text);
-    fetch(this.state.url + '/send_message', {
+    fetch(this.state.url + 'send_message', {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/x-www-form-urlencoded', // <-- Specifying the Content-Type
