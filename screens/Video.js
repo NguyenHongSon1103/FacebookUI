@@ -12,9 +12,7 @@ const Video = (props) => {
     <View>
       <View style={{backgroundColor: '#ffffff'}}>
         <ScrollView>
-          <Post currentPosition={'Home'} navigation={navigation}/>
-          <Post currentPosition={'Home'} navigation={navigation}/>
-          <Post currentPosition={'Home'} navigation={navigation}/>
+          
         </ScrollView>
       </View>
     </View>

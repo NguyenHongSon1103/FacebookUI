@@ -23,7 +23,7 @@ const PersonalPageCoverImage = (props) => {
       <PopupModal modalVisible={modalVisible}
       setModalVisible={setModalVisible} options={options}/>
       <TouchableOpacity onPress={()=>showModalImage()}>
-        <ImageBackground  source={require('@expo/snack-static/react-native-logo.png')}
+        <ImageBackground  source={{uri:'https://cdn.pixabay.com/photo/2015/03/04/22/35/head-659651_1280.png'}}
           style={styles.image}>
           {hasCameraIcon ?(<View style={styles.cameraIconView}>
               <FontAwesome5 name='camera' size={20} style={styles.cameraIcon}/>

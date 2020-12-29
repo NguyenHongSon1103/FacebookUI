@@ -12,6 +12,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from 'react-native';
+import state from '../../state.json'
 import API from '../../app/API.json';
 import MessengerTopBar from '../../components/MessengerTopBar/MessengerTopBar';
 import SearchConversation from '../../components/SearchConversation/SearchConversation';
@@ -40,13 +41,13 @@ class Messenger extends Component {
     }
     return text;
   }
-  componentDidMount() {
+  componentDidMount({}) {
     fetch(this.state.url + '/get_list_conversation', {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/x-www-form-urlencoded', // <-- Specifying the Content-Type
       }),
-      body: 'count=4&user_id=5', // <-- Post parameters
+      body: 'count=4&user_id=4', // <-- Post parameters
     })
       .then((response) => response.json())
       .then((json) => {

@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   cameraIcon: {
     marginTop: 5,
     alignSelf: "center",
-    color:'#0',
+    color:'black',
   }
 });
 

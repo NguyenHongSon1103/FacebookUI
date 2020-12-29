@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   cameraIcon: {
     marginTop: 10,
     alignSelf: "center",
-    color:'#0',
+    color:'black',
   },
   button: {
     flex: 0.1,

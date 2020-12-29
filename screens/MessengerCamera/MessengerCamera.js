@@ -14,14 +14,7 @@ class MessengerCamera extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Camera
-          ref={(cam) => {
-            this.camera = cam;
-          }}
-          style={styles.preview}
-          >
-          <Text style={styles.capture} onPress={this.takePicture.bind(this)}>[CAPTURE]</Text>
-        </Camera>
+        <Text>aaaa</Text>
       </View>
     );
   }

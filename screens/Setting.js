@@ -27,7 +27,7 @@ const SettingRoutePersonalPage = (props) => {
       <AvatarImage hasCameraIcon={false} avatarStyle={{width: 35, height: 35}} positionStyle={{alignSelf:'center'}} currentPosition={'Setting'}/>
       <View style={{marginLeft: 10}}>
         <Text style={{fontSize: 25, fontWeight: 'bold'}}> {userName} </Text>
-        <Text style={{fontSize: 15, color: '#d9'}}> Xem trang cá nhân của bạn </Text>
+        <Text style={{fontSize: 15, color: '#d9d9d9'}}> Xem trang cá nhân của bạn </Text>
       </View>
     </View>
   )

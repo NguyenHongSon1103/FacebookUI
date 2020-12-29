@@ -21,7 +21,7 @@ function renderBlockedUsers(users){
     users.map((user) =>(
     <View style={{flexDirection:'row', paddingTop: 10}}>
       <TouchableOpacity style={{alignSelf: 'center', flex: 2}}>
-        <Image source={require('@expo/snack-static/react-native-logo.png')} style={{width: 80, height: 80}}/>
+        <Image source={{uri:'https://cdn.pixabay.com/photo/2015/03/04/22/35/head-659651_1280.png'}} style={{width: 80, height: 80}}/>
       </TouchableOpacity>
       <Text style={{alignSelf: 'center', fontSize:25, flex: 5}}> {user['name']}</Text>
       <Text style={{alignSelf: 'center', fontSize:20, flex: 3, color:'#d9d9d9d9'}}> BỎ CHẶN </Text>        
