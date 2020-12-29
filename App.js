@@ -39,10 +39,10 @@ import NewConversation from './screens/NewConversation/NewConversation'
 import SinglePost from './screens/SinglePost/SinglePost'
 
 /* Phucnv Import part */
-import ChooseActivitiesScreen from './screens/ChooseActivities'
-import ChooseEmotionScreen from './screens/ChooseEmotion'
-import RenderGalleryScreen from './screens/RenderGallery'
-import PostViewScreen from './screens/PostView'
+import ChooseActivities from './screens/ChooseActivities'
+import ChooseEmotion from './screens/ChooseEmotion'
+import RenderGallery from './screens/RenderGallery'
+import PostView from './screens/PostView'
 const Stack = createStackNavigator();
 const refNavigation = React.createRef(); 
 function navigate(name, params) {
@@ -101,10 +101,10 @@ export default function App() {
         <Stack.Screen name="NewConversation" component={NewConversation} options={{ headerShown: false }}/> 
         <Stack.Screen name="SinglePost" component={SinglePost} options={{ headerShown: false }}/>
         {/******* PhucNV Screen *******/}
-        <Stack.Screen name="ChooseActivitiesScreen" component={ChooseActivitiesScreen} options={{ headerShown: false }}/> 
-        <Stack.Screen name="ChooseEmotionScreen" component={ChooseEmotionScreen} options={{ headerShown: false }}/> 
-        <Stack.Screen name="RenderGalleryScreen" component={RenderGalleryScreen} options={{ headerShown: false }}/> 
-        <Stack.Screen name="PostViewScreen" component={PostViewScreen} options={{ headerShown: false }}/> 
+        <Stack.Screen name="ChooseActivities" component={ChooseActivities} options={{ headerShown: false }}/> 
+        <Stack.Screen name="ChooseEmotion" component={ChooseEmotion} options={{ headerShown: false }}/> 
+        <Stack.Screen name="RenderGallery" component={RenderGallery} options={{ headerShown: false }}/> 
+        <Stack.Screen name="PostView" component={PostView} options={{ headerShown: false }}/> 
       </Stack.Navigator >
     </NavigationContainer>
   )
