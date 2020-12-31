@@ -46,7 +46,7 @@ const NextButton = (props) => {
             avatar: responseJson.data.avatar,
             id: responseJson.data.id,
           };
-          props.navigation.navigate("Menutab",info);
+          props.navigation.navigate("Menutab",{info:info});
         });
         
     } else {

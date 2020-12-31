@@ -43,7 +43,7 @@ const PersonalPage = (props) => {
         <PersonalDetail />
         <PersonalPageListFriend />
         <PostStatusBar currentPosition={currentPosition}/>
-        <Post currentPosition={currentPosition}/>
+        {/* <Post currentPosition={currentPosition}/> */}
       </ScrollView>
     </View>
   )

@@ -11,14 +11,17 @@ const Post = (props) => {
   const [modalVisible, setModalVisible] = React.useState(false);
   const [cmt, setCmt] = React.useState([])
   const {
-    currentPosition
+    currentPosition,
+    navigation,
   } = props
+
   return (
-    <View>
-      <View style={{backgroundColor: '#697689', height: 15}}></View>
-      <PostHeader currentPosition={currentPosition}/> 
-      <PostDetail />
-      <PostReactCount setModalVisible={setModalVisible} getCmt={setCmt} post_id={2}/>
+    (typeof props.item) != 'undefine' ?
+    (<View>
+      <View style={{backgroundColor: '#697689', height: 15}}></View> 
+      <PostHeader currentPosition={currentPosition} item={props.item}/> 
+      <PostDetail item={props.item} />
+      <PostReactCount setModalVisible={setModalVisible} getCmt={setCmt} post_id={2} item={props.item}/>
       <Modal
         visible={modalVisible} 
         transparent={true}
@@ -26,10 +29,12 @@ const Post = (props) => {
         animationType={'slide'}
       >
         <View>
-          <Comment cmt={cmt} user_id={4} post_id={2} setCmt={setCmt} avatar={"https://reactnative.dev/img/tiny_logo.png"} name={"son"}/> 
+          <Comment cmt={cmt} user_id={4} post_id={2} setCmt={setCmt} avatar={"https://reactnative.dev/img/tiny_logo.png"} name={"son"} item={props.item}/> 
         </View>  
       </Modal>
-    </View>
+    </View>)
+    :
+    null
 )}
 
 export default Post

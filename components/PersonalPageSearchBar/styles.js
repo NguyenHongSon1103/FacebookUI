@@ -26,7 +26,8 @@ const styles = StyleSheet.create({
       alignSelf: 'flex-end'
   },
   input: {
-      backgroundColor: 'transparents',
+      backgroundColor: 'white',
+      opacity:0,
       alignSelf: 'center',
       width: 300,
       height: 25

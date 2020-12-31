@@ -50,11 +50,47 @@ class Notification extends Component {
                 });
         }
     }
+    setRead(notification_id){
+      fetch(state.server + 'set_read_notification', {
+        method: 'POST',
+        headers: {
+          // Accept: 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'notifications=' + notification_id,
+      })
+        .then((response) => response.json())
+        .then((responseJson) => {
+        });
+    }
     changeReaded(items, index) {
         let item = { ...item };
         item.read = 1;
         item = item;
         this.setState({ items: items });
+    }
+    get_time_left(time) {
+        var current_hour = parseInt(Moment().locale('vi').format("HH"))
+        var noti_hour = parseInt(Moment(time).locale('vi').format("HH"))
+        if (parseInt(Moment().locale('vi').format("YYYY")) > parseInt(Moment(time).locale('vi').format("YYYY"))) {
+            return (parseInt(Moment().locale('vi').format("YYYY")) - parseInt(Moment(time).locale('vi').format("YYYY"))).toString()+"năm trước"
+        }
+        else if (parseInt(Moment().locale('vi').format("M")) > parseInt(Moment(time).locale('vi').format("M"))) {
+            return (parseInt(Moment().locale('vi').format("M")) - parseInt(Moment(time).locale('vi').format("M"))).toString() +"tháng trước"
+        }
+        else if (parseInt(Moment().locale('vi').format("DD")) > parseInt(Moment(time).locale('vi').format("DD"))) {
+            return (parseInt(Moment().locale('vi').format("DD")) - parseInt(Moment(time).locale('vi').format("DD"))).toString()+ "ngày trước"
+
+        }
+        else if (current_hour > noti_hour) {
+            return (current_hour - noti_hour).toString()+"giờ trước"
+        }
+        else if (parseInt(Moment().locale('vi').format("mm")) > parseInt(Moment(time).locale('vi').format("mm"))) {
+            return (parseInt(Moment().locale('vi').format("mm")) - parseInt(Moment(time).locale('vi').format("mm"))).toString() + "phút trước"
+        }
+        else if (parseInt(Moment().locale('vi').format("ss")) > parseInt(Moment(time).locale('vi').format("ss"))) {
+            return (parseInt(Moment().locale('vi').format("ss")) - parseInt(Moment(time).locale('vi').format("ss"))).toString()+ "giây trước"
+        }
     }
     view_time_lose(time) {
         var current_hour = parseInt(Moment().locale('vi').format("HH"))
@@ -105,16 +141,21 @@ class Notification extends Component {
             case notificationTypes.Like:
                 this.props.navigation.navigate("SinglePost", {
                     post_id: item.post_id,
-                    user_id: item.user_id
-                })
+                    time: this.get_time_left(item.created),
+                    avatar: item.avatar
+                }),
+                this.setRead(item.id)
                 break
             case notificationTypes.Comment:
                 this.props.navigation.navigate("SinglePost", {
                     post_id: item.post_id,
-                    user_id: item.user_id
+                    time: this.get_time_left(item.created),
+                    avatar: item.avatar
                 })
+                this.setRead(item.id)
                 break
             case notificationTypes.Add_Friend:
+                this.setRead(item.id)
                 break
 
         }
@@ -134,10 +175,9 @@ class Notification extends Component {
                 Description = () => <Text style={styles.pureTxt}>
                     <Text style={styles.hightlightTxt}>{item.username}</Text> đã gửi lời mời kết bạn cho bạn.</Text>
                 break
-
         }
         return (
-            <TouchableOpacity style={{ flexDirection: "row" }} onPress={() => console.log("ok")}>
+            <TouchableOpacity style={{ flexDirection: "row" }} onPress={() => this.onPressNotificationHandler(item)}>
                 <View style={{ flex: 0.05 }}>
                 </View>
                 <View style={{ width: 20, flex: 0.2 }}>
@@ -160,9 +200,7 @@ class Notification extends Component {
             </TouchableOpacity>
         )
     }
-    setRead = (item, visible) => {
-        this.setState({ item: visible, item_view: item });
-    }
+  
     setModalNoti = (visible, item) => {
         this.setState({ modalNotification: visible, item_view: item });
     }
@@ -337,6 +375,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
+        padding:10,
         // margin: 2,
         // borderColor: '#2a4944',
         // borderWidth: 0.1,
@@ -346,6 +385,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
+        padding:10,
         // margin: 2,
         // borderColor: '#2a4944',
         // borderWidth: 0.1,

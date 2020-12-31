@@ -8,7 +8,7 @@ const PersonalPageListFriend = (props) => {
     return (
       <View style={{flex: 0.4}}>
         <TouchableOpacity >
-          <Image source={require('../../assets/snack-icon.png')} style={styles.avatarImage}/>
+          <Image source={{uri:'https://cdn.pixabay.com/photo/2015/03/04/22/35/head-659651_1280.png'}} style={styles.avatarImage}/>
         </TouchableOpacity>
         <Text style={styles.userName}> {friendName} </Text>
       </View>

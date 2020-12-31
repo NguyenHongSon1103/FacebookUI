@@ -3,11 +3,11 @@ import {
     Image,
     StyleSheet,
     Dimensions,
-    TouchableOpacity, View, Text,
+    TouchableOpacity,
 } from 'react-native';
-import PropTypes from 'prop-types';
+import { PropTypes } from 'prop-types';
 
-//const checkIcon = require('./circle-check.png');
+const checkIcon = require('./images/circle-check.png');
 
 const styles = StyleSheet.create({
     marker: {
@@ -15,16 +15,7 @@ const styles = StyleSheet.create({
         top: 5,
         right: 5,
         backgroundColor: 'transparent',
-        width: 25,
-        height: 25,
-        borderRadius: 25 / 2,
-        color: '#6698FF'
     },
-    number: {
-        fontSize: 15,
-        fontWeight: 'bold',
-        color: 'white'
-    }
 });
 
 class ImageItem extends Component {
@@ -47,11 +38,10 @@ class ImageItem extends Component {
             item, selected, selectedMarker, imageMargin,
         } = this.props;
 
-        const marker = selectedMarker || (
-            <View style={styles.marker}>
-                <Text style={styles.number}>this.</Text>
-            </View>
-        );
+        const marker = selectedMarker || (<Image
+            style={[styles.marker, { width: 25, height: 25 }]}
+            source={checkIcon}
+        />);
 
         const { image } = item.node;
 

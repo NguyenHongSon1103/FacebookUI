@@ -10,7 +10,7 @@ const AvatarImage = (props) => {
   const {
     currentPosition = 'PersonalPage',
     hasCameraIcon = true,
-    imgSource = require('@expo/snack-static/react-native-logo.png'),
+    imgSource = 'https://reactnative.dev/img/tiny_logo.png',
     avatarStyle,
     positionStyle,
     modalVisible, 
@@ -28,7 +28,7 @@ const AvatarImage = (props) => {
       <PopupModal modalVisible={modalVisible}
                   setModalVisible={setModalVisible} options={options}/>
       <TouchableOpacity onPress={ ()=>press(currentPosition)}>
-        <ImageBackground  source={imgSource}
+        <ImageBackground  source={{uri:imgSource}}
          style={[styles.imageBackGround, avatarStyle]} imageStyle={styles.image}>
           {hasCameraIcon ?
             (<View style={styles.cameraIconView}>

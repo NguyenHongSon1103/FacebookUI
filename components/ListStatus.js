@@ -1,6 +1,6 @@
 import React from "react";
 import {Platform, StyleSheet, FlatList, Text, View, Alert, TouchableHighlight} from "react-native";
-import {Icon} from "react-native-elements";
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 interface List {
     listStatus: Array;
@@ -10,12 +10,14 @@ class ListStatus extends React.Component<List> {
     constructor(props: List) {
         super(props);
         this.state = {
-            GridListItems: []
+            GridListItems: [],
+            status: '',
         };
         Array.from(this.props.listStatus, x => this.state.GridListItems.push(x));
     }
 
     render() {
+        // this.state.status = this.props.status;
         return (
             <View style={styles.container}>
                 <FlatList
@@ -24,7 +26,8 @@ class ListStatus extends React.Component<List> {
                         <TouchableHighlight
                             style={styles.button}
                             onPress = { () => {
-                                alert(item.name)
+                                this.state.status = item.name;
+                                this.props.action("PostView", {status: this.state.status});
                             }}
                             underlayColor="#DDDDDD"
                         >

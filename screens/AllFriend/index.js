@@ -4,7 +4,7 @@ import { StyleSheet, Image, Text, View, Modal, StatusBar, Button, ScrollView, To
 import ScrollView_allfriend from '../../components/friend_list/ScrollView_allfriend';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import state from '../../state.json';
-const URL = state.url;
+const URL = state.server;
 class AllFriend extends Component {
   constructor(props) {
     super(props);
@@ -26,7 +26,7 @@ class AllFriend extends Component {
             headers: new Headers({
                 'Content-Type': 'application/x-www-form-urlencoded', // <-- Specifying the Content-Type
             }),
-            body: "user_id="+this.props.user_id+"&count=10" // <-- Post parameters
+            body: "count=10&user_id="+this.props.route.params.user_id  // <-- Post parameters
         })
             .then((response) => response.json())
             .then((json) => {

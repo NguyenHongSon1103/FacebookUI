@@ -39,18 +39,17 @@ const PostHeader = (props) => {
         </Text>
       );
   }
-
   return (
     <View style={{ flexDirection: 'column' }}>
       <View style={styles.view}>
         <View style={{ flexDirection: 'column', flex: 0.13 }}>
-          <AvatarImage hasCameraIcon={false} avatarStyle={styles.avatar} currentPosition={currentPosition}/>
+          <AvatarImage hasCameraIcon={false} avatarStyle={styles.avatar} currentPosition={currentPosition} imgSource={props.item.author.avatar}/>
         </View>
 
         <View style={{ flexDirection: 'column', flex: 0.8 }}>
           <TouchableOpacity onPress={()=>navigation.navigate('PersonalPage')}>
             <Text style={{ fontWeight: 'bold', fontSize: 20 }}>
-              {userName}
+              {props.item.author.name}
             </Text>
           </TouchableOpacity>
           <View style={{ flexDirection: 'row' }}>
